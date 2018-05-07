@@ -35,8 +35,11 @@ public:
 	//
 	// Contrat : 
 	//
-	bool Maladie::ajouterEmpreinte(string chEmp, dequeue<pair<string, string>> signature);
+	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
 	Empreinte getEmpreinteById(long id);
+	string getNomMaladie();
+	deque<Empreinte> getListeEmpreinte();
+
 	 
 	//------------------------------------------------- Surcharge d'opérateurs
 //	Maladie & operator = (const Maladie & unMaladie);

@@ -28,7 +28,7 @@ void Attribut::setValue(void* uneValeur)
 {
 	if (type == "double")
 	{
-		value = new int ();
+		value = new double ();
 		*(double*)value = *(double*)uneValeur;
 	}
 	else if (type == "string") {
@@ -72,24 +72,32 @@ bool Attribut::estEgal(Attribut & a)
 
 }
 
-/*
-bool operator==(Attribut & a, Attribut & b)
+
+bool Attribut::operator==(Attribut & a)
 {
+	#ifdef MAP
+	cout << "Appel de ==" << endl;
+#endif
 
 //if ((type == "double" && *(double*)value == *(double*)unAttribut.value)
 //|| (type == "string" && 0==strcmp((string*)value , *(string*)unAttribut.value)))
-if (a.getType() == "string" && *(string*)a.getValue() == *(string*)b.getValue())
-{
-	return true;
-}
-else {
-	cout << *(string*)a.getValue() << " " << *(string*)b.getValue() << endl;
-	return false;
-}
+	
+	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
+	{
+		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
+		return true;
+	} else if (a.getType() == "double" && (*(double*)a.getValue() ==  *(double*)getValue())) {
+		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;		
+		return true;
+	}
+	else {
+		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;	
+		return false;
+	}	
 
 
 }
-*/
+
 
 
   //-------------------------------------------- Constructeurs - destructeur
@@ -109,6 +117,13 @@ Attribut::Attribut(string unNom, string unType)
 #endif
 	nom = unNom;
 	type = unType;
+	/*if (unType == "double")
+	{
+		value = new double();
+	} else if(unType == "string") {
+		value = new string;
+
+	}*/
 
 }
 
@@ -130,7 +145,7 @@ Attribut::~Attribut()
 #ifdef MAP
 	cout << "Appel au destructeur de <Attribut>" << endl;
 #endif
-	delete value;
+	//delete value;
 } //----- Fin de ~Attribut
 
 

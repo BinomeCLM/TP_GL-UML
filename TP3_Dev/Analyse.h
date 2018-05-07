@@ -17,8 +17,8 @@ using namespace std;
 #include <deque>
 #include <string>
 
-#include "Attribut.h"
-#include "Empreinte.h"
+#include "Attribut.h" //Pourquoi ? 
+#include "Empreinte.h" 
 
 //------------------------------------------------------------- Constantes
 
@@ -42,7 +42,7 @@ public:
 	// Contrat :
 	//
 
-	// void genererClassement (Dictionnaire d, Empreinte e);
+	// void genererClassement (Fichier d, Empreinte e);
 	// Mode d'emploi :
 	//
 	// Contrat :

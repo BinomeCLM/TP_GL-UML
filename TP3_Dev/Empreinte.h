@@ -16,6 +16,8 @@ using namespace std;
 #include <deque>
 
 #include "Attribut.h"
+#include "Analyse.h"
+#include "Dictionnaire.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -44,7 +46,7 @@ public:
 	// Contrat :
 	//
 
-	// Analyse lancerAnalyse(Dictionnaire d);
+	// Analyse lancerAnalyse(Fichier d);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -53,8 +55,10 @@ public:
 	void ajouterAttribut(Attribut a);
 	deque<Attribut> getListeAttributs();
 	void setNbAttributs(long nbAttr);
-	void Empreinte::getListeAttribut(Attribut a);
+	//void Empreinte::getListeAttribut(Attribut a);
 	long getnbAttributs();
+	long getIdEmpreinte();
+	//Analyse lancerAnalyse(Dictionnaire d) ;
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	Empreinte & operator = (const Empreinte & unEmpreinte);

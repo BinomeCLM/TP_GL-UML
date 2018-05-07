@@ -29,7 +29,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-bool Maladie::ajouterEmpreinte(string chEmp, dequeue<pair<string,string>> signature ) {
+bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
 	bool ajoutee;
 	/*
 	std::string s = "scott>=tiger";
@@ -41,8 +41,8 @@ bool Maladie::ajouterEmpreinte(string chEmp, dequeue<pair<string,string>> signat
 	while (!signature.empty())
 	{
 
-		string monType = signature.front();
-		switch (c)
+		//string monType = signature.front();
+		/*switch (c) //C'est quoi c ?
 		{
 		case 'A':
 			capa++;
@@ -52,8 +52,8 @@ bool Maladie::ajouterEmpreinte(string chEmp, dequeue<pair<string,string>> signat
 			break;
 		default:
 			nota++;
-		}
-		e->id = stol(chEmp.substr(0, chEmp.find(delimiter)));
+		}*/
+		//e->id = stol(chEmp.substr(0, chEmp.find(delimiter)));
 	}
 
 
@@ -64,6 +64,13 @@ Empreinte Maladie::getEmpreinteById(long id) {
 	Empreinte e;
 
 	return e;
+}
+
+string Maladie::getNomMaladie() {
+	return nomMaladie;
+}
+deque<Empreinte> Maladie::getListeEmpreinte() {
+	return listeEmpreinte;
 }
 
 

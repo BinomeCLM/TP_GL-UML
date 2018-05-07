@@ -28,7 +28,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-/*void Analyse::genererClassement(Dictionnaire d, Empreinte e) 
+/*void Analyse::genererClassement(Fichier d, Empreinte e) 
 {
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 

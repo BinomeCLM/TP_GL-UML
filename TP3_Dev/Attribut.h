@@ -11,6 +11,7 @@ e-mail               : $EMAIL$
 #define ATTRIBUT_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include <string>
 //------------------------------------------------------------- Constantes
 
@@ -48,7 +49,7 @@ public:
 	// Contrat :
 	//
 
-	//bool operator==(Attribut & a, Attribut & b);
+	bool operator==(Attribut & a);
 
 
 	//-------------------------------------------- Constructeurs - destructeur

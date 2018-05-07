@@ -19,6 +19,7 @@ using namespace std;
 #include "Empreinte.h"
 
 
+
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -36,8 +37,13 @@ void Empreinte::ajouterAttribut(Attribut a)
 
 }
 
-/*Analyse Empreinte::lancerAnalyse(Dictionnaire d) 
+
+/*//avant Fichier au lieu de dictionnaire
 {
+	
+
+
+	
 	// On récupére la liste des empreintes à analyser du Fichier Patient
 	deque<Empreinte> listeEmp = d.getListeEmpreinte();
 
@@ -65,6 +71,11 @@ long Empreinte::getnbAttributs()
 void Empreinte::setNbAttributs(long nbAttr)
 {
 	nbAttributs = nbAttr;
+}
+
+long Empreinte::getIdEmpreinte()
+{
+	return idEmpreinte;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
