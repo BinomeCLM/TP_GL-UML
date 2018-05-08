@@ -28,13 +28,14 @@ void Attribut::setValue(void* uneValeur)
 {
 	if (type == "double")
 	{
-		value = new double ();
+		//value = new double ();
 		*(double*)value = *(double*)uneValeur;
 	}
 	else if (type == "string") {
-		value = new string();
+		//value = new string();
 		*(string*)value = *(string*)uneValeur;
 	}
+	//delete [] uneValeur;
 
 } //----- Fin de Méthode
 
@@ -56,7 +57,7 @@ string Attribut::getType()
 {
 } //----- Fin de operator =*/
 
-bool Attribut::estEgal(Attribut & a)
+/*bool Attribut::estEgal(Attribut & a)
 {
 	if (a.getType() == "string" && *(string*)a.getValue() == *(string*)value)
 	{
@@ -70,7 +71,7 @@ bool Attribut::estEgal(Attribut & a)
 	}
 
 
-}
+}*/
 
 
 bool Attribut::operator==(Attribut & a)
@@ -101,14 +102,14 @@ bool Attribut::operator==(Attribut & a)
 
 
   //-------------------------------------------- Constructeurs - destructeur
-Attribut::Attribut(const Attribut & unAttribut)
+/*Attribut::Attribut(const Attribut & unAttribut)
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Attribut>" << endl;
 #endif
-} //----- Fin de Attribut (constructeur de copie)
+} //----- Fin de Attribut (constructeur de copie)*/
 
 Attribut::Attribut(string unNom, string unType)
 {
@@ -117,13 +118,13 @@ Attribut::Attribut(string unNom, string unType)
 #endif
 	nom = unNom;
 	type = unType;
-	/*if (unType == "double")
+	if (unType == "double")
 	{
 		value = new double();
 	} else if(unType == "string") {
-		value = new string;
+		value = new string();
 
-	}*/
+	}
 
 }
 
@@ -145,7 +146,13 @@ Attribut::~Attribut()
 #ifdef MAP
 	cout << "Appel au destructeur de <Attribut>" << endl;
 #endif
-	//delete value;
+	if(type == "double")
+	{
+		delete (double*)value;
+	} else if (type == "string") {
+		delete (string*)value;
+	}
+	
 } //----- Fin de ~Attribut
 
 

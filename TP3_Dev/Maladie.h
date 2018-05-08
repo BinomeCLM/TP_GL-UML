@@ -36,9 +36,11 @@ public:
 	// Contrat : 
 	//
 	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
-	Empreinte getEmpreinteById(long id);
+	Empreinte * getEmpreinteById(long id);
 	string getNomMaladie();
 	deque<Empreinte> getListeEmpreinte();
+	bool empreinteExiste(long id); //Création de cette méthode car problème de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
+							//mais en soit vu qu'on a juste besoin de savoir si l'empreinet existe, on pourrait la garder au lieu de getById()
 
 	 
 	//------------------------------------------------- Surcharge d'opérateurs
@@ -55,6 +57,8 @@ public:
 	//
 	// Contrat :
 	//
+
+	Maladie(long id, string nom);
 
 	Maladie();
 	// Mode d'emploi :

@@ -17,7 +17,6 @@ using namespace std;
 #include <deque>
 #include <string>
 
-#include "Attribut.h" //Pourquoi ? 
 #include "Empreinte.h" 
 
 //------------------------------------------------------------- Constantes

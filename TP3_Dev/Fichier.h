@@ -70,13 +70,13 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 private :
-    long nbEmpreintes;
-    string sourceFichier;
-    deque<pair<string,string> > signature;
+    
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+	long nbEmpreintes;
+    string sourceFichier;
+    deque<pair<string,string> > signature;
 //----------------------------------------------------- Attributs protégés
 
 };

@@ -35,11 +35,11 @@ public:
     //
     // Contrat :
     //
-    bool ajouterMaladie(Maladie m);
+    bool ajouterMaladie(string chMaladie);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );
+   // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );
     // Mode d'emploi :
     //
     // Contrat :
@@ -47,7 +47,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Dictionnaire ( const Dictionnaire & unDictionnaire );
+   // Dictionnaire ( const Dictionnaire & unDictionnaire );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -60,6 +60,8 @@ public:
     //
     // Contrat :
     //
+
+    Dictionnaire(string nomFichier, string uneSignature);
 
     virtual ~Dictionnaire ( );
     // Mode d'emploi :

@@ -55,14 +55,16 @@ Fichier::Fichier ( const Fichier & unFichier )
 
 Fichier::Fichier (string nomFichier, string uneSignature )
 {
+
 	nbEmpreintes = 0;
 	sourceFichier = nomFichier;
 	uneSignature.erase(0,36); //on a toujours les deux première ligne du début qui font la même taille
+	
 	int i = 0;
 	string nom;
 	string type;
-	int pos1;
-	int pos2;
+	int pos1=0;
+	int pos2 =0;
 	while(pos2 <uneSignature.length())
 	{
 		
@@ -76,6 +78,8 @@ Fichier::Fichier (string nomFichier, string uneSignature )
 
 
 	}
+	
+
 }
 
 

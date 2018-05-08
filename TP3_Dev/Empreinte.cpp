@@ -38,6 +38,8 @@ void Empreinte::ajouterAttribut(Attribut a)
 }
 
 
+
+
 /*//avant Fichier au lieu de dictionnaire
 {
 	
@@ -97,6 +99,10 @@ Empreinte::Empreinte()
 #endif
 } //----- Fin de Empreinte
 
+Empreinte::Empreinte(long id)
+{
+		idEmpreinte = id;
+}
 
 Empreinte::~Empreinte()
 // Algorithme :

@@ -16,7 +16,7 @@ $(EXEC) : $(OBJ)
 	$(EDL) -o $(EXEC) $(OBJ)
 
 #Création de Main.o
-main.o : Main.cpp Main.h Attribut.h
+main.o : Main.cpp Main.h Attribut.h Dictionnaire.h
 	echo "Comp de Main"
 	$(COMP) -c $< $(CXXFLAGS)
 
@@ -42,7 +42,7 @@ Analyse.o : Analyse.cpp Analyse.h Empreinte.h
 	
 
 #Création de Empreinte.o
-Empreinte.o : Empreinte.cpp Empreinte.h Attribut.h Dictionnaire.h
+Empreinte.o : Empreinte.cpp Empreinte.h Attribut.h
 	echo "Compilation de Empreinte"
 	$(COMP) -c $< $(CXXFLAGS)
 

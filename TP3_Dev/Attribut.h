@@ -39,11 +39,11 @@ public:
 
 	string getType();
 
-	bool estEgal(Attribut & a);
+	//bool estEgal(Attribut & a);
 
 
 	//------------------------------------------------- Surcharge d'opérateurs
-	Attribut & operator = (const Attribut & unAttribut);
+	//Attribut & operator = (const Attribut & unAttribut);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -53,7 +53,7 @@ public:
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	Attribut(const Attribut & unAttribut);
+	//Attribut(const Attribut & unAttribut);
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :

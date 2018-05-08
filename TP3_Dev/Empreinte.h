@@ -17,7 +17,7 @@ using namespace std;
 
 #include "Attribut.h"
 #include "Analyse.h"
-#include "Dictionnaire.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -58,10 +58,11 @@ public:
 	//void Empreinte::getListeAttribut(Attribut a);
 	long getnbAttributs();
 	long getIdEmpreinte();
+	void setIdEmpreinte(long id);
 	//Analyse lancerAnalyse(Dictionnaire d) ;
 
 	//------------------------------------------------- Surcharge d'opérateurs
-	Empreinte & operator = (const Empreinte & unEmpreinte);
+	//Empreinte & operator = (const Empreinte & unEmpreinte);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -70,11 +71,14 @@ public:
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	Empreinte(const Empreinte & unEmpreinte);
+	//Empreinte(const Empreinte & unEmpreinte);
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :
 	//
+
+	Empreinte(long id);
+
 
 	Empreinte();
 	// Mode d'emploi :

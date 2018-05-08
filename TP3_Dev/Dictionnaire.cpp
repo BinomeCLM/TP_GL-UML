@@ -17,7 +17,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Dictionnaire.h"
-#include "Maladie.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -29,27 +28,38 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-bool Dictionnaire::ajouterMaladie(Maladie m)
+bool Dictionnaire::ajouterMaladie(string chMaladie)
 {
-	bool existeM; //maladie existe ?
+	bool existeM = false;; //maladie existe ?
+	string nom = chMaladie.substr(chMaladie.find_last_of(';')+1,chMaladie.length()-2);
+	cout << nom << endl;
+	
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
-		if(it->getNomMaladie() == m.getNomMaladie())
+		cout << "hey" << endl;
+		if((*it).getNomMaladie() == nom)
 		{
 			existeM = true;
-			Maladie* maladie = new Maladie();
-			*maladie = *it;
-			for (deque<Empreinte>::iterator it=maladie->getListeEmpreinte().begin(); it!=maladie->getListeEmpreinte().end(); ++it)
+			int posD = 0;
+			int posF = chMaladie.find(';',posD);
+			long id  = (long)stold(chMaladie.substr(posD,posF-posD));
+			for (deque<Empreinte>::iterator it2=it->getListeEmpreinte().begin(); it2!=it->getListeEmpreinte().end(); ++it2)
 			{
-				if(it->getIdEmpreinte() == m.getListeEmpreinte()[0].getIdEmpreinte())
+				if((*it2).getIdEmpreinte() == id)
 				{
 					return false;
 					break;
 				}
 			}
+			(*it).ajouterEmpreinte(chMaladie,signature);
+			return true;
 			break;
 		}
 	}
+	nbEmpreintes++;
+	Maladie * m = new Maladie(nbEmpreintes,nom);
+	m->ajouterEmpreinte(chMaladie,signature);
+	listeMaladie.push_back(*m);
 
 	return true;
 
@@ -66,14 +76,14 @@ bool Dictionnaire::ajouterMaladie(Maladie m)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Dictionnaire::Dictionnaire ( const Dictionnaire & unDictionnaire )
+/*Dictionnaire::Dictionnaire ( const Dictionnaire & unDictionnaire )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Dictionnaire>" << endl;
 #endif
-} //----- Fin de Dictionnaire (constructeur de copie)
+} //----- Fin de Dictionnaire (constructeur de copie) */
 
 
 Dictionnaire::Dictionnaire ( )
@@ -84,6 +94,8 @@ Dictionnaire::Dictionnaire ( )
     cout << "Appel au constructeur de <Dictionnaire>" << endl;
 #endif
 } //----- Fin de Dictionnaire
+
+Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
 
 
 Dictionnaire::~Dictionnaire ( )
