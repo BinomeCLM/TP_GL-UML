@@ -82,19 +82,22 @@ bool Attribut::operator==(Attribut & a)
 
 //if ((type == "double" && *(double*)value == *(double*)unAttribut.value)
 //|| (type == "string" && 0==strcmp((string*)value , *(string*)unAttribut.value)))
-	
+
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
 		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
 		return true;
-	} else if (a.getType() == "double" && (*(double*)a.getValue() ==  *(double*)getValue())) {
-		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;		
+	}
+	else if (a.getType() == "double" && (*(double*)a.getValue() ==  *(double*)getValue()))
+    {
+		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
 		return true;
 	}
-	else {
-		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;	
+	else
+	{
+		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
 		return false;
-	}	
+	}
 
 
 }
@@ -121,13 +124,13 @@ Attribut::Attribut(string unNom, string unType)
 	if (unType == "double")
 	{
 		value = new double();
-	} else if(unType == "string") {
+	}
+	else if(unType == "string")
+    {
 		value = new string();
-
 	}
 
 }
-
 
 Attribut::Attribut()
 // Algorithme :
@@ -149,10 +152,12 @@ Attribut::~Attribut()
 	if(type == "double")
 	{
 		delete (double*)value;
-	} else if (type == "string") {
+	}
+	else if (type == "string")
+    {
 		delete (string*)value;
 	}
-	
+
 } //----- Fin de ~Attribut
 
 

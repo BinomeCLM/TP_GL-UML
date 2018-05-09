@@ -17,6 +17,7 @@ using namespace std;
 
 #include "Attribut.h"
 #include "Analyse.h"
+#include "Dictionnaire.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -28,7 +29,7 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Empreinte 
+class Empreinte
 {
 	//----------------------------------------------------------------- PUBLIC
 
@@ -40,26 +41,47 @@ public:
 	// Contrat :
 	//
 
-	// void ajouterAttribut(Attribut a);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
-	// Analyse lancerAnalyse(Fichier d);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
 	void ajouterAttribut(Attribut a);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	deque<Attribut> getListeAttributs();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	void setNbAttributs(long nbAttr);
-	//void Empreinte::getListeAttribut(Attribut a);
-	long getnbAttributs();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	long getNbAttributs();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	long getIdEmpreinte();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	void setIdEmpreinte(long id);
-	//Analyse lancerAnalyse(Dictionnaire d) ;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	Analyse lancerAnalyse(Dictionnaire d);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	//Empreinte & operator = (const Empreinte & unEmpreinte);

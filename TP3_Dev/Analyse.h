@@ -17,7 +17,9 @@ using namespace std;
 #include <deque>
 #include <string>
 
-#include "Empreinte.h" 
+#include "Empreinte.h"
+#include "Fichier.h"
+#include "Maladie.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -29,19 +31,19 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Analyse 
+class Analyse
 {
 	//----------------------------------------------------------------- PUBLIC
 
 public:
 	//----------------------------------------------------- Méthodes publiques
-	// void calculerProbabilité (Empreinte e, Maladie, m);
+	void calculerProbabilité (Empreinte e, Maladie, m);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	// void genererClassement (Fichier d, Empreinte e);
+	void genererClassement (Fichier d, Empreinte e);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -82,7 +84,9 @@ protected:
 	//----------------------------------------------------- Attributs protégés
 
 private:
-	multimap<double,string> correspondances; // Va contenir l'ensemble des correspondances entre les empreintes de la maladie (repérée par son iD dans la map du dico et la proba associée qui est la clé)
+	multimap<double,string> correspondances; // Va contenir l'ensemble
+	// des correspondances entre les empreintes de la maladie (repérée par son iD
+    // dans la map du dico et la proba associée qui est la clé)
 	long idEmpreinte;
 };
 

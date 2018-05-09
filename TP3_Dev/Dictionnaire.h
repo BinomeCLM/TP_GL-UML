@@ -53,7 +53,7 @@ public:
     // Contrat :
     //
 
-    
+
 
     Dictionnaire ( );
     // Mode d'emploi :
@@ -71,7 +71,7 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 private :
-deque<Maladie> listeMaladie;
+    deque<Maladie> listeMaladie;
 
 protected:
 //----------------------------------------------------- Méthodes protégées

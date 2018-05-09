@@ -13,7 +13,7 @@ e-mail               : $EMAIL$
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <string> 
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Maladie.h"
@@ -32,11 +32,11 @@ using namespace std;
 bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
 	bool ajoutee;
 
-	
+
 	/*std::string s = "scott>=tiger";
 	std::string delimiter = ">=";
 	std::string token = s.substr(0, s.find(delimiter));
-	
+
 	string delimiter = ";";
 	Empreinte* e = new Empreinte();
 	while (!signature.empty())
@@ -56,16 +56,16 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 		}
 		//e->id = stol(chEmp.substr(0, chEmp.find(delimiter)));
 	}*/
-	
-	
-	
+
+
+
 	char delimiter = ';';
 	string attribut;
 	void* val;
 
 	int posD = 0;
 	int posF = chEmp.find(delimiter,posD);
-	long id  = (long)stold(chEmp.substr(posD,posF-posD));
+	long id  = (long)stold(chEmp.substr(posD,posF-posD)); // Vu que posD vaut 0 je ne vois pas l'utilité de faire posF-posD
 
 	if(!empreinteExiste(id))
 	{
@@ -75,67 +75,58 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 		int fin = chEmp.find_last_of(delimiter);
 		int i = 0;
 
-
 		while(posF != fin)
 		{
-
 			posF = chEmp.find(delimiter,posD);
 			attribut  = chEmp.substr(posD,posF-posD);
 			Attribut* A = new Attribut(signature[i].first,signature[i].second);
-			
-			
+
 			if(A->getType() == "double")
 			{
-				
 				val = new double(stod(attribut));
-
 				A->setValue(val);
-			} else if(A->getType() == "string") 
+			}
+			else if(A->getType() == "string")
 			{
-
 				val =  new string(attribut);
 				A->setValue(val);
-
 			}
-			
+
 			nbEmpreinte++;
 			e->ajouterAttribut(*A);
 
 			posD = posF+1;
-		
 
 			i++;
 
-
 			delete A;
-			
-
-
 		}
 		ajoutee = true;
 		listeEmpreinte.push_back(*e);
+		nbEmpreinte++; // Tu avais oublié d'incrémenter le nombre d'empreinte
 		delete e;
-	} else {
+	}
+	else
+    {
 		ajoutee = false;
 	}
-	
-
 
 	return ajoutee;
 }
+
+// Est-ce qu'on a besoin de getEmpreinteById et empreinteExiste ?
+// retourner un pointeur ? Pourquoi pas une référence ?
+// Parce-que sinon la case que pointe e va être détruite à la fin de
+// la méthode, non ?
 Empreinte* Maladie::getEmpreinteById(long id) {
 	Empreinte* e = nullptr;
-	
+
 	deque<Empreinte>::iterator it;
-	
+
 	for (it=listeEmpreinte.begin(); it!=listeEmpreinte.end(); ++it)
 	{
-		
-
 		if(id == (*it).getIdEmpreinte())
 		{
-
-
 			*e = *it;
 			cout << "ici " << endl;
 			break;
@@ -146,18 +137,15 @@ Empreinte* Maladie::getEmpreinteById(long id) {
 }
 
 bool Maladie::empreinteExiste(long id) {
-	
+
 	deque<Empreinte>::iterator it;
-	
+
 	for (it=listeEmpreinte.begin(); it!=listeEmpreinte.end(); ++it)
 	{
-		
-
 		if(id == (*it).getIdEmpreinte())
 		{
-
-
 			return true;
+			// Pourquoi un break après avoir retourner ??
 			break;
 		}
 	}
@@ -168,6 +156,7 @@ bool Maladie::empreinteExiste(long id) {
 string Maladie::getNomMaladie() {
 	return nomMaladie;
 }
+
 deque<Empreinte> Maladie::getListeEmpreinte() {
 	return listeEmpreinte;
 }
@@ -206,7 +195,7 @@ Maladie::Maladie(long id, string nom)
 {
 	idMaladie = id;
 	nomMaladie = nom;
-
+	nbEmpreinte = 0; // j'ai rajouté ça dans le constructeur
 }
 
 

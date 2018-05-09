@@ -37,35 +37,21 @@ void Empreinte::ajouterAttribut(Attribut a)
 
 }
 
-
-
-
-/*//avant Fichier au lieu de dictionnaire
+Analyse Empreinte::lancerAnalyse(Dictionnaire d)
 {
-	
-
-
-	
-	// On récupére la liste des empreintes à analyser du Fichier Patient
-	deque<Empreinte> listeEmp = d.getListeEmpreinte();
-
-	for (deque<Empreinte>::iterator it=listeEmp.begin(); it!=listeEmp.end(); ++it)
-	{
-		std::cout << *it << '\n';
 		Analyse a = new Analyse();
 
-		a.genererClassement(d,e);
+		a.genererClassement(d,this);
 
 		return a;
-	}
-}*/
+}
 
-deque<Attribut> Empreinte::getListeAttributs() 
+deque<Attribut> Empreinte::getListeAttributs()
 {
 	return listeAttributs;
 }
 
-long Empreinte::getnbAttributs()
+long Empreinte::getNbAttributs()
 {
 	return nbAttributs;
 }

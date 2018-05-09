@@ -28,23 +28,28 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-/*void Analyse::genererClassement(Fichier d, Empreinte e) 
+// Méthode non vérifiée --> Test unitaire à faire
+// une fois calculerProbabilité validée
+void Analyse::genererClassement(Fichier d, Empreinte e)
 {
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 
+    // Pour chaque maladie du dictionnaire, on calcule la proba associée
+    // avec l'empreinte à analyser
 	for (std::deque<Maladie>::iterator it=listeMaladies.begin(); it!=listeMaladies.end(); ++it)
 	{
 		std::cout << *it << '\n';
 		calculerProbabilité(e,*it);
 	}
-}*/
+}
 
-/*void Analyse::calculerProbabilité(Empreinte e, Maladie m) 
+// Méthode non vérifiée --> Test unitaire à réalisé
+void Analyse::calculerProbabilité(Empreinte e, Maladie m)
 {
-	// On récupére les empreintes ou l'empreinte de la maladie 
+	// On récupére les empreintes ou l'empreinte de la maladie
 	deque<Empreinte> listeEmp = m.getListeEmpreinte();
 
-	// On récupére dans un var le nombre d'attributs pour faire la moyenne
+	// On récupére dans une var le nombre d'attributs pour faire la moyenne
 	long nbAttrEmp = e.getNbAttribut();
 
 	//On récupére une seule fois la liste des attributs de l'empreinte qu'on analyse
@@ -59,10 +64,13 @@ using namespace std;
 		long compteur = 0;
 
 		// On compare les attributs des deux empreintes
+
 		// On récupére la liste des attributs de l'empreinte de la maladie
-		deque<Attribut> listeAttrEmpMaladie = e.getListeAttributs();
-		for (int i=0; i<nbAttribtus; i++){
-			if (listeAttr[i] == listeAttrEmpMaladie[i]){
+		deque<Attribut> listeAttrEmpMaladie = *it.getListeAttributs();
+		for (int i=0; i<nbAttribtus; i++)
+        {
+			if (listeAttr[i] == listeAttrEmpMaladie[i])
+			{
 				compteur ++;
 			}
 		}
@@ -70,7 +78,7 @@ using namespace std;
 		correspondances.insert(pair<double,string>((compteur/nbAttributs),m.idMaladie) );
 		// On ajoute a la multimap en mettant le nom de la maladie et la proba en clé
 	}
-}*/
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 /*Analyse & Analyse::operator = (const Analyse & unAnalyse)

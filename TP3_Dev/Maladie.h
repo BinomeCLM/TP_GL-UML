@@ -12,8 +12,10 @@ e-mail               : $EMAIL$
 
 //--------------------------------------------------- Interfaces utilisées
 #include <deque>
-#include <queue>
+#include <string>
+
 #include "Empreinte.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -24,7 +26,7 @@ e-mail               : $EMAIL$
 //
 //------------------------------------------------------------------------
 
-class Maladie 
+class Maladie
 {
 	//----------------------------------------------------------------- PUBLIC
 
@@ -33,18 +35,19 @@ public:
 	// type Méthode ( liste des paramètres );
 	// Mode d'emploi :
 	//
-	// Contrat : 
+	// Contrat :
 	//
 	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
 	Empreinte * getEmpreinteById(long id);
 	string getNomMaladie();
 	deque<Empreinte> getListeEmpreinte();
-	bool empreinteExiste(long id); //Création de cette méthode car problème de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
-							//mais en soit vu qu'on a juste besoin de savoir si l'empreinet existe, on pourrait la garder au lieu de getById()
+	bool empreinteExiste(long id);
+	//Création de cette méthode car problème de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
+    //mais en soit vu qu'on a juste besoin de savoir si l'empreinte existe, on pourrait la garder au lieu de getById()
 
-	 
+
 	//------------------------------------------------- Surcharge d'opérateurs
-//	Maladie & operator = (const Maladie & unMaladie);
+    // Maladie & operator = (const Maladie & unMaladie);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -76,7 +79,7 @@ private:
 	long idMaladie;
 	string nomMaladie;
 	long nbEmpreinte;
-	deque<Empreinte> listeEmpreinte; 
+	deque<Empreinte> listeEmpreinte;
 
 	//------------------------------------------------------------------ PRIVE
 
