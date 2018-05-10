@@ -8,8 +8,8 @@ e-mail               : $EMAIL$
 *************************************************************************/
 
 //---------- Interface de la classe <Analyse> (fichier Analyse.h) ----------------
-#if ! defined ( Analyse_H )
-#define Analyse_H
+#if ! defined ( ANALYSE_H )
+#define ANALYSE_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
@@ -17,9 +17,7 @@ using namespace std;
 #include <deque>
 #include <string>
 
-#include "Empreinte.h"
-#include "Fichier.h"
-#include "Maladie.h"
+#include "Dictionnaire.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -37,17 +35,19 @@ class Analyse
 
 public:
 	//----------------------------------------------------- Méthodes publiques
-	Analyse calculerProbabilité (Empreinte e, Maladie, m);
+	void calculerProbabilite (Empreinte e, Maladie m);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	void genererClassement (Fichier d, Empreinte e);
+	void genererClassement (Dictionnaire d, Empreinte e);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
+
+	multimap<double,string> getCorrespondances();
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	Analyse & operator = (const Analyse & unAnalyse);
@@ -64,7 +64,7 @@ public:
 	// Contrat :
 	//
 
-    Analyse(Long idEmp);
+    Analyse(long idEmp);
 	// Mode d'emploi :
 	//
 	// Contrat :

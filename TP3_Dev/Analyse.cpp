@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Analyse.h"
+#include <utility>
 
 //------------------------------------------------------------- Constantes
 
@@ -30,27 +31,26 @@ using namespace std;
 
 // Méthode non vérifiée --> Test unitaire à faire
 // une fois calculerProbabilité validée
-void Analyse::genererClassement(Fichier d, Empreinte e)
+void Analyse::genererClassement(Dictionnaire d, Empreinte e)
 {
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 
     // Pour chaque maladie du dictionnaire, on calcule la proba associée
     // avec l'empreinte à analyser
-	for (std::deque<Maladie>::iterator it=listeMaladies.begin(); it!=listeMaladies.end(); ++it)
+	for (deque<Maladie>::iterator it=listeMaladies.begin(); it!=listeMaladies.end(); ++it)
 	{
-		std::cout << *it << '\n';
-		calculerProbabilité(e,*it);
+		calculerProbabilite(e,*it);
 	}
 }
 
 // Méthode non vérifiée --> Test unitaire à réalisé
-void Analyse::calculerProbabilité(Empreinte e, Maladie m)
+void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 {
 	// On récupére les empreintes ou l'empreinte de la maladie
 	deque<Empreinte> listeEmp = m.getListeEmpreinte();
 
 	// On récupére dans une var le nombre d'attributs pour faire la moyenne
-	long nbAttrEmp = e.getNbAttribut();
+	long nbAttrEmp = e.getNbAttributs();
 
 	//On récupére une seule fois la liste des attributs de l'empreinte qu'on analyse
 	deque<Attribut> listeAttr = e.getListeAttributs();
@@ -58,16 +58,14 @@ void Analyse::calculerProbabilité(Empreinte e, Maladie m)
 	// Pour chq empreinte, on calcule la probabilité associée
 	for (deque<Empreinte>::iterator it=listeEmp.begin(); it!=listeEmp.end(); ++it)
 	{
-		std::cout << *it << '\n';
-
 		// On init un compteur pour compter le nbre d'attributs correspondant
 		long compteur = 0;
 
 		// On compare les attributs des deux empreintes
 
 		// On récupére la liste des attributs de l'empreinte de la maladie
-		deque<Attribut> listeAttrEmpMaladie = *it.getListeAttributs();
-		for (int i=0; i<nbAttribtus; i++)
+		deque<Attribut> listeAttrEmpMaladie = it->getListeAttributs();
+		for (int i=0; i<nbAttrEmp; i++)
         {
 			if (listeAttr[i] == listeAttrEmpMaladie[i])
 			{
@@ -75,11 +73,15 @@ void Analyse::calculerProbabilité(Empreinte e, Maladie m)
 			}
 		}
 
-		correspondances.insert(pair<double,string>((compteur/nbAttributs),m.nomMaladie) );
+		correspondances.insert(pair<double,string>(((compteur/nbAttrEmp)*100),m.getNomMaladie()) );
 		// On ajoute a la multimap en mettant le nom de la maladie et la proba en clé
 	}
 }
 
+multimap<double,string> Analyse::getCorrespondances()
+{
+    return correspondances;
+}
 //------------------------------------------------- Surcharge d'opérateurs
 /*Analyse & Analyse::operator = (const Analyse & unAnalyse)
 // Algorithme :
@@ -98,7 +100,7 @@ Analyse::Analyse(const Analyse & unAnalyse)
 #endif
 } //----- Fin de Analyse (constructeur de copie)
 
-Analyse::Analyse(Long id)
+Analyse::Analyse(long id)
 {
     idEmpreinte = id;
 }

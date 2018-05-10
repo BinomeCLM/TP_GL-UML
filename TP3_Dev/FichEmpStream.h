@@ -7,8 +7,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <FichEmpStream> (fichier FichEmpStream.h) ----------------
-#if ! defined ( FichEmpStream_H )
-#define FichEmpStream_H
+#if ! defined ( FICHEMPSTREAM_H )
+#define FICHEMPSTREAM_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;

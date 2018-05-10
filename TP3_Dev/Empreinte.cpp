@@ -37,13 +37,13 @@ void Empreinte::ajouterAttribut(Attribut a)
 
 }
 
-Analyse Empreinte::lancerAnalyse(Dictionnaire d)
+multimap<double,string> Empreinte::lancerAnalyse(Dictionnaire d)
 {
-		Analyse a = new Analyse();
+		Analyse * a = new Analyse(idEmpreinte);
 
-		a.genererClassement(d,this);
+        a->genererClassement(d,this);
 
-		return a;
+        return a->getCorrespondances();
 }
 
 deque<Attribut> Empreinte::getListeAttributs()

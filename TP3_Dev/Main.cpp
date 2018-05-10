@@ -16,13 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Main.h"
-#include "Attribut.h"
-#include "Fichier.h"
-#include "Maladie.h"
-#include "Dictionnaire.h"
-#include <deque>
-#include <string>
-#import <utility>
+
 //#define _CRT_SECURE_NO_WARNINGS
 
 
@@ -39,7 +33,7 @@ int main() {
 	//testMaladie();
 	testFichier();
 	//testDico();
-	
+
 
 	return 0;
 }
@@ -49,10 +43,10 @@ void testAttribut()
 	Attribut* A = new Attribut("att","double");
 	Attribut* B = new Attribut("attri","double");
 	double * d = new double(1.2);
-	
+
 
 	double * e = new double(2.6);
-	
+
 	A->setValue(d);
 	B->setValue(e);
 	cout << "ici" << endl;
@@ -65,8 +59,8 @@ void testAttribut()
 	delete B;
 	delete d;
 	delete e;
-	
-	
+
+
 
 }
 

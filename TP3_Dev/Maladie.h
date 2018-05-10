@@ -13,7 +13,6 @@ e-mail               : $EMAIL$
 //--------------------------------------------------- Interfaces utilisées
 #include <deque>
 #include <string>
-
 #include "Empreinte.h"
 
 //------------------------------------------------------------- Constantes
@@ -76,7 +75,7 @@ public:
 	//
 
 private:
-	long idMaladie;
+    long idMaladie;
 	string nomMaladie;
 	long nbEmpreinte;
 	deque<Empreinte> listeEmpreinte;

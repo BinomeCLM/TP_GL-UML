@@ -7,16 +7,16 @@ e-mail               : $EMAIL$
 *************************************************************************/
 
 //---------- Interface de la classe <Empreinte> (fichier Empreinte.h) ----------------
-#if ! defined ( Empreinte_H )
-#define Empreinte_H
+#if ! defined ( EMPREINTE_H )
+#define EMPREINTE_H
 
 //--------------------------------------------------- Interfaces utilisées
 
 using namespace std;
 #include <deque>
+#include <map>
 
 #include "Attribut.h"
-#include "Analyse.h"
 #include "Dictionnaire.h"
 
 //------------------------------------------------------------- Constantes
@@ -77,7 +77,8 @@ public:
 	// Contrat :
 	//
 
-	Analyse lancerAnalyse(Dictionnaire d);
+    // A revoir !!!
+	multimap<double,string> lancerAnalyse(Dictionnaire d);
 	// Mode d'emploi :
 	//
 	// Contrat :

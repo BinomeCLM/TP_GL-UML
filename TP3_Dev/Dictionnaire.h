@@ -14,6 +14,7 @@
 
 #include "Maladie.h"
 #include "Fichier.h"
+#include "Analyse.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -36,6 +37,8 @@ public:
     // Contrat :
     //
     bool ajouterMaladie(string chMaladie);
+
+    deque<Maladie> getListeMaladie();
 
 
 //------------------------------------------------- Surcharge d'opérateurs
