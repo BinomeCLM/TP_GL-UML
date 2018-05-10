@@ -35,7 +35,7 @@ bool Dictionnaire::ajouterMaladie(string chMaladie)
 	bool existeM = false; //maladie existe ?
 	string nom = chMaladie.substr(chMaladie.find_last_of(';')+1,chMaladie.length()-2);
 	// Est-ce qu'on est sur que le nom de la maladie sera tjr en dernier ?
-	// Par exemple, si dan la signature le nom de la maladie est au milieu
+	// Par exemple, si dans la signature le nom de la maladie est au milieu
 	// il faudrait parcourir la signature, repéré l'index de l'attribut "disease"
 	// et à partir de cet index, récupérer le nom de la maladie
 	cout << nom << endl;
@@ -80,8 +80,6 @@ bool Dictionnaire::ajouterMaladie(string chMaladie)
 	listeMaladie.push_back(*m);
 
 	return true;
-
-
 }
 
 

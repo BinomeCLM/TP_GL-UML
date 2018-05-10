@@ -30,34 +30,8 @@ using namespace std;
 //} //----- Fin de Méthode
 
 bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
+
 	bool ajoutee;
-
-
-	/*std::string s = "scott>=tiger";
-	std::string delimiter = ">=";
-	std::string token = s.substr(0, s.find(delimiter));
-
-	string delimiter = ";";
-	Empreinte* e = new Empreinte();
-	while (!signature.empty())
-	{
-
-		//string monType = signature.front();
-		switch (c) //C'est quoi c ?
-		{
-		case 'A':
-			capa++;
-			break;
-		case 'a':
-			lettera++;
-			break;
-		default:
-			nota++;
-		}
-		//e->id = stol(chEmp.substr(0, chEmp.find(delimiter)));
-	}*/
-
-
 
 	char delimiter = ';';
 	string attribut;
@@ -65,8 +39,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 	int posD = 0;
 	int posF = chEmp.find(delimiter,posD);
-	long id  = (long)stold(chEmp.substr(posD,posF-posD)); // Vu que posD vaut 0 je ne vois pas l'utilité de faire posF-posD
-
+	long id  = (long)stold(chEmp.substr(posD,posF-posD));
 	if(!empreinteExiste(id))
 	{
 		Empreinte* e = new Empreinte(id);
@@ -103,7 +76,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 		}
 		ajoutee = true;
 		listeEmpreinte.push_back(*e);
-		nbEmpreinte++; // Tu avais oublié d'incrémenter le nombre d'empreinte
+		nbEmpreinte++;
 		delete e;
 	}
 	else

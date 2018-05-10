@@ -37,7 +37,7 @@ class Analyse
 
 public:
 	//----------------------------------------------------- Méthodes publiques
-	void calculerProbabilité (Empreinte e, Maladie, m);
+	Analyse calculerProbabilité (Empreinte e, Maladie, m);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -60,6 +60,12 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Analyse(const Analyse & unAnalyse);
 	// Mode d'emploi (constructeur de copie) :
+	//
+	// Contrat :
+	//
+
+    Analyse(Long idEmp);
+	// Mode d'emploi :
 	//
 	// Contrat :
 	//

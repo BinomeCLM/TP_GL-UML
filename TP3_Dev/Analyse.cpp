@@ -75,7 +75,7 @@ void Analyse::calculerProbabilité(Empreinte e, Maladie m)
 			}
 		}
 
-		correspondances.insert(pair<double,string>((compteur/nbAttributs),m.idMaladie) );
+		correspondances.insert(pair<double,string>((compteur/nbAttributs),m.nomMaladie) );
 		// On ajoute a la multimap en mettant le nom de la maladie et la proba en clé
 	}
 }
@@ -98,6 +98,10 @@ Analyse::Analyse(const Analyse & unAnalyse)
 #endif
 } //----- Fin de Analyse (constructeur de copie)
 
+Analyse::Analyse(Long id)
+{
+    idEmpreinte = id;
+}
 
 Analyse::Analyse()
 // Algorithme :
