@@ -66,10 +66,10 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
 	posD = posF+1;
 
-    int fin = chEmp.find_last_of(delimiter);
+    
     int i = 0;
 
-    while(posF != fin)
+    while(posF != chEmp.length())
     {
         posF = chEmp.find(delimiter,posD);
         attribut  = chEmp.substr(posD,posF-posD);

@@ -92,6 +92,8 @@ public:
 	// Contrat :
 	//
 
+	friend ostream &operator<<(ostream & os, Empreinte & E);
+
 
 
 	//-------------------------------------------- Constructeurs - destructeur

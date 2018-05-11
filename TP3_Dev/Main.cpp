@@ -34,13 +34,15 @@ void testMaladie();
 void testFichier();
 void testDico();
 void testEmpreinte();
+void testAffichage();
 int main() {
 
 	//testAttribut();
-    testEmpreinte();
+    //testEmpreinte();
 	//testMaladie();
 	//testFichier();
 	//testDico();
+	testAffichage();
 
 
 	return 0;
@@ -59,20 +61,61 @@ void testAttribut()
 	B->setValue(e);
 	cout << "ici" << endl;
 
-	if(*A == *B)
-	{
-		cout << "oui" << endl;
-	}
-	else
-    {
-        cout << "non" << endl;
-    }
-    cout << *(double*) A->getValue() << endl;
-    cout << *(string*) B->getValue() << endl;
+	
+    cout << *A << endl;
+    cout << *B << endl;
 	delete A;
 	delete B;
 	delete d;
 	delete e;
+}
+
+void testAffichage()
+{
+	Empreinte * E = new Empreinte(4);
+	Attribut* A = new Attribut("att","double");
+	Attribut* B = new Attribut("attri","string");
+
+	double * d = new double(1.2);
+	string * e = new string("lol");
+
+	A->setValue(d);
+	B->setValue(e);
+
+	cout << *A << endl;
+    cout << *B << endl;
+
+	E->ajouterAttribut(*A);
+	E->ajouterAttribut(*B);
+	cout << "heyOp" << endl;
+	deque<Attribut> listeAttr = E->getListeAttributs();
+
+	cout << "id:"<<E->getIdEmpreinte()<<"/";
+
+	/*for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end()-1; ++it)
+	{
+		cout << "for avant "<< endl;
+		os << *it << "/";
+		cout << "for apres "<< endl;
+	}*/
+
+	for(int i = 0; i < (listeAttr.size())-1 ; i++)
+	{
+		//cout << "for avant "<< endl;
+		cout << listeAttr[i] << "/";
+		//cout << "for apres "<< endl;
+	}
+	//cout << "hey";
+
+	//os << listeAttr[0] << endl;
+	cout << listeAttr[listeAttr.size()] << endl;
+	//delete A;
+	//delete B;
+	//delete d;
+	//delete e;
+	//delete E;
+
+	
 }
 
 // Test du constructeur, methode validee
@@ -110,7 +153,7 @@ void testEmpreinte()
         {
             void* value = nullptr;
             *(string*) value = *(string*) it->getValue();
-            cout << *value << endl;
+            //cout << *value << endl;
             cout << it->getNom() << endl;
             cout << *(string*) it->getValue() << endl;
         }

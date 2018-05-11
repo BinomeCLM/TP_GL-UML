@@ -109,7 +109,10 @@ Dictionnaire::Dictionnaire ( )
 #endif
 } //----- Fin de Dictionnaire
 
-Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
+Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature )
+{
+	signature.pop_back();
+}
 
 
 Dictionnaire::~Dictionnaire ( )

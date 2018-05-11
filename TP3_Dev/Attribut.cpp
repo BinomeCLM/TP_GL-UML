@@ -49,6 +49,11 @@ string Attribut::getType()
 	return type;
 }
 
+string Attribut::getNom()
+{
+    return nom;
+}
+
 
 //------------------------------------------------- Surcharge d'op�rateurs
 /*Attribut & Attribut::operator = (const Attribut & unAttribut)
@@ -73,10 +78,20 @@ string Attribut::getType()
 
 }*/
 
-string Attribut::getNom()
+ostream &operator<<(ostream & os, Attribut & A)
 {
-    return nom;
+	if(A.getType() == "double")
+	{
+		os << *(double*)A.getValue();
+
+	} else if (A.getType() == "string")
+	{
+		os << *(string*)A.getValue();
+	}
+
+	return os;
 }
+
 
 
 bool Attribut::operator==(Attribut & a)
@@ -90,7 +105,7 @@ bool Attribut::operator==(Attribut & a)
 
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
-		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
+		cout << *(string*)a.getValue() << " " << *(string*)getValue() << endl;
 		return true;
 	}
 	else if (a.getType() == "double" && (*(double*)a.getValue() ==  *(double*)getValue()))

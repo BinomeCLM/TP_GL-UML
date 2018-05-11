@@ -79,6 +79,34 @@ long Empreinte::getIdEmpreinte()
 } //----- Fin de operator =*/
 
 
+ostream &operator<<(ostream &os, Empreinte & e)
+{
+	cout << "heyOp" << endl;
+	deque<Attribut> listeAttr = e.getListeAttributs();
+
+	os << "id:"<<e.getIdEmpreinte()<<"/";
+
+	/*for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end()-1; ++it)
+	{
+		cout << "for avant "<< endl;
+		os << *it << "/";
+		cout << "for apres "<< endl;
+	}*/
+
+	for(int i = 0; i < (listeAttr.size())-1 ; i++)
+	{
+		cout << "for avant "<< endl;
+		os << listeAttr[i] << "/";
+		cout << "for apres "<< endl;
+	}
+	cout << "hey";
+
+	//os << listeAttr[0] << endl;
+	os << listeAttr[1] << endl;
+
+	return os;
+}
+
   //-------------------------------------------- Constructeurs - destructeur
 
 Empreinte::Empreinte()

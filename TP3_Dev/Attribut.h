@@ -53,6 +53,8 @@ public:
 
 	bool operator==(Attribut & a);
 
+	friend ostream &operator<<(ostream & os, Attribut & A);
+
 
 	//-------------------------------------------- Constructeurs - destructeur
 	//Attribut(const Attribut & unAttribut);
