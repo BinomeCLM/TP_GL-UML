@@ -1,7 +1,7 @@
 /*************************************************************************
 Attribut  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
@@ -10,7 +10,7 @@ e-mail               : $EMAIL$
 #if ! defined ( ATTRIBUT_H )
 #define ATTRIBUT_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 using namespace std;
 #include <string>
 //------------------------------------------------------------- Constantes
@@ -18,7 +18,7 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Attribut>
+// Rï¿½le de la classe <Attribut>
 //
 //
 //------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class Attribut
 	//----------------------------------------------------------------- PUBLIC
 
 public:
-	//----------------------------------------------------- Méthodes publiques
+	//----------------------------------------------------- Mï¿½thodes publiques
 	void setValue(void* uneValeur);
 	// Mode d'emploi :
 	//
@@ -39,10 +39,12 @@ public:
 
 	string getType();
 
+	string getNom();
+
 	//bool estEgal(Attribut & a);
 
 
-	//------------------------------------------------- Surcharge d'opérateurs
+	//------------------------------------------------- Surcharge d'opï¿½rateurs
 	//Attribut & operator = (const Attribut & unAttribut);
 	// Mode d'emploi :
 	//
@@ -84,13 +86,13 @@ private:
 	void* value;
 
 protected:
-	//----------------------------------------------------- Méthodes protégées
+	//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-	//----------------------------------------------------- Attributs protégés
+	//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Attribut>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <Attribut>
 
 #endif // ATTRIBUT_H
 

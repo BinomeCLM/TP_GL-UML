@@ -1,16 +1,16 @@
 /*************************************************************************
 Attribut  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Attribut> (fichier Attribut.cpp) ------------
+//---------- Rï¿½alisation de la classe <Attribut> (fichier Attribut.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
@@ -21,7 +21,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Mï¿½thodes publiques
 void Attribut::setValue(void* uneValeur)
 // Algorithme :
 //
@@ -37,7 +37,7 @@ void Attribut::setValue(void* uneValeur)
 	}
 	//delete [] uneValeur;
 
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
 void* Attribut::getValue()
 {
@@ -50,7 +50,7 @@ string Attribut::getType()
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 /*Attribut & Attribut::operator = (const Attribut & unAttribut)
 // Algorithme :
 //
@@ -73,6 +73,11 @@ string Attribut::getType()
 
 }*/
 
+string Attribut::getNom()
+{
+    return nom;
+}
+
 
 bool Attribut::operator==(Attribut & a)
 {
@@ -93,6 +98,7 @@ bool Attribut::operator==(Attribut & a)
 		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
 		return true;
 	}
+	// A revoir
 	else
 	{
 		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
@@ -163,5 +169,5 @@ Attribut::~Attribut()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 

@@ -35,8 +35,11 @@ using namespace std;
 
 void Empreinte::ajouterAttribut(Attribut a)
 {
+	nbAttributs++;
 	listeAttributs.push_back(a);
-
+	/*cout << *(double*) a.getValue() << endl;
+	cout << *(double*) listeAttributs[0].getValue() << endl;
+    cout << "ajoutee" << endl;*/
 }
 
 Analyse Empreinte::lancerAnalyse(Dictionnaire d)
