@@ -33,10 +33,10 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-void Empreinte::ajouterAttribut(Attribut a)
+void Empreinte::ajouterAttribut(Attribut * a)
 {
 	nbAttributs++;
-	listeAttributs.push_back(a);
+	listeAttributs.push_back(*a);
 	/*cout << *(double*) a.getValue() << endl;
 	cout << *(double*) listeAttributs[0].getValue() << endl;
     cout << "ajoutee" << endl;*/
@@ -92,8 +92,8 @@ ostream &operator<<(ostream &os, Empreinte & e)
 		os << *it << "/";
 		cout << "for apres "<< endl;
 	}*/
-
-	for(int i = 0; i < (listeAttr.size())-1 ; i++)
+    unsigned int i;
+	for(i = 0; i < (listeAttr.size())-1 ; i++)
 	{
 		cout << "for avant "<< endl;
 		os << listeAttr[i] << "/";

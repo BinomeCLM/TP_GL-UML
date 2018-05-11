@@ -58,8 +58,8 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 	string attribut;
 	void* val;
 
-	int posD = 0;
-	int posF = chEmp.find(delimiter,posD);
+    unsigned int posD = 0;
+	unsigned int posF = chEmp.find(delimiter,posD);
 	long id  = (long)stold(chEmp.substr(posD,posF-posD));
 
 	Empreinte * e = new Empreinte(id);
@@ -87,7 +87,7 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
         }
 
         nbEmpreintes++;
-        e->ajouterAttribut(*A);
+        e->ajouterAttribut(A);
 
         posD = posF+1;
 

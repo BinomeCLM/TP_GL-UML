@@ -37,7 +37,7 @@ public:
 	// Contrat :
 	//
 	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
-	Empreinte * getEmpreinteById(long id);
+	Empreinte* getEmpreinteById(long id);
 	string getNomMaladie();
 	deque<Empreinte> getListeEmpreinte();
 	bool empreinteExiste(long id);

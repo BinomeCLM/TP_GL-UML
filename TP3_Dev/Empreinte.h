@@ -42,7 +42,7 @@ public:
 	// Contrat :
 	//
 
-	void ajouterAttribut(Attribut a);
+	void ajouterAttribut(Attribut * a);
 	// Mode d'emploi :
 	//
 	// Contrat :

@@ -67,18 +67,16 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 			}
 
 			nbEmpreinte++;
-			e->ajouterAttribut(*A);
+			e->ajouterAttribut(A);
 
 			posD = posF+1;
 
 			i++;
 
-			delete A;
 		}
 		ajoutee = true;
 		listeEmpreinte.push_back(*e);
 		nbEmpreinte++;
-		delete e;
 	}
 	else
     {
@@ -119,8 +117,6 @@ bool Maladie::empreinteExiste(long id) {
 		if(id == (*it).getIdEmpreinte())
 		{
 			return true;
-			// Pourquoi un break apr�s avoir retourner ??
-			break;
 		}
 	}
 

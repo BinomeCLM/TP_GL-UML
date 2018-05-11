@@ -34,15 +34,13 @@ void testMaladie();
 void testFichier();
 void testDico();
 void testEmpreinte();
-void testAffichage();
 int main() {
 
 	//testAttribut();
-    //testEmpreinte();
-	//testMaladie();
+	//testEmpreinte();
+	testMaladie();
 	//testFichier();
 	//testDico();
-	testAffichage();
 
 
 	return 0;
@@ -61,110 +59,68 @@ void testAttribut()
 	B->setValue(e);
 	cout << "ici" << endl;
 
-	
-    cout << *A << endl;
-    cout << *B << endl;
+	if(*A == *B)
+	{
+		cout << "oui" << endl;
+	}
+	else
+	{
+		cout << "non" << endl;
+	}
+	cout << *(double*) A->getValue() << endl;
+	cout << *(string*) B->getValue() << endl;
 	delete A;
 	delete B;
 	delete d;
 	delete e;
 }
 
-void testAffichage()
+// Test du constructeur Empreinte + AjouterAttributs, methode validee
+void testEmpreinte()
 {
-	Empreinte * E = new Empreinte(4);
+	Empreinte * emp = new Empreinte(2);
+	Empreinte* emp2 = new Empreinte(1);
+
 	Attribut* A = new Attribut("att","double");
 	Attribut* B = new Attribut("attri","string");
 
-	double * d = new double(1.2);
-	string * e = new string("lol");
+	double * d = new double(2.5);
+	string * e = new string("coucou");
 
 	A->setValue(d);
 	B->setValue(e);
 
-	cout << *A << endl;
-    cout << *B << endl;
+	// Test méthode ajouterAttribut
+	cout << "ici" << endl;
+	emp->ajouterAttribut(A);
+	emp->ajouterAttribut(B);
 
-	E->ajouterAttribut(*A);
-	E->ajouterAttribut(*B);
-	cout << "heyOp" << endl;
-	deque<Attribut> listeAttr = E->getListeAttributs();
+	cout << emp->getNbAttributs() << endl;
+	deque<Attribut> listeAttr = emp->getListeAttributs();
 
-	cout << "id:"<<E->getIdEmpreinte()<<"/";
-
-	/*for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end()-1; ++it)
+	for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); it++)
 	{
-		cout << "for avant "<< endl;
-		os << *it << "/";
-		cout << "for apres "<< endl;
-	}*/
+		if (it->getType() == "double")
+		{
+			cout << "debug" << endl;
+			cout << it->getNom() << endl;
+			cout << *((double*)it->getValue()) << endl;
+		}
+		else
+		{
+			cout << it->getNom() << endl;
+			cout << *(string*) it->getValue() << endl;
+		}
 
-	for(int i = 0; i < (listeAttr.size())-1 ; i++)
-	{
-		//cout << "for avant "<< endl;
-		cout << listeAttr[i] << "/";
-		//cout << "for apres "<< endl;
 	}
-	//cout << "hey";
 
-	//os << listeAttr[0] << endl;
-	cout << listeAttr[listeAttr.size()] << endl;
-	//delete A;
-	//delete B;
-	//delete d;
-	//delete e;
-	//delete E;
 
-	
-}
-
-// Test du constructeur, methode validee
-void testEmpreinte()
-{
-    Empreinte * emp = new Empreinte(2);
-    Empreinte* emp2 = new Empreinte(1);
-
-    Attribut* A = new Attribut("att","double");
-    Attribut* B = new Attribut("attri","string");
-
-    //double * d = new double(2.5);
-    string * e = new string("coucou");
-
-    //A->setValue(d);
-    B->setValue(e);
-
-    // Test méthode ajouterAttribut
-    cout << "ici" << endl;
-    //emp->ajouterAttribut(*A);
-    emp->ajouterAttribut(*B);
-
-    cout << emp->getNbAttributs() << endl;
-    deque<Attribut> listeAttr = emp->getListeAttributs();
-    int i;
-    for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); ++it)
-    {
-        if (it->getType() == "double")
-        {
-            cout << "debug" << endl;
-            cout << it->getNom() << endl;
-            cout << *(double*)it->getValue() << endl;
-        }
-        else
-        {
-            void* value = nullptr;
-            *(string*) value = *(string*) it->getValue();
-            //cout << *value << endl;
-            cout << it->getNom() << endl;
-            cout << *(string*) it->getValue() << endl;
-        }
-
-    }
-    delete emp;
-    delete emp2;
-    delete A;
-    delete B;
-    //delete d;
-    delete e;
+	delete emp;
+	delete emp2;
+	delete A;
+	delete B;
+	delete d;
+	delete e;
 }
 
 void testDico()
@@ -182,10 +138,10 @@ void testDico()
 	cout << d->ajouterMaladie(champs1) << endl;
 
 
-	 delete f;
-	 delete id;
-	 delete d;
-	 delete m;
+	delete f;
+	delete id;
+	delete d;
+	delete m;
 
 }
 
@@ -196,17 +152,57 @@ void testMaladie()
 	long *id  = new long(1);
 	Maladie * m = new Maladie(*id,"grippe");
 	string champs1 = "1;True;2.12;13;3.156;1236;Maladie1";
-	string champs2 = "1;True;2.12;13;3.156;1236;Maladie2";
+	string champs2 = "2;True;2.12;13;3.156;1236;Maladie2";
 
+	cout << m->ajouterEmpreinte(champs1,f->getSignature()) << endl;
+	cout << m->ajouterEmpreinte(champs2,f->getSignature()) << endl;
+
+	deque<Empreinte> listeEmp = m->getListeEmpreinte();
 	//cout << f->getSignature()[0].first << f->getSignature()[0].second << endl;
+	for (deque<Empreinte>::iterator it2=listeEmp.begin(); it2!=listeEmp.end(); it2++)
+	{
+		deque<Attribut> listeAttr = it2->getListeAttributs();
 
-	cout << m->ajouterEmpreinte(champs1,f->getSignature()) << endl;
-	cout << m->ajouterEmpreinte(champs1,f->getSignature()) << endl;
-	//m->getEmpreinteById(*id);
+		for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); it++)
+		{
+			if (it->getType() == "double")
+			{
+				cout << it->getNom() << endl;
+				cout << *((double*)it->getValue()) << endl;
+			}
+			else
+			{
+				cout << it->getNom() << endl;
+				cout << *(string*) it->getValue() << endl;
+			}
 
-	 delete f;
-	 delete id;
-	 delete m; //Sinon erreur object was not allocated
+		}
+	}
+	cout << "Test getEmpreinteById" << endl;
+	cout << m->empreinteExiste(1) << endl; // Méthode marche
+	Empreinte * e = m->getEmpreinteById(1);
+	cout << "erreur ici 1" << endl;
+	deque<Attribut> attr = e->getListeAttributs();
+	cout << "erreur ici 2" << endl;
+	for (deque<Attribut>::iterator it=attr.begin(); it!=attr.end(); it++)
+	{
+		if (it->getType() == "double")
+		{
+			cout << it->getNom() << endl;
+			cout << *((double*)it->getValue()) << endl;
+		}
+		else
+		{
+			cout << it->getNom() << endl;
+			cout << *(string*) it->getValue() << endl;
+		}
+
+	}
+
+	delete e;
+	delete f;
+	delete id;
+	delete m; //Sinon erreur object was not allocated
 
 }
 
