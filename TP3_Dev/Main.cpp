@@ -16,6 +16,8 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Main.h"
+#include "Attribut.h"
+#include "Dictionnaire.h"
 
 //#define _CRT_SECURE_NO_WARNINGS
 

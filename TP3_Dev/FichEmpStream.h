@@ -1,7 +1,7 @@
 /*************************************************************************
                            FichEmpStream  -  description
                              -------------------
-    début                : $DATE$
+    dï¿½but                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
@@ -10,7 +10,7 @@
 #if ! defined ( FICHEMPSTREAM_H )
 #define FICHEMPSTREAM_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 using namespace std;
 #include <string>
 
@@ -22,7 +22,7 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <FichEmpStream>
+// Rï¿½le de la classe <FichEmpStream>
 //
 //
 //------------------------------------------------------------------------
@@ -32,8 +32,8 @@ class FichEmpStream
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+    // type Mï¿½thode ( liste des paramï¿½tres );
     // Mode d'emploi :
     //
     // Contrat :
@@ -75,8 +75,8 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------- Surcharge d'opérateurs
-    FichEmpStream & operator = ( const FichEmpStream & unFichEmpStream );
+//------------------------------------------------- Surcharge d'opï¿½rateurs
+    //FichEmpStream & operator = ( const FichEmpStream & unFichEmpStream );
     // Mode d'emploi :
     //
     // Contrat :
@@ -84,7 +84,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    FichEmpStream ( const FichEmpStream & unFichEmpStream );
+    //FichEmpStream ( const FichEmpStream & unFichEmpStream );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -105,15 +105,15 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
     string signatureComplete;
     long nbAttributs;
 };
 
-//-------------------------------- Autres définitions dépendantes de <FichEmpStream>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <FichEmpStream>
 
 #endif // FichEmpStream_H

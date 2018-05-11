@@ -49,7 +49,8 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 			int posF = chEmpMaladie.find(';',posD);
 			// id de l'empreinte est unique donc on compare directement avec celle la
 			long id  = (long)stold(chEmpMaladie.substr(posD,posF-posD));
-			for (deque<Empreinte>::iterator it2=*it->getListeEmpreinte().begin(); it2!=*it->getListeEmpreinte().end(); ++it2)
+			deque<Empreinte> listeEmp = it->getListeEmpreinte();
+			for (deque<Empreinte>::iterator it2=listeEmp.begin(); it2!=listeEmp.end(); ++it2)
 			{
 				if((*it2).getIdEmpreinte() == id)
 				{
@@ -58,7 +59,7 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 			}
 			if (!existeEmp)
             {
-                (*it).ajouterEmpreinte(chMaladie,signature);
+                it->ajouterEmpreinte(chEmpMaladie,signature);
                 nbEmpreintes++;
                 return true;
             }
@@ -70,7 +71,7 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 	}
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
-	m->ajouterEmpreinte(chMaladie,signature);
+	m->ajouterEmpreinte(chEmpMaladie,signature);
 	listeMaladie.push_back(*m);
 	return true;
 }

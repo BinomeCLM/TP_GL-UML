@@ -1,61 +1,63 @@
 /*************************************************************************
 Analyse  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Analyse> (fichier Analyse.cpp) ------------
+//---------- Rï¿½alisation de la classe <Analyse> (fichier Analyse.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
 #include "Analyse.h"
+#include "Dictionnaire.h"
+#include "Empreinte.h"
 #include <utility>
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Analyse::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Analyse::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
-// Méthode non vérifiée --> Test unitaire à faire
-// une fois calculerProbabilité validée
+// Mï¿½thode non vï¿½rifiï¿½e --> Test unitaire ï¿½ faire
+// une fois calculerProbabilitï¿½ validï¿½e
 void Analyse::genererClassement(Dictionnaire d, Empreinte e)
 {
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 
-    // Pour chaque maladie du dictionnaire, on calcule la proba associée
-    // avec l'empreinte à analyser
+    // Pour chaque maladie du dictionnaire, on calcule la proba associï¿½e
+    // avec l'empreinte ï¿½ analyser
 	for (deque<Maladie>::iterator it=listeMaladies.begin(); it!=listeMaladies.end(); ++it)
 	{
 		calculerProbabilite(e,*it);
 	}
 }
 
-// Méthode non vérifiée --> Test unitaire à réalisé
+// Mï¿½thode non vï¿½rifiï¿½e --> Test unitaire ï¿½ rï¿½alisï¿½
 void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 {
-	// On récupére les empreintes ou l'empreinte de la maladie
+	// On rï¿½cupï¿½re les empreintes ou l'empreinte de la maladie
 	deque<Empreinte> listeEmp = m.getListeEmpreinte();
 
-	// On récupére dans une var le nombre d'attributs pour faire la moyenne
+	// On rï¿½cupï¿½re dans une var le nombre d'attributs pour faire la moyenne
 	long nbAttrEmp = e.getNbAttributs();
 
-	//On récupére une seule fois la liste des attributs de l'empreinte qu'on analyse
+	//On rï¿½cupï¿½re une seule fois la liste des attributs de l'empreinte qu'on analyse
 	deque<Attribut> listeAttr = e.getListeAttributs();
 
-	// Pour chq empreinte, on calcule la probabilité associée
+	// Pour chq empreinte, on calcule la probabilitï¿½ associï¿½e
 	for (deque<Empreinte>::iterator it=listeEmp.begin(); it!=listeEmp.end(); ++it)
 	{
 		// On init un compteur pour compter le nbre d'attributs correspondant
@@ -63,7 +65,7 @@ void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 
 		// On compare les attributs des deux empreintes
 
-		// On récupére la liste des attributs de l'empreinte de la maladie
+		// On rï¿½cupï¿½re la liste des attributs de l'empreinte de la maladie
 		deque<Attribut> listeAttrEmpMaladie = it->getListeAttributs();
 		for (int i=0; i<nbAttrEmp; i++)
         {
@@ -74,7 +76,7 @@ void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 		}
 
 		correspondances.insert(pair<double,string>(((compteur/nbAttrEmp)*100),m.getNomMaladie()) );
-		// On ajoute a la multimap en mettant le nom de la maladie et la proba en clé
+		// On ajoute a la multimap en mettant le nom de la maladie et la proba en clï¿½
 	}
 }
 
@@ -82,7 +84,7 @@ multimap<double,string> Analyse::getCorrespondances()
 {
     return correspondances;
 }
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 /*Analyse & Analyse::operator = (const Analyse & unAnalyse)
 // Algorithme :
 //
@@ -91,14 +93,14 @@ multimap<double,string> Analyse::getCorrespondances()
 
 
   //-------------------------------------------- Constructeurs - destructeur
-Analyse::Analyse(const Analyse & unAnalyse)
+/*Analyse::Analyse(const Analyse & unAnalyse)
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Analyse>" << endl;
 #endif
-} //----- Fin de Analyse (constructeur de copie)
+} *///----- Fin de Analyse (constructeur de copie)
 
 Analyse::Analyse(long id)
 {
@@ -128,5 +130,5 @@ Analyse::~Analyse()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 

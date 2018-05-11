@@ -2,7 +2,7 @@
 /*************************************************************************
 Analyse  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
@@ -11,20 +11,22 @@ e-mail               : $EMAIL$
 #if ! defined ( ANALYSE_H )
 #define ANALYSE_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 using namespace std;
 #include <map>
 #include <deque>
 #include <string>
 
-#include "Dictionnaire.h"
+class Dictionnaire;
+class Empreinte;
+class Maladie;
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Analyse>
+// Rï¿½le de la classe <Analyse>
 //
 //
 //------------------------------------------------------------------------
@@ -34,7 +36,7 @@ class Analyse
 	//----------------------------------------------------------------- PUBLIC
 
 public:
-	//----------------------------------------------------- Méthodes publiques
+	//----------------------------------------------------- Mï¿½thodes publiques
 	void calculerProbabilite (Empreinte e, Maladie m);
 	// Mode d'emploi :
 	//
@@ -49,8 +51,8 @@ public:
 
 	multimap<double,string> getCorrespondances();
 
-	//------------------------------------------------- Surcharge d'opérateurs
-	Analyse & operator = (const Analyse & unAnalyse);
+	//------------------------------------------------- Surcharge d'opï¿½rateurs
+//	Analyse & operator = (const Analyse & unAnalyse);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -58,7 +60,7 @@ public:
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	Analyse(const Analyse & unAnalyse);
+	//Analyse(const Analyse & unAnalyse);
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :
@@ -85,18 +87,18 @@ public:
 	//------------------------------------------------------------------ PRIVE
 
 protected:
-	//----------------------------------------------------- Méthodes protégées
+	//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-	//----------------------------------------------------- Attributs protégés
+	//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
 	multimap<double,string> correspondances; // Va contenir l'ensemble
-	// des correspondances entre les empreintes de la maladie (repérée par son iD
-    // dans la map du dico et la proba associée qui est la clé)
+	// des correspondances entre les empreintes de la maladie (repï¿½rï¿½e par son iD
+    // dans la map du dico et la proba associï¿½e qui est la clï¿½)
 	long idEmpreinte;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Analyse>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <Analyse>
 
 #endif // Analyse_H
 

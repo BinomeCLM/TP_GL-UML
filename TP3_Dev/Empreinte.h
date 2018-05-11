@@ -1,7 +1,7 @@
 /*************************************************************************
 Empreinte  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
@@ -10,21 +10,22 @@ e-mail               : $EMAIL$
 #if ! defined ( EMPREINTE_H )
 #define EMPREINTE_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 
 using namespace std;
 #include <deque>
 #include <map>
 
 #include "Attribut.h"
-#include "Dictionnaire.h"
 
+class Dictionnaire;
+class Analyse;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Empreinte>
+// Rï¿½le de la classe <Empreinte>
 //
 //
 //------------------------------------------------------------------------
@@ -34,8 +35,8 @@ class Empreinte
 	//----------------------------------------------------------------- PUBLIC
 
 public:
-	//----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
+	//----------------------------------------------------- Mï¿½thodes publiques
+	// type Mï¿½thode ( liste des paramï¿½tres );
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -78,13 +79,13 @@ public:
 	//
 
     // A revoir !!!
-	multimap<double,string> lancerAnalyse(Dictionnaire d);
+	Analyse lancerAnalyse(Dictionnaire d);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	//------------------------------------------------- Surcharge d'opérateurs
+	//------------------------------------------------- Surcharge d'opï¿½rateurs
 	//Empreinte & operator = (const Empreinte & unEmpreinte);
 	// Mode d'emploi :
 	//
@@ -118,9 +119,9 @@ public:
 	//------------------------------------------------------------------ PRIVE
 
 protected:
-	//----------------------------------------------------- Méthodes protégées
+	//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-	//----------------------------------------------------- Attributs protégés
+	//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
 	long idEmpreinte;
@@ -128,7 +129,7 @@ private:
 	deque<Attribut> listeAttributs;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Empreinte>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <Empreinte>
 
 #endif // Empreinte_H
 

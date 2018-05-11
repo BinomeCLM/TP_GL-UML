@@ -1,7 +1,7 @@
 /*************************************************************************
 Maladie  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
@@ -10,7 +10,7 @@ e-mail               : $EMAIL$
 #if ! defined ( MALADIE_H )
 #define MALADIE_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 #include <deque>
 #include <string>
 #include "Empreinte.h"
@@ -20,7 +20,7 @@ e-mail               : $EMAIL$
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Maladie>
+// Rï¿½le de la classe <Maladie>
 //
 //
 //------------------------------------------------------------------------
@@ -30,8 +30,8 @@ class Maladie
 	//----------------------------------------------------------------- PUBLIC
 
 public:
-	//----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
+	//----------------------------------------------------- Mï¿½thodes publiques
+	// type Mï¿½thode ( liste des paramï¿½tres );
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -41,11 +41,11 @@ public:
 	string getNomMaladie();
 	deque<Empreinte> getListeEmpreinte();
 	bool empreinteExiste(long id);
-	//Création de cette méthode car problème de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
+	//Crï¿½ation de cette mï¿½thode car problï¿½me de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
     //mais en soit vu qu'on a juste besoin de savoir si l'empreinte existe, on pourrait la garder au lieu de getById()
 
 
-	//------------------------------------------------- Surcharge d'opérateurs
+	//------------------------------------------------- Surcharge d'opï¿½rateurs
     // Maladie & operator = (const Maladie & unMaladie);
 	// Mode d'emploi :
 	//
@@ -54,7 +54,7 @@ public:
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	Maladie(const Maladie & unMaladie);
+	//Maladie(const Maladie & unMaladie);
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :
@@ -84,13 +84,13 @@ private:
 
 
 protected:
-	//----------------------------------------------------- Méthodes protégées
+	//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-	//----------------------------------------------------- Attributs protégés
+	//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Maladie>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <Maladie>
 
 #endif // MALADIE_H
 

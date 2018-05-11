@@ -1,7 +1,7 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    début                : $DATE$
+    dï¿½but                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
@@ -10,19 +10,19 @@
 #if ! defined ( FichierPatient_H )
 #define FichierPatient_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 using namespace std;
 #include <string>
+#include <deque>
 
-#include "Empreinte.h"
-#include "Analyse.h"
+
 #include "Dictionnaire.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <FichierPatient>
+// Rï¿½le de la classe <FichierPatient>
 //
 //
 //------------------------------------------------------------------------
@@ -32,14 +32,14 @@ class FichierPatient : public Fichier
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+    // type Mï¿½thode ( liste des paramï¿½tres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Analyse* analyserEmpreinte (Dictionnaire d);
+    deque<Analyse> analyserEmpreinte (Dictionnaire d);
     // Mode d'emploi :
     //
     // Contrat :
@@ -51,8 +51,8 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------- Surcharge d'opérateurs
-    FichierPatient & operator = ( const FichierPatient & unFichierPatient );
+//------------------------------------------------- Surcharge d'opï¿½rateurs
+    //FichierPatient & operator = ( const FichierPatient & unFichierPatient );
     // Mode d'emploi :
     //
     // Contrat :
@@ -60,7 +60,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    FichierPatient ( const FichierPatient & unFichierPatient );
+    //FichierPatient ( const FichierPatient & unFichierPatient );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -83,15 +83,15 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
     deque<Empreinte> listeEmpAnalyse;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <FichierPatient>
+//-------------------------------- Autres dï¿½finitions dï¿½pendantes de <FichierPatient>
 
 #endif // FichierPatient_H

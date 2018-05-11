@@ -1,22 +1,24 @@
 /*************************************************************************
 Empreinte  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Empreinte> (fichier Empreinte.cpp) ------------
+//---------- Rï¿½alisation de la classe <Empreinte> (fichier Empreinte.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
 
 //------------------------------------------------------ Include personnel
 #include "Empreinte.h"
+#include "Dictionnaire.h"
+#include "Analyse.h"
 
 
 
@@ -24,12 +26,12 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Empreinte::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Empreinte::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 void Empreinte::ajouterAttribut(Attribut a)
 {
@@ -37,13 +39,13 @@ void Empreinte::ajouterAttribut(Attribut a)
 
 }
 
-multimap<double,string> Empreinte::lancerAnalyse(Dictionnaire d)
+Analyse Empreinte::lancerAnalyse(Dictionnaire d)
 {
 		Analyse * a = new Analyse(idEmpreinte);
 
-        a->genererClassement(d,this);
+        a->genererClassement(d,*this);
 
-        return a->getCorrespondances();
+        return *a;
 }
 
 deque<Attribut> Empreinte::getListeAttributs()
@@ -66,7 +68,7 @@ long Empreinte::getIdEmpreinte()
 	return idEmpreinte;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 /*Empreinte & Empreinte::operator = (const Empreinte & unEmpreinte)
 // Algorithme :
 //
@@ -87,7 +89,7 @@ Empreinte::Empreinte()
 
 Empreinte::Empreinte(long id)
 {
-		idEmpreinte = id;
+	idEmpreinte = id;
 }
 
 Empreinte::~Empreinte()
@@ -102,5 +104,5 @@ Empreinte::~Empreinte()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 

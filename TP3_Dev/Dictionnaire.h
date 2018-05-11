@@ -11,10 +11,8 @@
 #define DICTIONNAIRE_H
 
 //--------------------------------------------------- Interfaces utilisées
-
-#include "Maladie.h"
 #include "Fichier.h"
-#include "Analyse.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types

@@ -36,22 +36,22 @@ deque<pair<string,string> > Fichier::getSignature()
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Fichier & Fichier::operator = ( const Fichier & unFichier )
+/*Fichier & Fichier::operator = ( const Fichier & unFichier )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} *///----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Fichier::Fichier ( const Fichier & unFichier )
+/*Fichier::Fichier ( const Fichier & unFichier )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Fichier>" << endl;
 #endif
-} //----- Fin de Fichier (constructeur de copie)
+}*/ //----- Fin de Fichier (constructeur de copie)
 
 Fichier::Fichier (string nomFichier, string uneSignature )
 {
@@ -63,8 +63,8 @@ Fichier::Fichier (string nomFichier, string uneSignature )
 	int i = 0;
 	string nom;
 	string type;
-	int pos1=0;
-	int pos2 =0;
+	unsigned int pos1=0;
+	unsigned int pos2 =0;
 	while(pos2 < uneSignature.length())
 	{
 		pos1 = uneSignature.find(';',i);

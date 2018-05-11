@@ -1,16 +1,16 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    début                : $DATE$
+    dï¿½but                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <FichierPatient> (fichier FichierPatient.cpp) ------------
+//---------- Rï¿½alisation de la classe <FichierPatient> (fichier FichierPatient.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
@@ -21,30 +21,33 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type FichierPatient::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type FichierPatient::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
-Analyse* FichierPatient::analyserEmpreinte (Dictionnaire d)
+deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 {
     // Est-ce qu'ici on ferait pas une deque aussi ? Pour stocker les analyses
     deque<Analyse> analyse;
-    if (!listeEmpAnalyse.empty()) // Vérification si la liste des empreintes à analyser est vide ou non.
+    if (!listeEmpAnalyse.empty()) // Vï¿½rification si la liste des empreintes ï¿½ analyser est vide ou non.
     // Est-ce qu'on la fait ici ou dans fichEmpStream. Je la laisse ici au cas ou pour l'instant
     {
         for (std::deque<Empreinte>::iterator it=listeEmpAnalyse.begin(); it!=listeEmpAnalyse.end(); ++it)
         {
-            Analyse a = new Analyse(*it.getIdEmpreinte());
-            a = *it.lancerAnalyse(d);
-            analyse.push_back(a);
+            Analyse * a = new Analyse(it->getIdEmpreinte());
+
+            *a = it->lancerAnalyse(d);
+            analyse.push_back(*a);
         }
+        return analyse;
     }
     else
     {
-        cerr << "fichier des empreintes à analyse est vide." << endl;
+        cerr << "fichier des empreintes ï¿½ analyse est vide." << endl;
+        return analyse;
     }
 
 }
@@ -59,7 +62,7 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 	int posF = chEmp.find(delimiter,posD);
 	long id  = (long)stold(chEmp.substr(posD,posF-posD));
 
-	Empreinte e = new Empreinte(id);
+	Empreinte * e = new Empreinte(id);
 
 	posD = posF+1;
 
@@ -83,8 +86,8 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
             A->setValue(val);
         }
 
-        nbEmpreinte++;
-        e.ajouterAttribut(*A);
+        nbEmpreintes++;
+        e->ajouterAttribut(*A);
 
         posD = posF+1;
 
@@ -93,10 +96,11 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
         delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
     }
 
-    listeEmpAnalyse.push_back(e);
+    listeEmpAnalyse.push_back(*e);
+    return true;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 /*FichierPatient & FichierPatient::operator = ( const FichierPatient & unFichierPatient )
 // Algorithme :
 //
@@ -105,23 +109,23 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-FichierPatient::FichierPatient ( const FichierPatient & unFichierPatient )
+/*FichierPatient::FichierPatient ( const FichierPatient & unFichierPatient )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <FichierPatient>" << endl;
 #endif
-} //----- Fin de FichierPatient (constructeur de copie)
+}*/ //----- Fin de FichierPatient (constructeur de copie)
 
-// Si le fichier n'est pas correcte, ce sera détecté dès FichEmpStream
+// Si le fichier n'est pas correcte, ce sera dï¿½tectï¿½ dï¿½s FichEmpStream
 FichierPatient::FichierPatient(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
 
 FichierPatient::FichierPatient ( )
 // Algorithme :
 //
 {
-    // Ici, on ne fait rien car avec FichEmpStream impossible de faire appel à ce constructeur par défaut.
+    // Ici, on ne fait rien car avec FichEmpStream impossible de faire appel ï¿½ ce constructeur par dï¿½faut.
 #ifdef MAP
     cout << "Appel au constructeur de <FichierPatient>" << endl;
 #endif
@@ -140,4 +144,4 @@ FichierPatient::~FichierPatient ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es

@@ -15,6 +15,8 @@ using namespace std;
 #include <string>
 #include <deque>
 
+#include "Maladie.h"
+#include "Analyse.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -40,7 +42,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Fichier & operator = ( const Fichier & unFichier );
+   // Fichier & operator = ( const Fichier & unFichier );
     // Mode d'emploi :
     //
     // Contrat :
@@ -48,7 +50,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Fichier ( const Fichier & unFichier );
+    //Fichier ( const Fichier & unFichier );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :

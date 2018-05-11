@@ -1,16 +1,16 @@
 /*************************************************************************
 Maladie  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Maladie> (fichier Maladie.cpp) ------------
+//---------- Rï¿½alisation de la classe <Maladie> (fichier Maladie.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <string>
@@ -23,12 +23,12 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Maladie::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Maladie::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
 
@@ -89,9 +89,9 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 }
 
 // Est-ce qu'on a besoin de getEmpreinteById et empreinteExiste ?
-// retourner un pointeur ? Pourquoi pas une référence ?
-// Parce-que sinon la case que pointe e va être détruite à la fin de
-// la méthode, non ?
+// retourner un pointeur ? Pourquoi pas une rï¿½fï¿½rence ?
+// Parce-que sinon la case que pointe e va ï¿½tre dï¿½truite ï¿½ la fin de
+// la mï¿½thode, non ?
 Empreinte* Maladie::getEmpreinteById(long id) {
 	Empreinte* e = nullptr;
 
@@ -119,7 +119,7 @@ bool Maladie::empreinteExiste(long id) {
 		if(id == (*it).getIdEmpreinte())
 		{
 			return true;
-			// Pourquoi un break après avoir retourner ??
+			// Pourquoi un break aprï¿½s avoir retourner ??
 			break;
 		}
 	}
@@ -137,7 +137,7 @@ deque<Empreinte> Maladie::getListeEmpreinte() {
 
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 /*Maladie & Maladie::operator = (const Maladie & unMaladie)
 // Algorithme :
 //
@@ -146,14 +146,14 @@ deque<Empreinte> Maladie::getListeEmpreinte() {
 */
 
   //-------------------------------------------- Constructeurs - destructeur
-Maladie::Maladie(const Maladie & unMaladie)
+/*Maladie::Maladie(const Maladie & unMaladie)
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Maladie>" << endl;
 #endif
-} //----- Fin de Maladie (constructeur de copie)
+}*/ //----- Fin de Maladie (constructeur de copie)
 
 
 Maladie::Maladie()
@@ -169,7 +169,7 @@ Maladie::Maladie(long id, string nom)
 {
 	idMaladie = id;
 	nomMaladie = nom;
-	nbEmpreinte = 0; // j'ai rajouté ça dans le constructeur
+	nbEmpreinte = 0; // j'ai rajoutï¿½ ï¿½a dans le constructeur
 }
 
 
@@ -185,5 +185,5 @@ Maladie::~Maladie()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
