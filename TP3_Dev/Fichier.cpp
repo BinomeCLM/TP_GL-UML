@@ -53,26 +53,34 @@ deque<pair<string,string> > Fichier::getSignature()
 #endif
 }*/ //----- Fin de Fichier (constructeur de copie)
 
-Fichier::Fichier (string nomFichier, string uneSignature )
+Fichier::Fichier (string nomFichier, string uneSignature)
 {
 
 	nbEmpreintes = 0;
 	sourceFichier = nomFichier;
-	uneSignature.erase(0,36); //on a toujours les deux première ligne du début qui font la même taille
+
+
+	//uneSignature.erase(0,36); //on a toujours les deux première ligne du début qui font la même taille
 
 	int i = 0;
 	string nom;
 	string type;
+
 	unsigned int pos1=0;
 	unsigned int pos2 =0;
-	while(pos2 < uneSignature.length())
+	unsigned int fin = uneSignature.find_last_of(';');
+
+	while(pos1 != fin)
 	{
+		// On sait que double ou string ont 6 caractères chacun d'où le fait qu'après le ; on prend
+		// 6 caractères à chaque fois. (pos2=pos1+6)
 		pos1 = uneSignature.find(';',i);
-		pos2 = uneSignature.find('\n',i);
+		pos2 = pos1+6;
 		nom = uneSignature.substr(i,pos1-i);//pas de +1 car on prend pas le ;
-		type = uneSignature.substr(pos1+1,pos2-pos1-1); //pas de +1 car on prend pas le \n
+		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
+		cout << nom << " " << type << endl;
 	}
 }
 

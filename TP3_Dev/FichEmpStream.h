@@ -63,13 +63,19 @@ public:
     // Contrat :
     //
 
-    void compterAttributsSignature (string sourceFichier);
+    long compterAttributsSignature (string sourceFichier);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
     bool verifierFichierVide(string sourceFichier);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    string getSignatureComplete();
     // Mode d'emploi :
     //
     // Contrat :

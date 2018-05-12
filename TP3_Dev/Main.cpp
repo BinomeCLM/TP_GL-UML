@@ -271,9 +271,15 @@ void testAffichage()
     //delete B;
 }
 
+// Fonctionne pour le dico
 void testFichEmpStream()
 {
 	FichEmpStream * fEmpSt = new FichEmpStream();
-	cout << fEmpSt->verifierExtension("./dekdlekd.log");
-	fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+	Dictionnaire * dTest = new Dictionnaire;
+	//cout << fEmpSt->verifierExtension("./dekdlekd.log") << endl;
+    *dTest = fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+	//cout << *dTest << endl;
+	FichierPatient * fPatTest = new FichierPatient;
+	*fPatTest = fEmpSt->lireFichierPatient("./HealthMeasurements.txt");
+	cout << "done" << endl;
 }
