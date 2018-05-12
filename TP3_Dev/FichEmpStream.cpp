@@ -1,16 +1,16 @@
 /*************************************************************************
                            FichEmpStream  -  description
                              -------------------
-    début                : $DATE$
+    dï¿½but                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <FichEmpStream> (fichier FichEmpStream.cpp) ------------
+//---------- Rï¿½alisation de la classe <FichEmpStream> (fichier FichEmpStream.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <fstream>
@@ -22,21 +22,21 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type FichEmpStream::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type FichEmpStream::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
-// Méthode non vérifiée
+// Mï¿½thode non vï¿½rifiï¿½e
 FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 {
-    // Première vérif pour voir si un dictionnaire est déja renseignée sinon erreur
+    // Premiï¿½re vï¿½rif pour voir si un dictionnaire est dï¿½ja renseignï¿½e sinon erreur
     if (!signatureComplete.compare(""))
     {
-        cerr << "Pas de dictionnaire encore rentré. Analyse impossible." << endl;
-        return nullptr;
+        cerr << "Pas de dictionnaire encore rentrï¿½. Analyse impossible." << endl;
+
     }
 
     bool extensionValide = verifierExtension(sourceFichier);
@@ -49,22 +49,22 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     }
     else
     {
-        cerr << "Extension rentrée ne correspond pas à '.txt' ou fichier vide" << endl;
+        cerr << "Extension rentrï¿½e ne correspond pas ï¿½ '.txt' ou fichier vide" << endl;
     }
 
     if (signatureValide)
     {
-        FichierPatient fPatTemp = new FichierPatient(sourceFichier, signatureComplete.substr(0,signatureComplete.find_last_of(';')));
+        FichierPatient * fPatTemp = new FichierPatient(sourceFichier, signatureComplete.substr(0,signatureComplete.find_last_of(';')));
 
         ifstream fichier;
         fichier.open((char*)sourceFichier.c_str(), ios::in);
 
         if (fichier.is_open())
         {
-            // D'abord, il faut se rendre à la première empreinte !
+            // D'abord, il faut se rendre ï¿½ la premiï¿½re empreinte !
             int i;
             string ligneEmpreinte;
-            for (i=0; i<(nbAttributs+3); i++) // 2 lignes au départ + nbAttributs-1 lignes + ligne vide + première ligne non prise en compte
+            for (i=0; i<(nbAttributs+3); i++) // 2 lignes au dï¿½part + nbAttributs-1 lignes + ligne vide + premiï¿½re ligne non prise en compte
             {
                 getline(fichier, ligneEmpreinte);
             }
@@ -75,27 +75,27 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             {
                 getline(fichier, ligneEmpreinte);
                 // Est-ce qu'on ajoute des verifications pour voir si la ligne n'est pas vide ?
-                fPatTemp.ajouterEmpreinte(ligneEmpreinte);
+                fPatTemp->ajouterEmpreinte(ligneEmpreinte);
             }
 
             fichier.close();
 
-            return fPatTemp;
+            return *fPatTemp;
         }
         else
         {
-            cerr << "Le fichier est valide mais son ouverture a échoué." << endl;
-            return nullptr;
+            cerr << "Le fichier est valide mais son ouverture a ï¿½chouï¿½." << endl;
+
         }
     }
     else
     {
-        cerr << "La signature ne correspond pas à celle du dictionnaire déjà stockée." << endl;
-        return nullptr;
+        cerr << "La signature ne correspond pas ï¿½ celle du dictionnaire dï¿½jï¿½ stockï¿½e." << endl;
+
     }
 }
 
-// Méthode non vérifiée
+// Mï¿½thode non vï¿½rifiï¿½e
 Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
 {
     bool extensionValide = verifierExtension(sourceFichier);
@@ -103,16 +103,16 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
 
     if (extensionValide && verifierFichierVide(sourceFichier))
     {
-        signatureValide = verifierSignature(sourceFichier);
+        signatureValide = verifierSignature(sourceFichier, true);
     }
     else
     {
-        cerr << "Extension rentrée ne correspond pas à '.txt'" << endl;
+        cerr << "Extension rentrï¿½e ne correspond pas ï¿½ '.txt'" << endl;
     }
 
     if (signatureValide)
     {
-        Dictionnaire dTemp = new Dictionnaire(sourceFichier, signatureComplete);
+        Dictionnaire * dTemp = new Dictionnaire(sourceFichier, signatureComplete);
         // Tant qu'on a pas atteint la fin du fichier, on lit la ligne
         // et on fait appel a ajouterMaladie
         ifstream fichier;
@@ -122,8 +122,8 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
         {
             int i;
             string ligneEmpreinteMaladie;
-            // On récupére la première ligne correspondante à la signature
-            for (i=0; i<(nbAttributs+4); i++) // 2 lignes au départ + nbAttributs lignes + ligne vide + première ligne non prise en compte
+            // On rï¿½cupï¿½re la premiï¿½re ligne correspondante ï¿½ la signature
+            for (i=0; i<(nbAttributs+4); i++) // 2 lignes au dï¿½part + nbAttributs lignes + ligne vide + premiï¿½re ligne non prise en compte
             {
                 getline(fichier, ligneEmpreinteMaladie);
             }
@@ -131,24 +131,29 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinteMaladie);
-                dTemp.ajouterMaladie(ligneEmpreinteMaladie);
+                dTemp->ajouterMaladie(ligneEmpreinteMaladie);
             }
 
             fichier.close();
+
+            return *dTemp;
         }
         else
         {
-            cerr << "Le fichier est valide mais son ouverture a échoué." << endl;
+            cerr << "Le fichier est valide mais son ouverture a ï¿½chouï¿½." << endl;
+
         }
     }
     else
     {
-        cerr << "La signature ne correspond pas à celle du dictionnaire déjà stockée." << endl;
+        cerr << "La signature ne correspond pas ï¿½ celle du dictionnaire dï¿½jï¿½ stockï¿½e." << endl;
+
+
     }
 
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
-// Méthode vérifiée, elle fonctionne
+// Mï¿½thode vï¿½rifiï¿½e, elle fonctionne
 bool FichEmpStream::verifierExtension (string sourceFichier)
 {
     int index = sourceFichier.find_last_of('.');
@@ -167,31 +172,31 @@ bool FichEmpStream::verifierExtension (string sourceFichier)
     }
     else
     {
-        // Pas de point dans la source du fichier donc forcément mauvaise source
+        // Pas de point dans la source du fichier donc forcï¿½ment mauvaise source
         return false;
     }
 }
 
-// Méthode vérifiée, elle fonctionne
+// Mï¿½thode vï¿½rifiï¿½e, elle fonctionne
 bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
 {
-    // But: récupérer la signature du fichier entiérement qui est la première ligne
-    // du fichier maladie dictionnaire donné en parmètre
+    // But: rï¿½cupï¿½rer la signature du fichier entiï¿½rement qui est la premiï¿½re ligne
+    // du fichier maladie dictionnaire donnï¿½ en parmï¿½tre
     string signatureAverifier;
     ifstream fichier;
     fichier.open((char*)sourceFichier.c_str(), ios::in);
     if (fichier.is_open()) // Si l'ouverture a fonctionne
     {
         int i;
-        // On récupére la première ligne correspondante à la signature
+        // On rï¿½cupï¿½re la premiï¿½re ligne correspondante ï¿½ la signature
         if (dico)
         {
-            for (i=0; i<(nbAttributs+4); i++) // 2 lignes au départ + nbAttributs lignes + ligne vide
+            for (i=0; i<(nbAttributs+4); i++) // 2 lignes au dï¿½part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
             }
             // Premiere verification : est-ce que la signature est null et est-ce que la signature du
-            // nouveau doc n'est pas vide ? Si oui, première execution donc on
+            // nouveau doc n'est pas vide ? Si oui, premiï¿½re execution donc on
             // ajoute forcement
             if (!signatureComplete.compare(""))
             {
@@ -206,11 +211,11 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
                     return false;
                 }
             }
-            // Deuxieme verif : si deja une signature, c'est qu'on veut ajouter de nouvelles données
+            // Deuxieme verif : si deja une signature, c'est qu'on veut ajouter de nouvelles donnï¿½es
             // donc on les compare
             else if (signatureComplete.compare(signatureAverifier) == 0)
             {
-                // Les deux signatures sont pareils donc on peut ajouter les nouvelles données
+                // Les deux signatures sont pareils donc on peut ajouter les nouvelles donnï¿½es
                 // au dictionnaire
                 return true;
             }
@@ -222,7 +227,7 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
         }
         else
         {
-            for (i=0; i<(nbAttributs+3); i++) // 2 lignes au départ + nbAttributs lignes + ligne vide
+            for (i=0; i<(nbAttributs+3); i++) // 2 lignes au dï¿½part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
             }
@@ -230,7 +235,7 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
             string signatureActuelle = signatureComplete.substr(0,signatureComplete.find_last_of(';'));
             if (signatureActuelle.compare(signatureAverifier) == 0)
             {
-                // Les deux signatures sont pareils donc on peut ajouter les nouvelles données
+                // Les deux signatures sont pareils donc on peut ajouter les nouvelles donnï¿½es
                 // au dictionnaire
                 return true;
             }
@@ -247,13 +252,13 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
 
 }
 
-// Méthode permettant de compter le nombre d'attributs de la
-// signature la première fois
-// Méthode vérifiée, elle fonctionne
+// Mï¿½thode permettant de compter le nombre d'attributs de la
+// signature la premiï¿½re fois
+// Mï¿½thode vï¿½rifiï¿½e, elle fonctionne
 void FichEmpStream::compterAttributsSignature (string sourceFichier)
 {
-    long nbAttr = -2; // Car il y a toujours les deux premières lignes au début
-    string chAttr = "ligne"; // Valeur par défaut pour pouvoir rentrer dans la boucle au moins une fois
+    long nbAttr = -2; // Car il y a toujours les deux premiï¿½res lignes au dï¿½but
+    string chAttr = "ligne"; // Valeur par dï¿½faut pour pouvoir rentrer dans la boucle au moins une fois
     ifstream fichier;
     fichier.open((char*)sourceFichier.c_str(), ios::in);
     if (fichier.is_open()) // Si l'ouverture a fonctionne
@@ -274,7 +279,7 @@ void FichEmpStream::compterAttributsSignature (string sourceFichier)
     }
 }
 
-// Méthode vérifiée, elle fonctionne
+// Mï¿½thode vï¿½rifiï¿½e, elle fonctionne
 bool FichEmpStream::verifierFichierVide(string sourceFichier)
 {
     ifstream fichier;
@@ -299,23 +304,23 @@ bool FichEmpStream::verifierFichierVide(string sourceFichier)
         return false;
     }
 }
-//------------------------------------------------- Surcharge d'opérateurs
-FichEmpStream & FichEmpStream::operator = ( const FichEmpStream & unFichEmpStream )
+//------------------------------------------------- Surcharge d'opï¿½rateurs
+/*FichEmpStream & FichEmpStream::operator = ( const FichEmpStream & unFichEmpStream )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} *///----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-FichEmpStream::FichEmpStream ( const FichEmpStream & unFichEmpStream )
+/*FichEmpStream::FichEmpStream ( const FichEmpStream & unFichEmpStream )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <FichEmpStream>" << endl;
 #endif
-} //----- Fin de FichEmpStream (constructeur de copie)
+}*/ //----- Fin de FichEmpStream (constructeur de copie)
 
 
 FichEmpStream::FichEmpStream ( )
@@ -342,4 +347,4 @@ FichEmpStream::~FichEmpStream ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es

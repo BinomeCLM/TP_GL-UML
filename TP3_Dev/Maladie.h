@@ -41,6 +41,7 @@ public:
 	string getNomMaladie();
 	deque<Empreinte> getListeEmpreinte();
 	bool empreinteExiste(long id);
+    long getIdMaladie();
 	//Cr�ation de cette m�thode car probl�me de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
     //mais en soit vu qu'on a juste besoin de savoir si l'empreinte existe, on pourrait la garder au lieu de getById()
 
@@ -52,6 +53,7 @@ public:
 	// Contrat :
 	//
 
+    friend ostream &operator<<(ostream & os, Maladie & m);
 
 	//-------------------------------------------- Constructeurs - destructeur
 	//Maladie(const Maladie & unMaladie);

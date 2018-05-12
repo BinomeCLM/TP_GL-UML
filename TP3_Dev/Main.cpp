@@ -22,6 +22,7 @@ using namespace std;
 #include "Dictionnaire.h"
 #include "Empreinte.h"
 #include "Maladie.h"
+#include "FichEmpStream.h"
 
 //#define _CRT_SECURE_NO_WARNINGS
 
@@ -34,14 +35,17 @@ void testMaladie();
 void testFichier();
 void testDico();
 void testEmpreinte();
+void testAffichage();
+void testFichEmpStream();
 int main() {
 
 	//testAttribut();
 	//testEmpreinte();
-	testMaladie();
+	//testMaladie();
 	//testFichier();
 	//testDico();
-
+    //testAffichage();
+	testFichEmpStream();
 
 	return 0;
 }
@@ -123,28 +127,36 @@ void testEmpreinte()
 	delete e;
 }
 
+// ajouterMaladie validée, getListeMaladie validée, << pour maladie marche
 void testDico()
 {
 
-	string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double";
-	Fichier* f = new Fichier("if",signature);
+	string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double\nDisease;string";
+
 	long *id  = new long(1);
-	Maladie * m = new Maladie(*id,"grippe");
-	string champs1 = "1;True;2.12;13;3.156;1236;Maladie1";
-	string champs2 = "1;True;2.12;13;3.156;1236;Maladie2";
+	//Maladie * m = new Maladie(*id,"grippe");
+	string champs1 = "1;True;2.12;13;3.156;12.36;Maladie1";
+	string champs2 = "1;True;2.12;13;3.156;12.36;Maladie2";
 
 
 	Dictionnaire * d = new Dictionnaire("if",signature);
-	cout << d->ajouterMaladie(champs1) << endl;
+	cout << d->ajouterMaladie(champs2) << endl;
+	deque<Maladie> lesMaladies = d->getListeMaladie();
+    for (deque<Maladie>::iterator it=lesMaladies.begin(); it!=lesMaladies.end(); ++it)
+    {
+        cout << *it << endl;
+    }
+    for (deque<Maladie>::iterator it=lesMaladies.begin(); it!=lesMaladies.end(); ++it)
+    {
+        cout << *it << endl;
+    }
 
-
-	delete f;
 	delete id;
 	delete d;
-	delete m;
 
 }
 
+// ajouterMaladie et empreinteExiste fonctionne mais pas getEMpreinteById
 void testMaladie()
 {
 	string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double";
@@ -206,17 +218,62 @@ void testMaladie()
 
 }
 
+// COnstructeur de Fichier fonctionne
 void testFichier()
 {
 	string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double";
 	Fichier* f = new Fichier("if",signature);
-	for(int i =0; i< f->getSignature().size(); i++)
+	deque<pair<string,string>> signatureFich = f->getSignature();
+	for(unsigned int i =0; i< signatureFich.size(); i++)
 	{
-		cout << f->getSignature()[i].first << f->getSignature()[i].second << endl;
+		cout << signatureFich[i].first << signatureFich[i].second << endl;
 	}
 
 	delete f;
 }
 
+// Surcharge Dictionnaire, Maladie, Empreinte et Attributs fonctionnent
+void testAffichage()
+{
+    string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double\nDisease;string";
+    Dictionnaire* d = new Dictionnaire("if",signature);
+    Maladie * m = new Maladie(1,"grippe");
+    string champs1 = "1;True;2.12;13;3.156;1236;Maladie1";
+    string champs2 = "2;True;2.12;13;3.156;12.36;Maladie2";
 
+    cout << m->ajouterEmpreinte(champs1,d->getSignature()) << endl;
+    cout << m->ajouterEmpreinte(champs2,d->getSignature()) << endl;
+	cout << d->ajouterMaladie(champs1) << endl;
+    cout << *m << endl;
+    cout << *d << endl;
 
+    /*Empreinte * e = new Empreinte(1);
+    Attribut* A = new Attribut("att","double");
+    Attribut* B = new Attribut("attri","string");
+
+    double * valD = new double(2.5);
+    string * valS = new string("coucou");
+
+    A->setValue(valD);
+    B->setValue(valS);
+
+    cout << "ici" << endl;
+    e->ajouterAttribut(A);
+    e->ajouterAttribut(B);
+
+    cout << "test surcharge affichage" << endl;
+    cout << *e << endl;*/
+
+    delete d;
+    delete m;
+    //delete e;
+    //delete A;
+    //delete B;
+}
+
+void testFichEmpStream()
+{
+	FichEmpStream * fEmpSt = new FichEmpStream();
+	cout << fEmpSt->verifierExtension("./dekdlekd.log");
+	fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+}

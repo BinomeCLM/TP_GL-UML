@@ -88,7 +88,7 @@ ostream &operator<<(ostream & os, Attribut & A)
 	{
 		os << *(string*)A.getValue();
 	}
-
+    // Soit on met else tout seul soit on laisse comme ça et on met un else avec un msg d'erreur
 	return os;
 }
 
@@ -116,11 +116,9 @@ bool Attribut::operator==(Attribut & a)
 	// A revoir
 	else
 	{
-		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
+	    cerr << "Les deux attributs n'ont pas le même type." << endl;
 		return false;
 	}
-
-
 }
 
 
@@ -170,7 +168,7 @@ Attribut::~Attribut()
 #ifdef MAP
 	cout << "Appel au destructeur de <Attribut>" << endl;
 #endif
-	if(type == "double")
+	/*if(type == "double")
 	{
 		delete (double*)value;
 	}
@@ -178,7 +176,7 @@ Attribut::~Attribut()
     {
 		delete (string*)value;
 	}
-
+*/
 } //----- Fin de ~Attribut
 
 

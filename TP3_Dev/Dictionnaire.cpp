@@ -59,20 +59,24 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 			}
 			if (!existeEmp)
             {
+            	cout << "Maladie existe mais Empreinte n'existe pas" << endl;
                 it->ajouterEmpreinte(chEmpMaladie,signature);
                 nbEmpreintes++;
                 return true;
             }
             else
             {
+            	cout << " Maladie existe et empreinte existe " << endl;
                 return false;
             }
 		}
 	}
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
+	cout << chEmpMaladie << endl;
 	m->ajouterEmpreinte(chEmpMaladie,signature);
 	listeMaladie.push_back(*m);
+	cout << "fin ajout maladie dico" << endl;
 	return true;
 }
 
@@ -81,13 +85,32 @@ deque<Maladie> Dictionnaire::getListeMaladie()
     return listeMaladie;
 }
 
+long Dictionnaire::getNbElements()
+{
+	return nbEmpreintes;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 /*Dictionnaire & Dictionnaire::operator = ( const Dictionnaire & unDictionnaire )
 // Algorithme :
 //
 {
 } //----- Fin de operator = */
+ostream &operator<<(ostream &os, Dictionnaire & d)
+{
+    cout << "debut surcharge << Dictionnaire" << endl;
+	deque<Maladie> listeMaladie = d.getListeMaladie();
+    os << "Affichage des " << d.getNbElements() << " maladies du dictionnaire " << endl;
 
+    for (deque<Maladie>::iterator it=d.listeMaladie.begin(); it!=d.listeMaladie.end(); ++it)
+    {
+        os << *it << endl;
+    }
+
+    cout << "fin surcharge << Dictionnaire" << endl;
+
+    return os;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 /*Dictionnaire::Dictionnaire ( const Dictionnaire & unDictionnaire )

@@ -41,9 +41,11 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	int posD = 0;
 	int posF = chEmp.find(delimiter,posD);
 	long id  = (long)stold(chEmp.substr(posD,posF-posD));
-	if(!empreinteExiste(id))
+    Empreinte* e = new Empreinte();
+
+    if(!empreinteExiste(id))
 	{
-		Empreinte* e = new Empreinte(id);
+	    e->setIdEmpreinte(id);
 		posD = posF+1;
 
 		int fin = chEmp.find_last_of(delimiter);
@@ -53,12 +55,15 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 		{
 			posF = chEmp.find(delimiter,posD);
 			attribut  = chEmp.substr(posD,posF-posD);
+
 			Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
 			if(A->getType() == "double")
 			{
 				val = new double(stod(attribut));
 				A->setValue(val);
+
+
 			}
 			else if(A->getType() == "string")
 			{
@@ -66,7 +71,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 				A->setValue(val);
 			}
 
-			nbEmpreinte++;
+
 			e->ajouterAttribut(A);
 
 			posD = posF+1;
@@ -129,6 +134,28 @@ string Maladie::getNomMaladie() {
 
 deque<Empreinte> Maladie::getListeEmpreinte() {
 	return listeEmpreinte;
+}
+
+long Maladie::getIdMaladie()
+{
+    return idMaladie;
+}
+
+ostream &operator<<(ostream &os, Maladie & m)
+{
+    cout << "debut surcharge << Maladie" << endl;
+    deque<Empreinte> listeEmpMaladie = m.getListeEmpreinte();
+    long nbEmp = m.nbEmpreinte;
+    os << "idMaladie: " << m.idMaladie << "; Nombre d'Empreintes : " << nbEmp << endl;
+
+    for (deque<Empreinte>::iterator it=listeEmpMaladie.begin(); it!=listeEmpMaladie.end(); ++it)
+    {
+        os << *it << endl;
+    }
+
+    cout << "fin surcharge << Maladie" << endl;
+
+    return os;
 }
 
 

@@ -71,6 +71,11 @@ long Empreinte::getIdEmpreinte()
 	return idEmpreinte;
 }
 
+void Empreinte::setIdEmpreinte(long id)
+{
+    idEmpreinte = id;
+}
+
 //------------------------------------------------- Surcharge d'op�rateurs
 /*Empreinte & Empreinte::operator = (const Empreinte & unEmpreinte)
 // Algorithme :
@@ -81,28 +86,32 @@ long Empreinte::getIdEmpreinte()
 
 ostream &operator<<(ostream &os, Empreinte & e)
 {
-	cout << "heyOp" << endl;
+	cout << "debut surcharge << Empreinte" << endl;
 	deque<Attribut> listeAttr = e.getListeAttributs();
 
-	os << "id:"<<e.getIdEmpreinte()<<"/";
+	os << "id: " << e.getIdEmpreinte() << " -> ";
+    long compteur = 0;
+    long nbAttr = e.getNbAttributs();
+	for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); ++it)
+	{
+        os << *it;
+        compteur++;
+        if (compteur != nbAttr)
+        {
+            os << " / ";
+        }
 
-	/*for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end()-1; ++it)
-	{
-		cout << "for avant "<< endl;
-		os << *it << "/";
-		cout << "for apres "<< endl;
-	}*/
-    unsigned int i;
-	for(i = 0; i < (listeAttr.size())-1 ; i++)
-	{
-		cout << "for avant "<< endl;
-		os << listeAttr[i] << "/";
-		cout << "for apres "<< endl;
 	}
-	cout << "hey";
+    os << endl;
+    /*long i;
+    long nbAttr = e.nbAttributs;
+    // ATTENTION, on a le nombre d'attributs en attribut d'Empreinte, pas besoin de .size()
+	for(i = 0; i < nbAttr-1 ; i++)
+	{
 
-	//os << listeAttr[0] << endl;
-	os << listeAttr[1] << endl;
+	}
+	os << listeAttr[nbAttr-1] << endl;
+	cout << "fin surcharge << Empreinte" << endl;*/
 
 	return os;
 }
@@ -116,11 +125,13 @@ Empreinte::Empreinte()
 #ifdef MAP
 	cout << "Appel au constructeur de <Empreinte>" << endl;
 #endif
+	nbAttributs = 0;
 } //----- Fin de Empreinte
 
 Empreinte::Empreinte(long id)
 {
 	idEmpreinte = id;
+	nbAttributs = 0;
 }
 
 Empreinte::~Empreinte()

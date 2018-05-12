@@ -76,7 +76,8 @@ private :
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	long nbEmpreintes;
+	long nbEmpreintes; // Nom à changer: pour un dico, ça représente le nombre de maladie
+    // et pour un FichierPatient le nombre d'empreinte à analyser.
     string sourceFichier;
     deque<pair<string,string> > signature;
 //----------------------------------------------------- Attributs protégés

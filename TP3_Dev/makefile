@@ -7,7 +7,7 @@ EXEC=analyseEmpreinte
 CXXFLAGS=-W -Wall -D MAP -ansi -pedantic -std=c++11
 EDLFLAGS=
 RMFLAGS = -f
-OBJ=Main.o Dictionnaire.o Fichier.o FichierPatient.o Maladie.o Empreinte.o  Attribut.o Analyse.o
+OBJ=Main.o Dictionnaire.o Fichier.o FichierPatient.o FichEmpStream.o Maladie.o Empreinte.o  Attribut.o Analyse.o
 
 #Création de l’éxécutable Test
 $(EXEC) : $(OBJ)

@@ -38,6 +38,8 @@ public:
 
     deque<Maladie> getListeMaladie();
 
+    long getNbElements();
+
 
 //------------------------------------------------- Surcharge d'opérateurs
    // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );
@@ -45,7 +47,7 @@ public:
     //
     // Contrat :
     //
-
+    friend ostream &operator<<(ostream &os, Dictionnaire & d);
 
 //-------------------------------------------- Constructeurs - destructeur
    // Dictionnaire ( const Dictionnaire & unDictionnaire );
