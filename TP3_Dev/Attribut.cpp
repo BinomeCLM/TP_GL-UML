@@ -116,7 +116,7 @@ bool Attribut::operator==(Attribut & a)
 	// A revoir
 	else
 	{
-	    cerr << "Les deux attributs n'ont pas le même type." << endl;
+	    cout << "Les deux attributs n'ont pas la même valeur." << endl;
 		return false;
 	}
 }

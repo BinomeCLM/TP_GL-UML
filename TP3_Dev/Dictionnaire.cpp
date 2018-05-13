@@ -74,6 +74,7 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 	Maladie * m = new Maladie(nbEmpreintes,nom);
 	cout << chEmpMaladie << endl;
 	m->ajouterEmpreinte(chEmpMaladie,signature);
+	cout << " la signature" << endl;
 	listeMaladie.push_back(*m);
 	return true;
 }

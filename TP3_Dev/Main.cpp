@@ -23,6 +23,7 @@ using namespace std;
 #include "Empreinte.h"
 #include "Maladie.h"
 #include "FichEmpStream.h"
+#include "Analyse.h"
 
 //#define _CRT_SECURE_NO_WARNINGS
 
@@ -37,6 +38,7 @@ void testDico();
 void testEmpreinte();
 void testAffichage();
 void testFichEmpStream();
+void testAnalyse();
 int main() {
 
 	//testAttribut();
@@ -45,7 +47,8 @@ int main() {
 	//testFichier();
 	//testDico();
     //testAffichage();
-	testFichEmpStream();
+	//testFichEmpStream();
+	testAnalyse();
 
 	return 0;
 }
@@ -282,4 +285,40 @@ void testFichEmpStream()
 	FichierPatient * fPatTest = new FichierPatient;
 	*fPatTest = fEmpSt->lireFichierPatient("./HealthMeasurements.txt");
 	cout << "done" << endl;
+}
+
+// Calculer proba fonctionne
+// GenererClassement aussi
+void testAnalyse()
+{
+	Analyse * analyse = new Analyse();
+	FichEmpStream * fEmpSt = new FichEmpStream();
+	Dictionnaire * dTest = new Dictionnaire;
+	// ON renseigne le dictionnaire
+	*dTest = fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+	// On renseigne le FichierPatient
+	FichierPatient * fPatTest = new FichierPatient;
+	*fPatTest = fEmpSt->lireFichierPatient("./HealthMeasurements.txt");
+
+	// Test de calculerProba
+	// On récupére une empreinte pour le test
+	deque<Empreinte> lesEmpAanalyse = fPatTest->getListeEmpreinte();
+	// On récupére une maladie pour le test
+	deque<Maladie> lesMaladiesAcomparer = dTest->getListeMaladie();
+    cout << lesEmpAanalyse[1] << endl;
+    //cout << lesMaladiesAcomparer[1] << endl;
+	//analyse->calculerProbabilite(lesEmpAanalyse[1], lesMaladiesAcomparer[1]);
+    //analyse->genererClassement(*dTest,lesEmpAanalyse[1]);
+    deque<Analyse> lesAnalyses = fPatTest->analyserEmpreinte(*dTest);
+    for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
+    {
+        cout << "Empreinte numéro : " << it->getIdEmpreinte() << endl;
+        multimap<double,string> resultat = it->getCorrespondances();
+        for (multimap<double,string>::iterator it2 = resultat.begin(); it2!=resultat.end(); it2++)
+        {
+            cout << it2->second << " proba : " << it2->first << " %" << endl;
+            // IL faut qu'on parle de comment on gere le
+            // cas quand la maladie n'a pas de nom
+        }
+    }
 }

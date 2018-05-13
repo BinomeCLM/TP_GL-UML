@@ -51,6 +51,8 @@ public:
     // Contrat :
     //
 
+    deque<Empreinte> getListeEmpreinte();
+
 //------------------------------------------------- Surcharge d'op�rateurs
     //FichierPatient & operator = ( const FichierPatient & unFichierPatient );
     // Mode d'emploi :

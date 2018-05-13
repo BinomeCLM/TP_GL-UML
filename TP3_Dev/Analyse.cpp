@@ -48,6 +48,7 @@ void Analyse::genererClassement(Dictionnaire d, Empreinte e)
 // M�thode non v�rifi�e --> Test unitaire � r�alis�
 void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 {
+    cout << "calcul de la proba" << endl;
 	// On r�cup�re les empreintes ou l'empreinte de la maladie
 	deque<Empreinte> listeEmp = m.getListeEmpreinte();
 
@@ -56,6 +57,8 @@ void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 
 	//On r�cup�re une seule fois la liste des attributs de l'empreinte qu'on analyse
 	deque<Attribut> listeAttr = e.getListeAttributs();
+
+	double max = 0;
 
 	// Pour chq empreinte, on calcule la probabilit� associ�e
 	for (deque<Empreinte>::iterator it=listeEmp.begin(); it!=listeEmp.end(); ++it)
@@ -69,20 +72,32 @@ void Analyse::calculerProbabilite(Empreinte e, Maladie m)
 		deque<Attribut> listeAttrEmpMaladie = it->getListeAttributs();
 		for (int i=0; i<nbAttrEmp; i++)
         {
+            cout << listeAttr[i].getType() << " " << listeAttrEmpMaladie[i].getType() << endl;
+            cout << listeAttr[i] << " " << listeAttrEmpMaladie[i] << endl;
 			if (listeAttr[i] == listeAttrEmpMaladie[i])
 			{
 				compteur ++;
 			}
 		}
 
-		correspondances.insert(pair<double,string>(((compteur/nbAttrEmp)*100),m.getNomMaladie()) );
+		if (compteur > max)
+        {
+            max = compteur;
+        }
+		cout << (compteur/nbAttrEmp)*100 << endl;
 		// On ajoute a la multimap en mettant le nom de la maladie et la proba en cl�
 	}
+    correspondances.insert(pair<double,string>(((max/nbAttrEmp)*100),m.getNomMaladie()));
 }
 
 multimap<double,string> Analyse::getCorrespondances()
 {
     return correspondances;
+}
+
+long Analyse::getIdEmpreinte()
+{
+    return idEmpreinte;
 }
 //------------------------------------------------- Surcharge d'op�rateurs
 /*Analyse & Analyse::operator = (const Analyse & unAnalyse)

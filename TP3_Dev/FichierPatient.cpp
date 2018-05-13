@@ -54,6 +54,7 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 
 bool FichierPatient::ajouterEmpreinte (string chEmp)
 {
+    cout << "ajout empreinte :: " << chEmp << endl;
     char delimiter = ';';
 	string attribut;
 	void* val;
@@ -65,14 +66,16 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 	Empreinte * e = new Empreinte(id);
 
 	posD = posF+1;
-
+    cout << posF << endl;
     
     int i = 0;
-
-    while(posF != chEmp.length())
+    unsigned int fin = chEmp.find_last_of(';');
+    cout << fin << endl;
+    while(posF != fin)
     {
         posF = chEmp.find(delimiter,posD);
         attribut  = chEmp.substr(posD,posF-posD);
+        cout << attribut << endl;
         Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
         if(A->getType() == "double")
@@ -93,11 +96,16 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
         i++;
 
-        delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
+        //delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
     }
-
+    cout << *e << endl;
     listeEmpAnalyse.push_back(*e);
     return true;
+}
+
+deque<Empreinte> FichierPatient::getListeEmpreinte()
+{
+    return listeEmpAnalyse;
 }
 
 //------------------------------------------------- Surcharge d'op�rateurs

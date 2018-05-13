@@ -55,7 +55,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     if (signatureValide)
     {
         cout << "signatureValide" << signatureValide << endl;
-        string laSignatureFichPat = signatureComplete.substr(0,signatureComplete.find_last_of(';')-6);
+        string laSignatureFichPat = signatureComplete.substr(0,signatureComplete.find_last_of(';')-7);
         cout << laSignatureFichPat << endl;
         FichierPatient * fPatTemp = new FichierPatient(sourceFichier, laSignatureFichPat);
 
@@ -78,7 +78,9 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             {
                 getline(fichier, ligneEmpreinte);
                 // Est-ce qu'on ajoute des verifications pour voir si la ligne n'est pas vide ?
+                cout << ligneEmpreinte << endl;
                 fPatTemp->ajouterEmpreinte(ligneEmpreinte);
+                cout << "Empreinte ajoutée " << endl;
             }
 
             fichier.close();
@@ -126,6 +128,7 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
         {
             int i;
             string ligneEmpreinteMaladie;
+            cout << ligneEmpreinteMaladie << endl;
             // On r�cup�re la premi�re ligne correspondante � la signature
             for (i=0; i<(nbAttributs+4); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide + premi�re ligne non prise en compte
             {
@@ -202,7 +205,16 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
             for (i=0; i<(nbAttrSignaAverifier); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
-                signatureCompTemp = signatureCompTemp + signatureAverifier;
+                // Les docs txt sous windows ont nu \r à la fin du coup il
+                // faut vérifier s'il y en a ou pas et s'il y en a l'enlever !!!
+                if (signatureAverifier.substr(signatureAverifier.length()-1,signatureAverifier.length()).compare("\r") == 0)
+                {
+                    signatureCompTemp = signatureCompTemp + signatureAverifier.substr(0,signatureAverifier.length()-1);
+                }
+                else
+                {
+                    signatureCompTemp = signatureCompTemp + signatureAverifier;
+                }
             }
             // Premiere verification : est-ce que la signature est null et est-ce que la signature du
             // nouveau doc n'est pas vide ? Si oui, premi�re execution donc on
@@ -239,16 +251,25 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
         {
             getline(fichier, signatureAverifier);
             getline(fichier, signatureAverifier);
-            string signatureCompTemp = "";
-            for (i=0; i<(nbAttributs); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
+            string signaCompTemp = "";
+            for (i=0; i<(nbAttributs-1); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
-                signatureCompTemp = signatureCompTemp + signatureAverifier;
+                if (signatureAverifier.substr(signatureAverifier.length()-1,signatureAverifier.length()).compare("\r") == 0)
+                {
+                    signaCompTemp = signaCompTemp + signatureAverifier.substr(0,signatureAverifier.length()-1);
+                }
+                else
+                {
+                    signaCompTemp = signaCompTemp + signatureAverifier;
+                }
             }
             // On retire le dernier attribut (disease) pour
             string signatureActuelle = signatureComplete.substr(0,signatureComplete.find_last_of(';'));
-            signatureCompTemp = signatureCompTemp + ";Disease";
-            if (signatureActuelle.compare(signatureCompTemp) == 0)
+            signaCompTemp = signaCompTemp + "Disease";
+            cout << signatureActuelle << endl;
+            cout << signaCompTemp << endl;
+            if (signatureActuelle.compare(signaCompTemp) == 0)
             {
                 // Les deux signatures sont pareils donc on peut ajouter les nouvelles donn�es
                 // au dictionnaire
@@ -273,22 +294,30 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
 // M�thode v�rifi�e, elle fonctionne
 long FichEmpStream::compterAttributsSignature (string sourceFichier)
 {
-    long nbAttr = 0; // Car il y a toujours les deux premi�res lignes au d�but
+    long nbAttr = 1; // Car il y a toujours les deux premi�res lignes au d�but
     string chAttr = "ligne"; // Valeur par d�faut pour pouvoir rentrer dans la boucle au moins une fois
     ifstream fichier;
     fichier.open((char*)sourceFichier.c_str(), ios::in);
     if (fichier.is_open()) // Si l'ouverture a fonctionne
     {
-        getline(fichier, chAttr);
-        getline(fichier, chAttr);
-        // Pour le fichie patient il ne detecte pas la ligne de vide d'ou l'erreur
-        // trouver une fonciton pour savoir si la chaine lu contient NoID
-        while ((chAttr.compare("") || chAttr.substr(0,4).compare("NoID")==0) && !fichier.eof()) // Tant qu'on est pas sur une ligne vide ou qu'on a pas atteint la fin du fichier
+        int i;
+        // ON le fait 3 fois pour récupérer directement le premier attribit
+        for (i=0; i<3; i++)
         {
             getline(fichier, chAttr);
-            nbAttr++;
         }
 
+        // Si le premier attribut n'est pas vide, on commence à compter
+        if (chAttr.compare(""))
+        {
+            // Pour le fichier patient il ne detecte pas la ligne de vide d'ou l'erreur
+            // trouver une fonciton pour savoir si la chaine lu contient NoID
+            while (chAttr.compare("") && chAttr.substr(0,4).compare("NoID") && !fichier.eof()) // Tant qu'on est pas sur une ligne vide ou qu'on a pas atteint la fin du fichier
+            {
+                getline(fichier, chAttr);
+                nbAttr++;
+            }
+        }
 
         cout << "nb attributs dans signature : " << nbAttr - 1 << endl;
         fichier.close();
