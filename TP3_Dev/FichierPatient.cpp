@@ -71,6 +71,7 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
     int i = 0;
     unsigned int fin = chEmp.find_last_of(';');
     cout << fin << endl;
+    cout << chEmp << endl;
     while(posF != fin)
     {
         posF = chEmp.find(delimiter,posD);
@@ -98,6 +99,24 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
         //delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
     }
+    posF = chEmp.find('\\',posD);
+    attribut  = chEmp.substr(posD,posF-posD);
+    cout << attribut << endl;
+    Attribut* A = new Attribut(signature[i].first,signature[i].second);
+
+    if(A->getType() == "double")
+    {
+        val = new double(stod(attribut));
+        A->setValue(val);
+    }
+    else if(A->getType() == "string")
+    {
+        val =  new string(attribut);
+        A->setValue(val);
+    }
+
+    nbEmpreintes++;
+    e->ajouterAttribut(A);
     cout << *e << endl;
     listeEmpAnalyse.push_back(*e);
     return true;

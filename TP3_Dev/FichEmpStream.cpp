@@ -32,11 +32,12 @@ using namespace std;
 // M�thode non v�rifi�e
 FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 {
+    FichierPatient * fPatTemp = new FichierPatient;
     // Premi�re v�rif pour voir si un dictionnaire est d�ja renseign�e sinon erreur
     if (!signatureComplete.compare(""))
     {
         cerr << "Pas de dictionnaire encore rentr�. Analyse impossible." << endl;
-
+        return *fPatTemp;
     }
 
     bool extensionValide = verifierExtension(sourceFichier);
@@ -50,6 +51,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt' ou fichier vide" << endl;
+        return *fPatTemp;
     }
 
     if (signatureValide)
@@ -57,7 +59,8 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
         cout << "signatureValide" << signatureValide << endl;
         string laSignatureFichPat = signatureComplete.substr(0,signatureComplete.find_last_of(';')-7);
         cout << laSignatureFichPat << endl;
-        FichierPatient * fPatTemp = new FichierPatient(sourceFichier, laSignatureFichPat);
+        fPatTemp->setNomFichier(sourceFichier);
+        fPatTemp->setSignature(laSignatureFichPat);
 
         ifstream fichier;
         fichier.open((char*)sourceFichier.c_str(), ios::in);
@@ -90,19 +93,20 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-
+            return *fPatTemp;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-
+        return *fPatTemp;
     }
 }
 
 // M�thode non v�rifi�e
 Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
 {
+    Dictionnaire * dTemp = new Dictionnaire;
     bool extensionValide = verifierExtension(sourceFichier);
     bool signatureValide = false;
 
@@ -113,11 +117,13 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt'" << endl;
+        return *dTemp;
     }
 
     if (signatureValide)
     {
-        Dictionnaire * dTemp = new Dictionnaire(sourceFichier, signatureComplete);
+        dTemp->setNomFichier(sourceFichier);
+        dTemp->setSignature(signatureComplete);
         // Tant qu'on a pas atteint la fin du fichier, on lit la ligne
         // et on fait appel a ajouterMaladie
         cout << "debug " << endl;
@@ -148,14 +154,13 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-
+            return *dTemp;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-
-
+        return *dTemp;
     }
 
 } //----- Fin de M�thode

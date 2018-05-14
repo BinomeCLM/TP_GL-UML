@@ -305,20 +305,32 @@ void testAnalyse()
 	deque<Empreinte> lesEmpAanalyse = fPatTest->getListeEmpreinte();
 	// On récupére une maladie pour le test
 	deque<Maladie> lesMaladiesAcomparer = dTest->getListeMaladie();
-    cout << lesEmpAanalyse[1] << endl;
-    //cout << lesMaladiesAcomparer[1] << endl;
-	//analyse->calculerProbabilite(lesEmpAanalyse[1], lesMaladiesAcomparer[1]);
-    //analyse->genererClassement(*dTest,lesEmpAanalyse[1]);
-    deque<Analyse> lesAnalyses = fPatTest->analyserEmpreinte(*dTest);
-    for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
+
+	// moyen pour vérifier avant de comparer qu'il y a bien des maladies dans le dico
+    // et des empreintes à analyser
+	if (lesEmpAanalyse.size() > 0 && lesMaladiesAcomparer.size() > 0)
     {
-        cout << "Empreinte numéro : " << it->getIdEmpreinte() << endl;
-        multimap<double,string> resultat = it->getCorrespondances();
-        for (multimap<double,string>::iterator it2 = resultat.begin(); it2!=resultat.end(); it2++)
+        cout << lesEmpAanalyse[1] << endl;
+        //cout << lesMaladiesAcomparer[1] << endl;
+        //analyse->calculerProbabilite(lesEmpAanalyse[1], lesMaladiesAcomparer[1]);
+        //analyse->genererClassement(*dTest,lesEmpAanalyse[1]);
+        deque<Analyse> lesAnalyses = fPatTest->analyserEmpreinte(*dTest);
+        for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
         {
-            cout << it2->second << " proba : " << it2->first << " %" << endl;
-            // IL faut qu'on parle de comment on gere le
-            // cas quand la maladie n'a pas de nom
+            cout << "Empreinte numéro : " << it->getIdEmpreinte() << endl;
+            multimap<double,string> resultat = it->getCorrespondances();
+            for (multimap<double,string>::iterator it2 = resultat.begin(); it2!=resultat.end(); it2++)
+            {
+                if (it2->second.compare("")) {
+                    cout << it2->second << " proba : " << it2->first << " %" << endl;
+                    // IL faut qu'on parle de comment on gere le
+                    // cas quand la maladie n'a pas de nom
+                }
+            }
         }
+    }
+    else
+    {
+        cerr << "Aucune maladie renseignée dans le dico ou d'empreintes à analyser" << endl;
     }
 }

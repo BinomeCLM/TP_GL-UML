@@ -39,6 +39,8 @@ public:
     // Contrat :
     //
     deque<pair<string,string> > getSignature();
+    void setNomFichier(string sourceFichier);
+    void setSignature(string signature);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -71,7 +73,7 @@ public:
     //
 
 //------------------------------------------------------------------ PRIVE
-private :
+
 
 
 protected:

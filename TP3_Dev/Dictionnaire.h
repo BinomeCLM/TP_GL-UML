@@ -40,6 +40,8 @@ public:
 
     long getNbElements();
 
+    void setSignature(string signature);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
    // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );
