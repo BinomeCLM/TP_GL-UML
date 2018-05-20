@@ -39,7 +39,89 @@ void testEmpreinte();
 void testAffichage();
 void testFichEmpStream();
 void testAnalyse();
+Dictionnaire renseignerDictionnaire(FichEmpStream * fp);
+FichierPatient renseignerFichierPatient(FichEmpStream * fp);
+void afficherDetailMaladie(long idMaladie, Dictionnaire d);
+void afficherDictionnaire(Dictionnaire d);
+void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp);
+void afficherTop10(Dictionnaire d, FichierPatient fp);
+int lireEntree(int min, int max);
+
 int main() {
+
+	// Scénario
+    FichEmpStream * fes = new FichEmpStream;
+	Dictionnaire * dico = new Dictionnaire;
+	*dico = renseignerDictionnaire(fes);
+	cout << "debut de prog " << fes->getSignatureComplete() << endl;
+	bool power = true;
+	while (power) {
+		cout << "Que voulez-vous faire?" << endl;
+		cout << " 1 - Analyser des empreintes\n 2 - Ajouter de nouvelles données au dictionnaire" << endl;
+		cout << " 3 - Afficher le contenu du dictionnaire " << endl;
+		cout << " 4 - Afficher les détails d'une maladie" << endl;
+		cout << " 5 - Quitter le programme" << endl;
+		int choix = lireEntree(1, 5);
+
+		switch (choix) {
+			case 1: {
+				FichierPatient *fpat = new FichierPatient;
+				*fpat = renseignerFichierPatient(fes);
+				deque<Empreinte> emp = fpat->getListeEmpreinte();
+				if (emp.size() == 0)
+				{
+				    break;
+				}
+				cout << "Que souhaitez-vous faire ?" << endl;
+				cout << " 1 - Afficher les 10 maladies les plus probables" << endl;
+				cout << " 2 - Afficher la maladie la plus probable." << endl;
+				int choixAffichage = lireEntree(1, 2);
+
+				if (choixAffichage == 1) {
+					afficherTop10(*dico, *fpat);
+				} else {
+					afficherMeilleurCorresp(*dico, *fpat);
+				}
+				delete fpat;
+				break;
+			}
+
+			case 2: {
+				renseignerDictionnaire(fes);
+				break;
+			}
+
+			case 3: {
+				afficherDictionnaire(*dico);
+				break;
+			}
+
+			case 4:
+			{
+				cout << "Veuillez rentrer l'id de la maladie" << endl;
+				deque <Maladie> mal = dico->getListeMaladie();
+				int nbMaladie = mal.size();
+				int id = lireEntree(1, nbMaladie);
+				afficherDetailMaladie(id, *dico);
+				break;
+			}
+
+			case 5:
+			{
+				power = false;
+				break;
+			}
+
+			default:
+			{
+				power = false;
+				break;
+			}
+		}
+	}
+
+
+    delete dico;
 
 	//testAttribut();
 	//testEmpreinte();
@@ -47,8 +129,8 @@ int main() {
 	//testFichier();
 	//testDico();
     //testAffichage();
-	//testFichEmpStream();
-	testAnalyse();
+	testFichEmpStream();
+	//testAnalyse();
 
 	return 0;
 }
@@ -280,10 +362,10 @@ void testFichEmpStream()
 	FichEmpStream * fEmpSt = new FichEmpStream();
 	Dictionnaire * dTest = new Dictionnaire;
 	//cout << fEmpSt->verifierExtension("./dekdlekd.log") << endl;
-    *dTest = fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+    *dTest = fEmpSt->lireDictionnaire("./DataMaladie.txt");
 	//cout << *dTest << endl;
 	FichierPatient * fPatTest = new FichierPatient;
-	*fPatTest = fEmpSt->lireFichierPatient("./HealthMeasurements.txt");
+	*fPatTest = fEmpSt->lireFichierPatient("./DataEmp.txt");
 	cout << "done" << endl;
 }
 
@@ -333,4 +415,191 @@ void testAnalyse()
     {
         cerr << "Aucune maladie renseignée dans le dico ou d'empreintes à analyser" << endl;
     }
+}
+
+Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
+{
+	string sourceFichierDico = "";
+	cout << "Veuillez renseigner le fichier servant de base de connaissances." << endl;
+	cin >> sourceFichierDico;
+
+	Dictionnaire * dTemp = new Dictionnaire();
+	*dTemp = lecteur->lireDictionnaire(sourceFichierDico);
+
+    cout << "renseignerDico : " << lecteur->getSignatureComplete() << endl;
+	return *dTemp;
+}
+
+FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
+{
+	string sourceFichierAnalyse = "";
+	cout << "Veuillez renseigner le fichier contenant les empreintes à analyser." << endl;
+	cin >> sourceFichierAnalyse;
+	FichierPatient * fPat = new FichierPatient();
+	*fPat = lecteur->lireFichierPatient(sourceFichierAnalyse);
+
+	return *fPat;
+}
+
+void afficherTop10(Dictionnaire d, FichierPatient fp)
+{
+	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
+	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
+	{
+		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
+		multimap<double,string> resultat = it->getCorrespondances();
+		int compteur = 1;
+		// On fait ça pour stocker la dixième valeur et pour gérer le cas d'égalité
+		double proba10;
+		if (resultat.size() > 10)
+		{
+			multimap<double,string>::reverse_iterator it3 = resultat.rbegin();
+			advance(it3, 9);
+			proba10 = it3->first;
+		}
+
+		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
+		{
+			if (it2->first >= 20)
+			{
+				if (it2->second.compare("")) {
+					cout << compteur << ". " << it2->second << " : " << " proba : " << it2->first << "% de chance - " << endl;
+					// IL faut qu'on parle de comment on gere le
+					// cas quand la maladie n'a pas de nom
+					if (it2->first >= 70)
+					{
+						cout << "Très probable." << endl;
+						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+					}
+					else if (it2->first >= 50)
+					{
+						cout << "Probable" << endl;
+					}
+					else
+					{
+						cout << "Peu probable" << endl;
+					}
+					compteur ++;
+					if (compteur == 11)
+					{
+						// On sort de la boucle mais avant on vérifie qu'il n'y est pas d'égalité
+						if(it2->first != proba10)
+						{
+							break;
+						}
+						else
+						{
+							compteur --;
+						}
+					}
+				}
+			}
+			else
+			{
+				if (compteur == 1)
+				{
+					cout << "Aucun risque de maladie détecté à partir des informations "
+			 			"contenues dans notre unité de stockage." << endl;
+					break;
+				}
+				else
+                {
+                    break;
+                }
+			}
+		}
+	}
+}
+
+void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
+{
+	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
+	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
+	{
+	    int compteur = 1;
+		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
+		multimap<double,string> resultat = it->getCorrespondances();
+		double proba1;
+		if (resultat.size() > 1)
+		{
+			multimap<double,string>::reverse_iterator it3 = resultat.rbegin();
+			proba1 = it3->first;
+		}
+
+		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
+		{
+			if (it2->first >= 20)
+			{
+				if (it2->first != proba1)
+				{
+					break;
+				}
+
+				if (it2->second.compare("")) {
+					cout << "Maladie avec la meilleur correspondance : " << endl;
+					cout << it2->second << " : " << " proba : " << it2->first << "% de chance - ";
+
+					if (it2->first >= 70) {
+						cout << "Très probable." << endl;
+						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+					} else if (it2->first >= 50) {
+						cout << "Probable" << endl;
+					} else {
+						cout << "Peu probable" << endl;
+					}
+					compteur++;
+				}
+			}
+			else
+			{
+				if (compteur == 1)
+                {
+                    cout << "Aucun risque de maladie détecté à partir des informations "
+                            "contenues dans notre unité de stockage." << endl;
+                    break;
+                }
+			}
+		}
+	}
+}
+
+void afficherDictionnaire(Dictionnaire d)
+{
+	cout << d << endl;
+}
+
+void afficherDetailMaladie(long idMaladie, Dictionnaire d)
+{
+	Maladie maladie = d.getMaladieById(idMaladie);
+	cout << maladie << endl;
+}
+
+
+int lireEntree(int min, int max)
+{
+	bool valid = false;
+	int nbRentre;
+	while (!valid)
+	{
+		cin >> nbRentre;
+		if (cin.fail())
+		{
+			cout << "Données non valide" << endl;
+			cin.clear(ios::goodbit);
+			cin.ignore(100,'\n');
+		}
+		else {
+			if (nbRentre >= min && nbRentre <= max)
+			{
+				valid = true;
+			}
+			else
+			{
+				cout << "Nombre saisie invalide, saisissez un nombre entre " << min << " et " << max << endl;
+			}
+		}
+	}
+	cin.clear(ios::goodbit);
+	cin.ignore(100,'\n');
+	return nbRentre;
 }

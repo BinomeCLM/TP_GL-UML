@@ -96,7 +96,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 // retourner un pointeur ? Pourquoi pas une r�f�rence ?
 // Parce-que sinon la case que pointe e va �tre d�truite � la fin de
 // la m�thode, non ?
-Empreinte* Maladie::getEmpreinteById(long id) {
+Empreinte Maladie::getEmpreinteById(long id) {
 	Empreinte* e = nullptr;
 
 	deque<Empreinte>::iterator it;
@@ -105,13 +105,11 @@ Empreinte* Maladie::getEmpreinteById(long id) {
 	{
 		if(id == (*it).getIdEmpreinte())
 		{
-			*e = *it;
-			cout << "ici " << endl;
-			break;
+			return *it;
 		}
 	}
 
-	return e;
+	return *e;
 }
 
 bool Maladie::empreinteExiste(long id) {

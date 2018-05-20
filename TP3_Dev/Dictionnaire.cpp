@@ -116,6 +116,24 @@ void Dictionnaire::setSignature(string uneSignature)
 	signature.pop_back();
 }
 
+Maladie Dictionnaire::getMaladieById(long id)
+{
+	Maladie* m = nullptr;
+	cout << "coucou" << endl;
+	deque<Maladie>::iterator it;
+
+	for (it=listeMaladie.begin(); it!=listeMaladie.end(); it++)
+	{
+	    cout << (*it).getIdMaladie() << endl;
+		if(id == (*it).getIdMaladie())
+		{
+			return *it;
+		}
+	}
+    cout << "finGetMala" << endl;
+	return *m;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 /*Dictionnaire & Dictionnaire::operator = ( const Dictionnaire & unDictionnaire )
 // Algorithme :

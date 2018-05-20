@@ -42,6 +42,8 @@ public:
 
     void setSignature(string signature);
 
+    Maladie getMaladieById(long id);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
    // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );

@@ -34,6 +34,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 {
     FichierPatient * fPatTemp = new FichierPatient;
     // Premi�re v�rif pour voir si un dictionnaire est d�ja renseign�e sinon erreur
+    cout << signatureComplete << endl;
     if (!signatureComplete.compare(""))
     {
         cerr << "Pas de dictionnaire encore rentr�. Analyse impossible." << endl;
@@ -215,6 +216,7 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
                 if (signatureAverifier.substr(signatureAverifier.length()-1,signatureAverifier.length()).compare("\r") == 0)
                 {
                     signatureCompTemp = signatureCompTemp + signatureAverifier.substr(0,signatureAverifier.length()-1);
+
                 }
                 else
                 {
@@ -230,7 +232,7 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
                 {
                     nbAttributs = nbAttrSignaAverifier;
                     signatureComplete = signatureCompTemp; // On initialise l'attribut de la classe
-
+                    cout << signatureComplete << " ici " << endl;
                     return true;
                 }
                 else
