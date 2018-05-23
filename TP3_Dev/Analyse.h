@@ -51,6 +51,7 @@ public:
 
 	multimap<double,string> getCorrespondances();
 	long getIdEmpreinte();
+	void setIdEmpreinte(long id);
 
 	//------------------------------------------------- Surcharge d'op�rateurs
 //	Analyse & operator = (const Analyse & unAnalyse);

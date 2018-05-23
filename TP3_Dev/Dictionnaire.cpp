@@ -73,10 +73,9 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 	}
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
-	cout << chEmpMaladie << endl;
 	m->ajouterEmpreinte(chEmpMaladie,signature);
-	cout << " la signature" << endl;
 	listeMaladie.push_back(*m);
+	delete m;
 	return true;
 }
 
@@ -111,15 +110,13 @@ void Dictionnaire::setSignature(string uneSignature)
 		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
-		cout << nom << " " << type << endl;
 	}
 	signature.pop_back();
 }
 
 Maladie Dictionnaire::getMaladieById(long id)
 {
-	Maladie* m = nullptr;
-	cout << "coucou" << endl;
+	Maladie m;
 	deque<Maladie>::iterator it;
 
 	for (it=listeMaladie.begin(); it!=listeMaladie.end(); it++)
@@ -130,8 +127,7 @@ Maladie Dictionnaire::getMaladieById(long id)
 			return *it;
 		}
 	}
-    cout << "finGetMala" << endl;
-	return *m;
+	return m;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -142,7 +138,6 @@ Maladie Dictionnaire::getMaladieById(long id)
 } //----- Fin de operator = */
 ostream &operator<<(ostream &os, Dictionnaire & d)
 {
-    cout << "debut surcharge << Dictionnaire" << endl;
 	deque<Maladie> listeMaladie = d.getListeMaladie();
     os << "Affichage des " << d.getNbElements() << " maladies du dictionnaire " << endl;
 
@@ -150,8 +145,6 @@ ostream &operator<<(ostream &os, Dictionnaire & d)
     {
         os << *it << endl;
     }
-
-    cout << "fin surcharge << Dictionnaire" << endl;
 
     return os;
 }

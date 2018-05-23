@@ -36,12 +36,10 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 	char delimiter = ';';
 	string attribut;
-	void* val;
 
 	int posD = 0;
 	int posF = chEmp.find(delimiter,posD);
 	long id  = (long)stold(chEmp.substr(posD,posF-posD));
-	cout << id << endl;
     Empreinte* e = new Empreinte();
 
     if(!empreinteExiste(id))
@@ -54,6 +52,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 		while(posF != fin)
 		{
+			void* val;
 			posF = chEmp.find(delimiter,posD);
 			attribut  = chEmp.substr(posD,posF-posD);
 
@@ -63,17 +62,19 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 			{
 				val = new double(stod(attribut));
 				A->setValue(val);
-
+				delete (double*)val;
 
 			}
 			else if(A->getType() == "string")
 			{
 				val =  new string(attribut);
 				A->setValue(val);
+				delete (string*)val;
 			}
 
-
 			e->ajouterAttribut(A);
+
+			delete A;
 
 			posD = posF+1;
 
@@ -89,6 +90,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 		ajoutee = false;
 	}
 
+	delete e;
 	return ajoutee;
 }
 

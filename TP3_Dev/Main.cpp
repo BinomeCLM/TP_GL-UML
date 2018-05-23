@@ -31,14 +31,14 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-void testAttribut();
+/*void testAttribut();
 void testMaladie();
 void testFichier();
 void testDico();
 void testEmpreinte();
 void testAffichage();
 void testFichEmpStream();
-void testAnalyse();
+void testAnalyse();*/
 Dictionnaire renseignerDictionnaire(FichEmpStream * fp);
 FichierPatient renseignerFichierPatient(FichEmpStream * fp);
 void afficherDetailMaladie(long idMaladie, Dictionnaire d);
@@ -53,7 +53,6 @@ int main() {
     FichEmpStream * fes = new FichEmpStream;
 	Dictionnaire * dico = new Dictionnaire;
 	*dico = renseignerDictionnaire(fes);
-	cout << "debut de prog " << fes->getSignatureComplete() << endl;
 	bool power = true;
 	while (power) {
 		cout << "Que voulez-vous faire?" << endl;
@@ -120,7 +119,7 @@ int main() {
 		}
 	}
 
-
+    delete fes;
     delete dico;
 
 	//testAttribut();
@@ -129,7 +128,7 @@ int main() {
 	//testFichier();
 	//testDico();
     //testAffichage();
-	testFichEmpStream();
+	//testFichEmpStream();
 	//testAnalyse();
 
 	return 0;
@@ -146,7 +145,6 @@ void testAttribut()
 
 	A->setValue(d);
 	B->setValue(e);
-	cout << "ici" << endl;
 
 	if(*A == *B)
 	{
@@ -422,11 +420,10 @@ Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
 	cout << "Veuillez renseigner le fichier servant de base de connaissances." << endl;
 	cin >> sourceFichierDico;
 
-	Dictionnaire * dTemp = new Dictionnaire();
-	*dTemp = lecteur->lireDictionnaire(sourceFichierDico);
+	Dictionnaire dTemp;
+	dTemp = lecteur->lireDictionnaire(sourceFichierDico);
 
-    cout << "renseignerDico : " << lecteur->getSignatureComplete() << endl;
-	return *dTemp;
+	return dTemp;
 }
 
 FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
@@ -434,10 +431,10 @@ FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
 	string sourceFichierAnalyse = "";
 	cout << "Veuillez renseigner le fichier contenant les empreintes à analyser." << endl;
 	cin >> sourceFichierAnalyse;
-	FichierPatient * fPat = new FichierPatient();
-	*fPat = lecteur->lireFichierPatient(sourceFichierAnalyse);
+	FichierPatient fPat;
+	fPat = lecteur->lireFichierPatient(sourceFichierAnalyse);
 
-	return *fPat;
+	return fPat;
 }
 
 void afficherTop10(Dictionnaire d, FichierPatient fp)

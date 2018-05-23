@@ -37,10 +37,10 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
     {
         for (std::deque<Empreinte>::iterator it=listeEmpAnalyse.begin(); it!=listeEmpAnalyse.end(); ++it)
         {
-            Analyse * a = new Analyse(it->getIdEmpreinte());
-
-            *a = it->lancerAnalyse(d);
-            analyse.push_back(*a);
+            Analyse a;
+            a.setIdEmpreinte(it->getIdEmpreinte());
+            a = it->lancerAnalyse(d);
+            analyse.push_back(a);
         }
         return analyse;
     }
@@ -54,10 +54,9 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 
 bool FichierPatient::ajouterEmpreinte (string chEmp)
 {
-    cout << "ajout empreinte :: " << chEmp << endl;
     char delimiter = ';';
 	string attribut;
-	void* val;
+
 
     unsigned int posD = 0;
 	unsigned int posF = chEmp.find(delimiter,posD);
@@ -70,24 +69,24 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
     
     int i = 0;
     unsigned int fin = chEmp.find_last_of(';');
-    cout << fin << endl;
-    cout << chEmp << endl;
     while(posF != fin)
     {
         posF = chEmp.find(delimiter,posD);
         attribut  = chEmp.substr(posD,posF-posD);
-        cout << attribut << endl;
+        void* val;
         Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
         if(A->getType() == "double")
         {
             val = new double(stod(attribut));
             A->setValue(val);
+            delete (double*)val;
         }
         else if(A->getType() == "string")
         {
             val =  new string(attribut);
             A->setValue(val);
+            delete (string*)val;
         }
 
         nbEmpreintes++;
@@ -97,28 +96,36 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
         i++;
 
-        //delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
+
+        delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
     }
     posF = chEmp.find('\\',posD);
     attribut  = chEmp.substr(posD,posF-posD);
-    cout << attribut << endl;
+
+    void* val2;
     Attribut* A = new Attribut(signature[i].first,signature[i].second);
+
 
     if(A->getType() == "double")
     {
-        val = new double(stod(attribut));
-        A->setValue(val);
+        val2 = new double(stod(attribut));
+        A->setValue(val2);
+        delete (double*)val2;
     }
     else if(A->getType() == "string")
     {
-        val =  new string(attribut);
-        A->setValue(val);
+        val2 =  new string(attribut);
+        A->setValue(val2);
+        delete (string*)val2;
     }
 
     nbEmpreintes++;
     e->ajouterAttribut(A);
-    cout << *e << endl;
+
     listeEmpAnalyse.push_back(*e);
+
+    delete A;
+    delete e;
     return true;
 }
 

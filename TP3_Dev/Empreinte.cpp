@@ -37,18 +37,15 @@ void Empreinte::ajouterAttribut(Attribut * a)
 {
 	nbAttributs++;
 	listeAttributs.push_back(*a);
-	/*cout << *(double*) a.getValue() << endl;
-	cout << *(double*) listeAttributs[0].getValue() << endl;
-    cout << "ajoutee" << endl;*/
 }
 
 Analyse Empreinte::lancerAnalyse(Dictionnaire d)
 {
-		Analyse * a = new Analyse(idEmpreinte);
+		Analyse a;
+        a.setIdEmpreinte(idEmpreinte);
+        a.genererClassement(d,*this);
 
-        a->genererClassement(d,*this);
-
-        return *a;
+        return a;
 }
 
 deque<Attribut> Empreinte::getListeAttributs()
@@ -86,7 +83,6 @@ void Empreinte::setIdEmpreinte(long id)
 
 ostream &operator<<(ostream &os, Empreinte & e)
 {
-	cout << "debut surcharge << Empreinte" << endl;
 	deque<Attribut> listeAttr = e.getListeAttributs();
 
 	os << "id: " << e.getIdEmpreinte() << " -> ";

@@ -32,13 +32,12 @@ using namespace std;
 // M�thode non v�rifi�e
 FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 {
-    FichierPatient * fPatTemp = new FichierPatient;
+    FichierPatient fPatTemp;
     // Premi�re v�rif pour voir si un dictionnaire est d�ja renseign�e sinon erreur
-    cout << signatureComplete << endl;
     if (!signatureComplete.compare(""))
     {
         cerr << "Pas de dictionnaire encore rentr�. Analyse impossible." << endl;
-        return *fPatTemp;
+        return fPatTemp;
     }
 
     bool extensionValide = verifierExtension(sourceFichier);
@@ -52,16 +51,14 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt' ou fichier vide" << endl;
-        return *fPatTemp;
+        return fPatTemp;
     }
 
     if (signatureValide)
     {
-        cout << "signatureValide" << signatureValide << endl;
         string laSignatureFichPat = signatureComplete.substr(0,signatureComplete.find_last_of(';')-7);
-        cout << laSignatureFichPat << endl;
-        fPatTemp->setNomFichier(sourceFichier);
-        fPatTemp->setSignature(laSignatureFichPat);
+        fPatTemp.setNomFichier(sourceFichier);
+        fPatTemp.setSignature(laSignatureFichPat);
 
         ifstream fichier;
         fichier.open((char*)sourceFichier.c_str(), ios::in);
@@ -82,32 +79,30 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             {
                 getline(fichier, ligneEmpreinte);
                 // Est-ce qu'on ajoute des verifications pour voir si la ligne n'est pas vide ?
-                cout << ligneEmpreinte << endl;
-                fPatTemp->ajouterEmpreinte(ligneEmpreinte);
-                cout << "Empreinte ajoutée " << endl;
+                fPatTemp.ajouterEmpreinte(ligneEmpreinte);
             }
 
             fichier.close();
 
-            return *fPatTemp;
+            return fPatTemp;
         }
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-            return *fPatTemp;
+            return fPatTemp;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-        return *fPatTemp;
+        return fPatTemp;
     }
 }
 
 // M�thode non v�rifi�e
 Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
 {
-    Dictionnaire * dTemp = new Dictionnaire;
+    Dictionnaire dTemp;
     bool extensionValide = verifierExtension(sourceFichier);
     bool signatureValide = false;
 
@@ -118,16 +113,15 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt'" << endl;
-        return *dTemp;
+        return dTemp;
     }
 
     if (signatureValide)
     {
-        dTemp->setNomFichier(sourceFichier);
-        dTemp->setSignature(signatureComplete);
+        dTemp.setNomFichier(sourceFichier);
+        dTemp.setSignature(signatureComplete);
         // Tant qu'on a pas atteint la fin du fichier, on lit la ligne
         // et on fait appel a ajouterMaladie
-        cout << "debug " << endl;
         ifstream fichier;
         fichier.open((char*)sourceFichier.c_str(), ios::in);
 
@@ -135,7 +129,6 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
         {
             int i;
             string ligneEmpreinteMaladie;
-            cout << ligneEmpreinteMaladie << endl;
             // On r�cup�re la premi�re ligne correspondante � la signature
             for (i=0; i<(nbAttributs+4); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide + premi�re ligne non prise en compte
             {
@@ -145,23 +138,23 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinteMaladie);
-                dTemp->ajouterMaladie(ligneEmpreinteMaladie);
+                dTemp.ajouterMaladie(ligneEmpreinteMaladie);
             }
 
             fichier.close();
 
-            return *dTemp;
+            return dTemp;
         }
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-            return *dTemp;
+            return dTemp;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-        return *dTemp;
+        return dTemp;
     }
 
 } //----- Fin de M�thode
@@ -232,7 +225,6 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
                 {
                     nbAttributs = nbAttrSignaAverifier;
                     signatureComplete = signatureCompTemp; // On initialise l'attribut de la classe
-                    cout << signatureComplete << " ici " << endl;
                     return true;
                 }
                 else
@@ -274,8 +266,6 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
             // On retire le dernier attribut (disease) pour
             string signatureActuelle = signatureComplete.substr(0,signatureComplete.find_last_of(';'));
             signaCompTemp = signaCompTemp + "Disease";
-            cout << signatureActuelle << endl;
-            cout << signaCompTemp << endl;
             if (signatureActuelle.compare(signaCompTemp) == 0)
             {
                 // Les deux signatures sont pareils donc on peut ajouter les nouvelles donn�es
@@ -326,7 +316,6 @@ long FichEmpStream::compterAttributsSignature (string sourceFichier)
             }
         }
 
-        cout << "nb attributs dans signature : " << nbAttr - 1 << endl;
         fichier.close();
         return nbAttr-1; // On enleve la ligne vide du compteur
     }

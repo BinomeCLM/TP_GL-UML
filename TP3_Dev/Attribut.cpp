@@ -124,14 +124,25 @@ bool Attribut::operator==(Attribut & a)
 
 
   //-------------------------------------------- Constructeurs - destructeur
-/*Attribut::Attribut(const Attribut & unAttribut)
+Attribut::Attribut(const Attribut & unAttribut)
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Attribut>" << endl;
 #endif
-} //----- Fin de Attribut (constructeur de copie)*/
+	nom = unAttribut.nom;
+	type = unAttribut.type;
+    if (type == "double")
+    {
+        value = new double(*(double*)(unAttribut.value));
+    }
+    else if(type == "string")
+    {
+        value = new string(*(string*)(unAttribut.value));
+    }
+
+} //----- Fin de Attribut (constructeur de copie)
 
 Attribut::Attribut(string unNom, string unType)
 {
@@ -142,11 +153,11 @@ Attribut::Attribut(string unNom, string unType)
 	type = unType;
 	if (unType == "double")
 	{
-		value = new double();
+		value = new double;
 	}
 	else if(unType == "string")
     {
-		value = new string();
+		value = new string;
 	}
 
 }
@@ -168,7 +179,7 @@ Attribut::~Attribut()
 #ifdef MAP
 	cout << "Appel au destructeur de <Attribut>" << endl;
 #endif
-	/*if(type == "double")
+	if(type == "double")
 	{
 		delete (double*)value;
 	}
@@ -176,7 +187,7 @@ Attribut::~Attribut()
     {
 		delete (string*)value;
 	}
-*/
+
 } //----- Fin de ~Attribut
 
 

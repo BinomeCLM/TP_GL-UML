@@ -4,7 +4,7 @@ LIBS=
 RM=rm
 CLEAN=raz
 EXEC=analyseEmpreinte
-CXXFLAGS=-W -Wall -D MAP -ansi -pedantic -std=c++11
+CXXFLAGS=-W -Wall -g -D MAP -ansi -pedantic -std=c++11
 EDLFLAGS=
 RMFLAGS = -f
 OBJ=Main.o Dictionnaire.o Fichier.o FichierPatient.o FichEmpStream.o Maladie.o Empreinte.o  Attribut.o Analyse.o

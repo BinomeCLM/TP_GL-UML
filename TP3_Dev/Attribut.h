@@ -57,7 +57,7 @@ public:
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	//Attribut(const Attribut & unAttribut);
+	Attribut(const Attribut & unAttribut);
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :
