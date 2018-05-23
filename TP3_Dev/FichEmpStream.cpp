@@ -57,9 +57,8 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 
     if (signatureValide)
     {
-        cout << "signatureValide" << signatureValide << endl;
         string laSignatureFichPat = signatureComplete.substr(0,signatureComplete.find_last_of(';')-7);
-        cout << laSignatureFichPat << endl;
+
         fPatTemp->setNomFichier(sourceFichier);
         fPatTemp->setSignature(laSignatureFichPat);
 
@@ -81,10 +80,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinte);
-                // Est-ce qu'on ajoute des verifications pour voir si la ligne n'est pas vide ?
-                cout << ligneEmpreinte << endl;
                 fPatTemp->ajouterEmpreinte(ligneEmpreinte);
-                cout << "Empreinte ajoutée " << endl;
             }
 
             fichier.close();
@@ -125,9 +121,6 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
     {
         dTemp->setNomFichier(sourceFichier);
         dTemp->setSignature(signatureComplete);
-        // Tant qu'on a pas atteint la fin du fichier, on lit la ligne
-        // et on fait appel a ajouterMaladie
-        cout << "debug " << endl;
         ifstream fichier;
         fichier.open((char*)sourceFichier.c_str(), ios::in);
 
@@ -326,7 +319,6 @@ long FichEmpStream::compterAttributsSignature (string sourceFichier)
             }
         }
 
-        cout << "nb attributs dans signature : " << nbAttr - 1 << endl;
         fichier.close();
         return nbAttr-1; // On enleve la ligne vide du compteur
     }

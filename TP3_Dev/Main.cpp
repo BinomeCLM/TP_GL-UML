@@ -120,7 +120,7 @@ int main() {
 		}
 	}
 
-
+	delete fes;
     delete dico;
 
 	//testAttribut();
@@ -129,7 +129,7 @@ int main() {
 	//testFichier();
 	//testDico();
     //testAffichage();
-	testFichEmpStream();
+	//testFichEmpStream();
 	//testAnalyse();
 
 	return 0;
@@ -277,9 +277,9 @@ void testMaladie()
 	}
 	cout << "Test getEmpreinteById" << endl;
 	cout << m->empreinteExiste(1) << endl; // Méthode marche
-	Empreinte * e = m->getEmpreinteById(1);
+	Empreinte e = m->getEmpreinteById(1);
 	cout << "erreur ici 1" << endl;
-	deque<Attribut> attr = e->getListeAttributs();
+	deque<Attribut> attr = e.getListeAttributs();
 	cout << "erreur ici 2" << endl;
 	for (deque<Attribut>::iterator it=attr.begin(); it!=attr.end(); it++)
 	{
@@ -296,7 +296,6 @@ void testMaladie()
 
 	}
 
-	delete e;
 	delete f;
 	delete id;
 	delete m; //Sinon erreur object was not allocated
@@ -367,6 +366,10 @@ void testFichEmpStream()
 	FichierPatient * fPatTest = new FichierPatient;
 	*fPatTest = fEmpSt->lireFichierPatient("./DataEmp.txt");
 	cout << "done" << endl;
+
+	delete fEmpSt;
+	delete dTest;
+	delete fPatTest;
 }
 
 // Calculer proba fonctionne
@@ -415,6 +418,10 @@ void testAnalyse()
     {
         cerr << "Aucune maladie renseignée dans le dico ou d'empreintes à analyser" << endl;
     }
+
+    delete analyse;
+	delete fEmpSt;
+	delete dTest;
 }
 
 Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
@@ -423,11 +430,12 @@ Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
 	cout << "Veuillez renseigner le fichier servant de base de connaissances." << endl;
 	cin >> sourceFichierDico;
 
-	Dictionnaire * dTemp = new Dictionnaire();
-	*dTemp = lecteur->lireDictionnaire(sourceFichierDico);
+	//Dictionnaire * dTemp = new Dictionnaire();
+	//*dTemp = lecteur->lireDictionnaire(sourceFichierDico);
+	Dictionnaire dTemp = lecteur->lireDictionnaire(sourceFichierDico);
 
     cout << "renseignerDico : " << lecteur->getSignatureComplete() << endl;
-	return *dTemp;
+	return dTemp;
 }
 
 FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)

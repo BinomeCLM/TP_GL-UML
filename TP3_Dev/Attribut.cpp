@@ -168,7 +168,7 @@ Attribut::~Attribut()
 #ifdef MAP
 	cout << "Appel au destructeur de <Attribut>" << endl;
 #endif
-	/*if(type == "double")
+	if(type == "double")
 	{
 		delete (double*)value;
 	}
@@ -176,7 +176,6 @@ Attribut::~Attribut()
     {
 		delete (string*)value;
 	}
-*/
 } //----- Fin de ~Attribut
 
 
