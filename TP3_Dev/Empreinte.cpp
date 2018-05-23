@@ -86,6 +86,7 @@ void Empreinte::setIdEmpreinte(long id)
 
 ostream &operator<<(ostream &os, Empreinte & e)
 {
+	cout << "debut surcharge << Empreinte" << endl;
 	deque<Attribut> listeAttr = e.getListeAttributs();
 
 	os << "id: " << e.getIdEmpreinte() << " -> ";
@@ -137,17 +138,6 @@ Empreinte::~Empreinte()
 // Algorithme :
 //
 {
-	/*for (deque<Attribut>::iterator it=listeAttributs.begin(); it!=listeAttributs.end(); ++it)
-	{
-		if(it->getType() == "double")
-		{
-			delete (double*) it->getValue();
-		}
-		else if (it->getType() == "string")
-		{
-			delete (string*) it->getValue();
-		}
-	}*/
 #ifdef MAP
 	cout << "Appel au destructeur de <Empreinte>" << endl;
 #endif

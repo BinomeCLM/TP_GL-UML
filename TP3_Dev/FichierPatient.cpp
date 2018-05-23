@@ -30,6 +30,7 @@ using namespace std;
 
 deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 {
+    // Est-ce qu'ici on ferait pas une deque aussi ? Pour stocker les analyses
     deque<Analyse> analyse;
     if (!listeEmpAnalyse.empty()) // V�rification si la liste des empreintes � analyser est vide ou non.
     // Est-ce qu'on la fait ici ou dans fichEmpStream. Je la laisse ici au cas ou pour l'instant
@@ -40,7 +41,6 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 
             *a = it->lancerAnalyse(d);
             analyse.push_back(*a);
-            delete a;
         }
         return analyse;
     }
@@ -54,6 +54,7 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 
 bool FichierPatient::ajouterEmpreinte (string chEmp)
 {
+    cout << "ajout empreinte :: " << chEmp << endl;
     char delimiter = ';';
 	string attribut;
 	void* val;
@@ -69,10 +70,13 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
     
     int i = 0;
     unsigned int fin = chEmp.find_last_of(';');
+    cout << fin << endl;
+    cout << chEmp << endl;
     while(posF != fin)
     {
         posF = chEmp.find(delimiter,posD);
         attribut  = chEmp.substr(posD,posF-posD);
+        cout << attribut << endl;
         Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
         if(A->getType() == "double")
@@ -93,7 +97,7 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
         i++;
 
-        delete A;
+        //delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
     }
     posF = chEmp.find('\\',posD);
     attribut  = chEmp.substr(posD,posF-posD);
@@ -113,9 +117,8 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
     nbEmpreintes++;
     e->ajouterAttribut(A);
+    cout << *e << endl;
     listeEmpAnalyse.push_back(*e);
-    delete A;
-    delete e;
     return true;
 }
 

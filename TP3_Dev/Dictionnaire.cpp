@@ -73,9 +73,10 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 	}
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
+	cout << chEmpMaladie << endl;
 	m->ajouterEmpreinte(chEmpMaladie,signature);
+	cout << " la signature" << endl;
 	listeMaladie.push_back(*m);
-	delete m;
 	return true;
 }
 
@@ -118,6 +119,7 @@ void Dictionnaire::setSignature(string uneSignature)
 Maladie Dictionnaire::getMaladieById(long id)
 {
 	Maladie* m = nullptr;
+	cout << "coucou" << endl;
 	deque<Maladie>::iterator it;
 
 	for (it=listeMaladie.begin(); it!=listeMaladie.end(); it++)
@@ -128,6 +130,7 @@ Maladie Dictionnaire::getMaladieById(long id)
 			return *it;
 		}
 	}
+    cout << "finGetMala" << endl;
 	return *m;
 }
 
