@@ -277,9 +277,9 @@ void testMaladie()
 	}
 	cout << "Test getEmpreinteById" << endl;
 	cout << m->empreinteExiste(1) << endl; // Méthode marche
-	Empreinte * e = m->getEmpreinteById(1);
+	Empreinte e = m->getEmpreinteById(1);
 	cout << "erreur ici 1" << endl;
-	deque<Attribut> attr = e->getListeAttributs();
+	deque<Attribut> attr = e.getListeAttributs();
 	cout << "erreur ici 2" << endl;
 	for (deque<Attribut>::iterator it=attr.begin(); it!=attr.end(); it++)
 	{
@@ -296,7 +296,6 @@ void testMaladie()
 
 	}
 
-	delete e;
 	delete f;
 	delete id;
 	delete m; //Sinon erreur object was not allocated
