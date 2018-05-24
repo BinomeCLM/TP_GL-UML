@@ -1,0 +1,7 @@
+*.o
+*.obj
+*.pdb
+*.idb
+*.exe
+*.tlog
+Thumbs.db
