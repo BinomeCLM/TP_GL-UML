@@ -45,7 +45,7 @@ public:
 
 
 	//------------------------------------------------- Surcharge d'op�rateurs
-	//Attribut & operator = (const Attribut & unAttribut);
+	Attribut & operator = (const Attribut & unAttribut);
 	// Mode d'emploi :
 	//
 	// Contrat :

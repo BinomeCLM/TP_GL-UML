@@ -56,10 +56,26 @@ string Attribut::getNom()
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
-/*Attribut & Attribut::operator = (const Attribut & unAttribut)
+Attribut& Attribut::operator=(const Attribut & unAttribut)
 // Algorithme :
 //
 {
+#ifdef MAP
+	cout << "Appel à l'opérateur d'assignement de <Attribut>" << endl;
+#endif
+	nom = unAttribut.nom;
+	type = unAttribut.type;
+	if (type == "double")
+	{
+		value = new double(*(double*)(unAttribut.value));
+	}
+	else if (type == "string")
+	{
+		void * s = unAttribut.value;
+		value = new string(*(string*)s);
+	}
+
+	return *this;
 } //----- Fin de operator =*/
 
 /*bool Attribut::estEgal(Attribut & a)
