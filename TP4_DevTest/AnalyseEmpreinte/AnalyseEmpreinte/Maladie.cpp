@@ -71,9 +71,9 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 				A->setValue(val);
 				delete (string*)val;
 			}
+			
 
 			e->ajouterAttribut(A);
-
 			delete A;
 
 			posD = posF+1;
@@ -91,6 +91,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	}
 
 	delete e;
+
 	return ajoutee;
 }
 

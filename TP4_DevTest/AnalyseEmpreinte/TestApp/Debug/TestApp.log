@@ -1,3 +1,47 @@
-﻿  TestEmpreinte.cpp
-  TestApp.vcxproj -> \\servif-home\homes\lghandour\Mes documents\Visual Studio 2015\Projects\AnalyseEmpreinte\Debug\TestApp.dll
-  TestApp.vcxproj -> \\servif-home\homes\lghandour\Mes documents\Visual Studio 2015\Projects\AnalyseEmpreinte\Debug\TestApp.pdb (Partial PDB)
+﻿  TestMaladie.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): error C2678: '==' binaire : aucun opérateur trouvé qui accepte un opérande de partie gauche de type 'const Empreinte' (ou il n'existe pas de conversion acceptable)
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(389): note: est peut-être 'bool std::operator ==(const std::error_condition &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(381): note: ou       'bool std::operator ==(const std::error_condition &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(373): note: ou       'bool std::operator ==(const std::error_code &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(365): note: ou       'bool std::operator ==(const std::error_code &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(339): note: ou       'bool std::operator ==(const std::exception_ptr &,std::nullptr_t) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(334): note: ou       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(329): note: ou       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): note: lors de la tentative de mise en correspondance de la liste des arguments '(const Empreinte, const Empreinte)'
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testmaladie.cpp(52): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Empreinte>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+          with
+          [
+              T=Empreinte
+          ]
+  TestDictionnaire.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): error C2678: '==' binaire : aucun opérateur trouvé qui accepte un opérande de partie gauche de type 'const Maladie' (ou il n'existe pas de conversion acceptable)
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(389): note: est peut-être 'bool std::operator ==(const std::error_condition &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(381): note: ou       'bool std::operator ==(const std::error_condition &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(373): note: ou       'bool std::operator ==(const std::error_code &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\system_error(365): note: ou       'bool std::operator ==(const std::error_code &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(339): note: ou       'bool std::operator ==(const std::exception_ptr &,std::nullptr_t) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(334): note: ou       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(329): note: ou       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) throw()'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): note: lors de la tentative de mise en correspondance de la liste des arguments '(const Maladie, const Maladie)'
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testdictionnaire.cpp(59): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Maladie>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+          with
+          [
+              T=Maladie
+          ]
+  TestAnalyse.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(66): error C3690: littéral de chaîne attendu, mais un littéral de chaîne défini par l'utilisateur trouvé à la place
+  c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): note: voir la référence à l'instanciation de la fonction modèle 'std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<T>(const Q &)' en cours de compilation
+          with
+          [
+              T=std::multimap<double,std::string,std::less<double>,std::allocator<std::pair<const double,std::string>>>,
+              Q=std::multimap<double,std::string,std::less<double>,std::allocator<std::pair<const double,std::string>>>
+          ]
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testanalyse.cpp(93): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<std::multimap<double,std::string,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+          with
+          [
+              _Kty=double,
+              _Ty=std::string,
+              T=std::multimap<double,std::string,std::less<double>,std::allocator<std::pair<const double,std::string>>>
+          ]
+c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(66): error C2338: Test writer must define specialization of ToString<const Q& q> for your class .
+  Génération de code en cours...

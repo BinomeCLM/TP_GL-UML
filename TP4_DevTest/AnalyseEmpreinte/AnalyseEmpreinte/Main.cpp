@@ -49,8 +49,11 @@ int lireEntree(int min, int max);
 
 int main() {
 
+	
+
+
 	// Scénario
-    FichEmpStream * fes = new FichEmpStream;
+   FichEmpStream * fes = new FichEmpStream;
 	Dictionnaire * dico = new Dictionnaire;
 	*dico = renseignerDictionnaire(fes);
 	bool power = true;
@@ -130,7 +133,7 @@ int main() {
     //testAffichage();
 	//testFichEmpStream();
 	//testAnalyse();
-
+	
 	return 0;
 }
 

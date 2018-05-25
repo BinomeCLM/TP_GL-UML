@@ -35,6 +35,7 @@ using namespace std;
 // une fois calculerProbabilit� valid�e
 void Analyse::genererClassement(Dictionnaire d, Empreinte e)
 {
+	//////////////////Rajouter set id
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 
     // Pour chaque maladie du dictionnaire, on calcule la proba associ�e

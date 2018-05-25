@@ -34,7 +34,7 @@ using namespace std;
 bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 {
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
-
+	cout << nom << endl;
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
 		if((*it).getNomMaladie() == nom)

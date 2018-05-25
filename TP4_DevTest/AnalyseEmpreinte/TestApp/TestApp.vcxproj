@@ -153,10 +153,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="RenseignerDictionnaire.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestAnalyse.h" />
+    <ClInclude Include="TestDictionnaire.h" />
+    <ClInclude Include="TestFichierPatient.h" />
+    <ClInclude Include="TestMaladie.h" />
     <ClInclude Include="unittest2.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +169,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TestAnalyse.cpp" />
+    <ClCompile Include="TestDictionnaire.cpp" />
     <ClCompile Include="TestEmpreinte.cpp" />
+    <ClCompile Include="TestFichierPatient.cpp" />
+    <ClCompile Include="TestMaladie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestApp.rc" />
