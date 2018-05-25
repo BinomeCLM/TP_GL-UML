@@ -100,7 +100,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 // Parce-que sinon la case que pointe e va �tre d�truite � la fin de
 // la m�thode, non ?
 Empreinte Maladie::getEmpreinteById(long id) {
-	Empreinte* e = nullptr;
+	Empreinte e;
 
 	deque<Empreinte>::iterator it;
 
@@ -112,7 +112,7 @@ Empreinte Maladie::getEmpreinteById(long id) {
 		}
 	}
 
-	return *e;
+	return e;
 }
 
 bool Maladie::empreinteExiste(long id) {
