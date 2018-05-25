@@ -39,7 +39,7 @@ void testEmpreinte();
 void testAffichage();
 void testFichEmpStream();
 void testAnalyse();*/
-Dictionnaire renseignerDictionnaire(FichEmpStream * fp);
+Dictionnaire renseignerDictionnaire(Dictionnaire & d,FichEmpStream * fp);
 FichierPatient renseignerFichierPatient(FichEmpStream * fp);
 void afficherDetailMaladie(long idMaladie, Dictionnaire d);
 void afficherDictionnaire(Dictionnaire d);
@@ -55,7 +55,7 @@ int main() {
 	// Scénario
    FichEmpStream * fes = new FichEmpStream;
 	Dictionnaire * dico = new Dictionnaire;
-	*dico = renseignerDictionnaire(fes);
+	*dico = renseignerDictionnaire(*dico, fes);
 	bool power = true;
 	while (power) {
 		cout << "Que voulez-vous faire?" << endl;
@@ -89,7 +89,7 @@ int main() {
 			}
 
 			case 2: {
-				renseignerDictionnaire(fes);
+				renseignerDictionnaire(*dico,fes);
 				break;
 			}
 
@@ -362,7 +362,7 @@ void testFichEmpStream()
 	FichEmpStream * fEmpSt = new FichEmpStream();
 	Dictionnaire * dTest = new Dictionnaire;
 	//cout << fEmpSt->verifierExtension("./dekdlekd.log") << endl;
-    *dTest = fEmpSt->lireDictionnaire("./DataMaladie.txt");
+    *dTest = fEmpSt->lireDictionnaire(*dTest, "./DataMaladie.txt");
 	//cout << *dTest << endl;
 	FichierPatient * fPatTest = new FichierPatient;
 	*fPatTest = fEmpSt->lireFichierPatient("./DataEmp.txt");
@@ -377,7 +377,7 @@ void testAnalyse()
 	FichEmpStream * fEmpSt = new FichEmpStream();
 	Dictionnaire * dTest = new Dictionnaire;
 	// ON renseigne le dictionnaire
-	*dTest = fEmpSt->lireDictionnaire("./HealthMeasurementsWithLabels.txt");
+	*dTest = fEmpSt->lireDictionnaire(*dTest,"./HealthMeasurementsWithLabels.txt");
 	// On renseigne le FichierPatient
 	FichierPatient * fPatTest = new FichierPatient;
 	*fPatTest = fEmpSt->lireFichierPatient("./HealthMeasurements.txt");
@@ -417,17 +417,14 @@ void testAnalyse()
     }
 }
 
-Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
+Dictionnaire renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
 {
 	string sourceFichierDico = "";
 	cout << "Veuillez renseigner le fichier servant de base de connaissances." << endl;
 	cin >> sourceFichierDico;
 
-	Dictionnaire dTemp;
-	cout << "renseignerDico" << endl;
-	dTemp = lecteur->lireDictionnaire(sourceFichierDico);
-	cout << "renseginer dico apres" << endl;
-	return dTemp;
+	d = lecteur->lireDictionnaire(d, sourceFichierDico);
+	return d;
 }
 
 FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
@@ -579,6 +576,7 @@ void afficherDictionnaire(Dictionnaire d)
 void afficherDetailMaladie(long idMaladie, Dictionnaire d)
 {
 	Maladie maladie = d.getMaladieById(idMaladie);
+	cout << maladie.getEmpreinteById(7) << endl;
 	cout << maladie << endl;
 }
 

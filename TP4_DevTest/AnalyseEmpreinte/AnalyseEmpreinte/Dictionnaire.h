@@ -44,6 +44,8 @@ public:
 
     Maladie getMaladieById(long id);
 
+	void setNomFichier(string sourceFich);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
    // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );

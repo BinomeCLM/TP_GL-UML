@@ -33,12 +33,11 @@ using namespace std;
 // Méthode à revoir
 bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 {
-	cout << "dico pat" << chEmpMaladie << endl;
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
-	cout << nom << endl;
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
-		if((*it).getNomMaladie() == nom)
+		string nomMaladie = (*it).getNomMaladie();
+		if(!(nomMaladie.compare(nom)))
 		{
 		    // Tu n'utilises jamais ce booleen par la suite donc je ne comprends pas son utilité
 		    // J'aurai plutot mis existeEmpreinte avec si l'empreinte existe deja (prochaine boucle for),
@@ -72,6 +71,7 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
             }
 		}
 	}
+	cout << "here" << endl;
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
 	m->ajouterEmpreinte(chEmpMaladie,signature);
@@ -113,6 +113,19 @@ void Dictionnaire::setSignature(string uneSignature)
 		i = pos2+1;
 	}
 	signature.pop_back();
+}
+
+void Dictionnaire::setNomFichier(string sourceFich)
+{
+	if (sourceFich.compare(""))
+	{
+		sourceFichier = sourceFichier + " / " + sourceFich;
+	}
+	else
+	{
+		sourceFichier = sourceFich;
+	}
+	
 }
 
 Maladie Dictionnaire::getMaladieById(long id)

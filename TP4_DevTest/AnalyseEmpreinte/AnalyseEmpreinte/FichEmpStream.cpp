@@ -109,9 +109,8 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 }
 
 // M�thode non v�rifi�e
-Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
+Dictionnaire FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceFichier)
 {
-    Dictionnaire dTemp;
     bool extensionValide = verifierExtension(sourceFichier);
     bool signatureValide = false;
 
@@ -124,19 +123,19 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
 		else
 		{
 			cerr << "Le fichier est vide" << endl;
-			return dTemp;
+			return dico;
 		}
     }
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt'" << endl;
-        return dTemp;
+        return dico;
     }
 
     if (signatureValide)
     {
-        dTemp.setNomFichier(sourceFichier);
-        dTemp.setSignature(signatureComplete);
+        dico.setNomFichier(sourceFichier);
+        dico.setSignature(signatureComplete);
         // Tant qu'on a pas atteint la fin du fichier, on lit la ligne
         // et on fait appel a ajouterMaladie
         ifstream fichier;
@@ -157,25 +156,24 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
                 getline(fichier, ligneEmpreinteMaladie);
                 if (ligneEmpreinteMaladie.compare(""))
 				{
-                    dTemp.ajouterMaladie(ligneEmpreinteMaladie);
-					cout << ligneEmpreinteMaladie << endl;
+                    dico.ajouterMaladie(ligneEmpreinteMaladie);
                 }
             }
 
             fichier.close();
 
-            return dTemp;
+            return dico;
         }
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-            return dTemp;
+            return dico;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-        return dTemp;
+        return dico;
     }
 
 } //----- Fin de M�thode
