@@ -12,14 +12,14 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace TestApp
 {
-	TEST_CLASS(TestDictionnaire)
+	TEST_CLASS(TestFichierPatient)
 	{
 	public:
 
 
 		TEST_METHOD(AjouterEmpreinte)
 		{
-			string signature = "AttributeName;AttributeType\nNoID;ID\nA1;string\nA2;double\nA3;double\nA4;double\nAZ51;double\nDisease;string";
+			string signature = "A1;string\nA2;double\nA3;double\nA4;double\nAZ51;double\nDisease;string";
 
 			string champs1 = "1;True;2.12;13;3.156;12.36";
 			string champs2 = "1;True;2.12;13;3.156;12.36";

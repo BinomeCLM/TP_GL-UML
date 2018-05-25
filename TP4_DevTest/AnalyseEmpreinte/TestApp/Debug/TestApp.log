@@ -8,7 +8,7 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunitt
   c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(334): note: ou       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) throw()'
   c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(329): note: ou       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) throw()'
   c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): note: lors de la tentative de mise en correspondance de la liste des arguments '(const Empreinte, const Empreinte)'
-  \\servif-home\homes\cetienne\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testmaladie.cpp(52): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Empreinte>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testmaladie.cpp(52): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Empreinte>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
           with
           [
               T=Empreinte
@@ -23,7 +23,7 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunitt
   c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(334): note: ou       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) throw()'
   c:\program files (x86)\microsoft visual studio 14.0\vc\include\exception(329): note: ou       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) throw()'
   c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunittestassert.h(128): note: lors de la tentative de mise en correspondance de la liste des arguments '(const Maladie, const Maladie)'
-  \\servif-home\homes\cetienne\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testdictionnaire.cpp(59): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Maladie>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testdictionnaire.cpp(59): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<Maladie>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
           with
           [
               T=Maladie
@@ -36,7 +36,7 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\unittest\include\cppunitt
               T=std::multimap<double,std::string,std::less<double>,std::allocator<std::pair<const double,std::string>>>,
               Q=std::multimap<double,std::string,std::less<double>,std::allocator<std::pair<const double,std::string>>>
           ]
-  \\servif-home\homes\cetienne\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testanalyse.cpp(93): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<std::multimap<double,std::string,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
+  \\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\testanalyse.cpp(93): note: voir la référence à l'instanciation de la fonction modèle 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<std::multimap<double,std::string,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' en cours de compilation
           with
           [
               _Kty=double,
