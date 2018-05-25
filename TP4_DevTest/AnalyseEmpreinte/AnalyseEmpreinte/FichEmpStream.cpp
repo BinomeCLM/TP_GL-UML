@@ -44,14 +44,20 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     bool signatureValide = false;
 
     // Si l'extension est valide et que le fichier n'est pas vide
-    if (extensionValide && verifierFichierVide(sourceFichier))
+    if (extensionValide)
     {
-        signatureValide = verifierSignature(sourceFichier, false);
-        cout << signatureValide << endl;
+		if (verifierFichierVide(sourceFichier)) {
+			signatureValide = verifierSignature(sourceFichier, false);
+		}
+		else
+		{
+			cerr << "Le fichier est vide" << endl;
+			return fPatTemp;
+		}
     }
     else
     {
-        cerr << "Extension rentr�e ne correspond pas � '.txt' ou fichier vide" << endl;
+        cerr << "Extension rentr�e ne correspond pas � '.txt'" << endl;
         return fPatTemp;
     }
 
@@ -79,7 +85,8 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinte);
-                if (!(ligneEmpreinte=="")){
+                if (ligneEmpreinte.compare(""))
+				{
                     fPatTemp.ajouterEmpreinte(ligneEmpreinte);
                 }
             }
@@ -108,9 +115,17 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
     bool extensionValide = verifierExtension(sourceFichier);
     bool signatureValide = false;
 
-    if (extensionValide && verifierFichierVide(sourceFichier))
+    if (extensionValide)
     {
-        signatureValide = verifierSignature(sourceFichier, true);
+		if (verifierFichierVide(sourceFichier)) 
+		{
+			signatureValide = verifierSignature(sourceFichier, true);
+		}
+		else
+		{
+			cerr << "Le fichier est vide" << endl;
+			return dTemp;
+		}
     }
     else
     {
@@ -140,8 +155,10 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinteMaladie);
-                if (!(ligneEmpreinteMaladie=="")){
+                if (ligneEmpreinteMaladie.compare(""))
+				{
                     dTemp.ajouterMaladie(ligneEmpreinteMaladie);
+					cout << ligneEmpreinteMaladie << endl;
                 }
             }
 

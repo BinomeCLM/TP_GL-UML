@@ -1,3 +1,6 @@
-﻿  Empreinte.cpp
-  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.exe
-  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.pdb (Partial PDB)
+﻿  Main.cpp
+  FichEmpStream.cpp
+\\servif-home\homes\cetienne\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\analyseempreinte\fichempstream.cpp(360): warning C4244: 'initialisation' : conversion de 'std::streamoff' en 'int', perte possible de données
+  Génération de code en cours...
+  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\cetienne\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.exe
+  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\cetienne\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.pdb (Partial PDB)

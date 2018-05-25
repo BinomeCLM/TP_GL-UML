@@ -33,6 +33,7 @@ using namespace std;
 // Méthode à revoir
 bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 {
+	cout << "dico pat" << chEmpMaladie << endl;
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
 	cout << nom << endl;
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)

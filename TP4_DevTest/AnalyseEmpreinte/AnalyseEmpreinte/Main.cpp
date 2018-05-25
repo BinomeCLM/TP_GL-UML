@@ -424,8 +424,9 @@ Dictionnaire renseignerDictionnaire(FichEmpStream * lecteur)
 	cin >> sourceFichierDico;
 
 	Dictionnaire dTemp;
+	cout << "renseignerDico" << endl;
 	dTemp = lecteur->lireDictionnaire(sourceFichierDico);
-
+	cout << "renseginer dico apres" << endl;
 	return dTemp;
 }
 

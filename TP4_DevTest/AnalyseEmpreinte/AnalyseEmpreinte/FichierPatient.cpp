@@ -54,6 +54,7 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 
 bool FichierPatient::ajouterEmpreinte (string chEmp)
 {
+	
     char delimiter = ';';
 	string attribut;
 
