@@ -37,6 +37,7 @@ void Empreinte::ajouterAttribut(Attribut * a)
 {
 	nbAttributs++;
 	listeAttributs.push_back(*a);
+	
 }
 
 Analyse Empreinte::lancerAnalyse(Dictionnaire d)
