@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1526039102 source:c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\analyse.cpp
+	<iostream>
+	"Analyse.h"
+	"Dictionnaire.h"
+	"Empreinte.h"
+	<utility>
+
+1526039046 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\analyse.h
+	<map>
+	<deque>
+	<string>
+
+1525968392 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\dictionnaire.h
+	"Maladie.h"
+	"Fichier.h"
+	"Analyse.h"
+
+1525967262 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\maladie.h
+	<deque>
+	<string>
+	"Empreinte.h"
+
+1526039378 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\empreinte.h
+	<deque>
+	<map>
+	"Attribut.h"
+
+1525850818 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\attribut.h
+	<string>
+
+1525963350 c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\fichier.h
+	<string>
+	<deque>
+
+1525866486 source:c:\users\christophe\documents\programmation\projet codeblock\new_gl_uml_chris\attribut.cpp
+	<iostream>
+	"Attribut.h"
+

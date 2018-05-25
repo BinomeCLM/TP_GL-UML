@@ -456,7 +456,7 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 
 		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
 		{
-			if (it2->first >= 20)
+			if (it2->first > 20)
 			{
 				if (it2->second.compare("")) {
 					cout << compteur << ". " << it2->second << " : " << " proba : " << it2->first << "% de chance - " << endl;
@@ -466,14 +466,17 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 					{
 						cout << "Très probable." << endl;
 						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+                        cout << endl;
 					}
 					else if (it2->first >= 50)
 					{
 						cout << "Probable" << endl;
+                        cout << endl;
 					}
 					else
 					{
 						cout << "Peu probable" << endl;
+                        cout << endl;
 					}
 					compteur ++;
 					if (compteur == 11)
@@ -496,6 +499,7 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 				{
 					cout << "Aucun risque de maladie détecté à partir des informations "
 			 			"contenues dans notre unité de stockage." << endl;
+                    cout << endl;
 					break;
 				}
 				else
@@ -524,7 +528,7 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 
 		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
 		{
-			if (it2->first >= 20)
+			if (it2->first > 20)
 			{
 				if (it2->first != proba1)
 				{
@@ -538,10 +542,13 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 					if (it2->first >= 70) {
 						cout << "Très probable." << endl;
 						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+                        cout << endl;
 					} else if (it2->first >= 50) {
 						cout << "Probable" << endl;
+                        cout << endl;
 					} else {
 						cout << "Peu probable" << endl;
+                        cout << endl;
 					}
 					compteur++;
 				}
@@ -552,6 +559,7 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
                 {
                     cout << "Aucun risque de maladie détecté à partir des informations "
                             "contenues dans notre unité de stockage." << endl;
+                    cout << endl;
                     break;
                 }
 			}

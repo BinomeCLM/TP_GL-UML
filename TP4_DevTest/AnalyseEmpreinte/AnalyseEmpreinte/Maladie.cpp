@@ -41,7 +41,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	int posF = chEmp.find(delimiter,posD);
 	long id  = (long)stold(chEmp.substr(posD,posF-posD));
     Empreinte* e = new Empreinte();
-
+    cout << chEmp << endl;
     if(!empreinteExiste(id))
 	{
 	    e->setIdEmpreinte(id);

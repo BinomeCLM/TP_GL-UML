@@ -1,0 +1,26 @@
+AttributeName;AttributeType
+NoID;ID
+A1;string
+A2;double
+A3;double
+A4;double
+AZ51;double
+C4;string
+D9;double
+E6;string
+A456;double
+ZZ2;string
+Disease;string
+
+NoID;A1;A2;A3;A4;AZ51;C4;D9;E6;A456;ZZ2;Disease
+1;True;2.12;13;3.156;1236;hot;35;red;234;bad;Rhume
+13;True;2.12;13;3.156;1236;hot;35;red;234;bad;Arthrose
+2;False;1.1;14.3;13.2;2367;cold;35;blue;444;good;Rhynopharyngite
+3;None;12;145;12.1;11;cold;20;red;34;zeer;Angine
+4;True;2.12;13;3.156;1236;true;45;red;234;bad;Grippe Aviaire
+24;True;2.12;13;3.156;1236;medium;22;red;234;bad;Sclerose
+5;True;2.12;13;3.156;1236;cold;47;red;234;bad;Hyppocondriaque
+6;True;2.12;13;3.156;1236;hot;39;red;234;bad;Toux
+11;True;2.12;13;3.156;1236;hot;35;red;43;true;Maladie1
+23;True;2.12;13;3.156;1236;true;44;red;34;none;Maladie2
+7;True;2.12;13;3.156;1236;hot;36;red;55;good;Maladie3

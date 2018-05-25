@@ -47,6 +47,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
     if (extensionValide && verifierFichierVide(sourceFichier))
     {
         signatureValide = verifierSignature(sourceFichier, false);
+        cout << signatureValide << endl;
     }
     else
     {
@@ -78,8 +79,9 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinte);
-                // Est-ce qu'on ajoute des verifications pour voir si la ligne n'est pas vide ?
-                fPatTemp.ajouterEmpreinte(ligneEmpreinte);
+                if (!(ligneEmpreinte=="")){
+                    fPatTemp.ajouterEmpreinte(ligneEmpreinte);
+                }
             }
 
             fichier.close();
@@ -138,7 +140,9 @@ Dictionnaire FichEmpStream::lireDictionnaire(string sourceFichier)
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinteMaladie);
-                dTemp.ajouterMaladie(ligneEmpreinteMaladie);
+                if (!(ligneEmpreinteMaladie=="")){
+                    dTemp.ajouterMaladie(ligneEmpreinteMaladie);
+                }
             }
 
             fichier.close();
@@ -251,12 +255,13 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
             getline(fichier, signatureAverifier);
             getline(fichier, signatureAverifier);
             string signaCompTemp = "";
-            for (i=0; i<(nbAttributs-1); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
+            for (i=0; i<(nbAttrSignaAverifier); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
                 if (signatureAverifier.substr(signatureAverifier.length()-1,signatureAverifier.length()).compare("\r") == 0)
                 {
                     signaCompTemp = signaCompTemp + signatureAverifier.substr(0,signatureAverifier.length()-1);
+
                 }
                 else
                 {
@@ -308,14 +313,15 @@ long FichEmpStream::compterAttributsSignature (string sourceFichier)
         if (chAttr.compare(""))
         {
             // Pour le fichier patient il ne detecte pas la ligne de vide d'ou l'erreur
-            // trouver une fonciton pour savoir si la chaine lu contient NoID
+            // trouver une fonction pour savoir si la chaine lu contient NoID
             while (chAttr.compare("") && chAttr.substr(0,4).compare("NoID") && !fichier.eof()) // Tant qu'on est pas sur une ligne vide ou qu'on a pas atteint la fin du fichier
             {
                 getline(fichier, chAttr);
+                cout << chAttr << endl;
                 nbAttr++;
             }
         }
-
+        cout << "nb attr " << nbAttr-1 << endl;
         fichier.close();
         return nbAttr-1; // On enleve la ligne vide du compteur
     }
