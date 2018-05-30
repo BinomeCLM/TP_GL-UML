@@ -56,8 +56,8 @@ namespace TestApp
 			Maladie m3 = d->getMaladieById(3);
 
 			deque<Maladie> list = d->getListeMaladie();
-			//Assert::AreEqual(list[0], m1);
-			//Assert::IsNull(m3); //?
+			Assert::AreEqual(list[0].getIdMaladie(), m1.getIdMaladie());
+			Assert::AreEqual(*(new long(0)), m3.getIdMaladie());//?
 		}
 
 

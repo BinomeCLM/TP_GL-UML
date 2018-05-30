@@ -49,8 +49,8 @@ namespace TestApp
 			Empreinte e3 = m->getEmpreinteById(3);
 
 			deque<Empreinte> list = m->getListeEmpreinte();
-			//Assert::AreEqual(list[0], e1);
-			//Assert::AreEqual(NULL, e3); //tester que id vaut 0 ----> modifier TP et 2
+			Assert::AreEqual(list[0].getIdEmpreinte(), e1.getIdEmpreinte());
+			Assert::AreEqual(*(new long(0)), e3.getIdEmpreinte()); //tester que id vaut 0 ----> modifier TP et 2
 		}
 
 		

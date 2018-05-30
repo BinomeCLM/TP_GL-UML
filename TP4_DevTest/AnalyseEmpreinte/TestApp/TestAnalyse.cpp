@@ -45,12 +45,13 @@ namespace TestApp
 			analyse2->calculerProbabilite(listFP[0], *m2);
 
 			multimap<double, string> res1 = analyse1->getCorrespondances();
-			multimap<double, string> res2 = analyse1->getCorrespondances();
+			multimap<double, string> res2 = analyse2->getCorrespondances();
 
-			//Assert::AreEqual(make_pair(60, "grippe"), res1.find(60) );
-		
-			//Assert::AreEqual(make_pair(80, "rhume"), res2.find(80));
-
+			Assert::AreEqual(pair<double, string>(60.0, "grippe").first, (*(res1.find(60) )).first,L"1");
+			Assert::AreEqual(pair<double, string>(60.0, "grippe").second, (*(res1.find(60))).second, L"2");
+			Assert::AreEqual(pair<double, string>(80.0, "rhume").first, (*(res2.find(80))).first, L"3");
+			Assert::AreEqual(pair<double, string>(80.0, "rhume").second, (*(res2.find(80))).second, L"4");
+	
 
 		}
 
@@ -83,11 +84,10 @@ namespace TestApp
 			calcul.insert(pair<double, string>(60, "Maladie1"));
 			calcul.insert(pair<double, string>(40, "Maladie2"));
 			calcul.insert(pair<double, string>(20, "Maladie3"));
-			calcul.insert(pair<double, string>(40, "Maladie1"));
 
 			multimap<double, string> res = analyse->getCorrespondances();
 
-			//Assert::AreEqual(calcul, res);
+			Assert::IsTrue(res == calcul);
 
 
 

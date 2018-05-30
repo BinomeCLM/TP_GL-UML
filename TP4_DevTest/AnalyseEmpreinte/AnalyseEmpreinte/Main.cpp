@@ -49,8 +49,6 @@ int lireEntree(int min, int max);
 
 int main() {
 
-	
-
 
 	// Scénario
    FichEmpStream * fes = new FichEmpStream;
@@ -125,14 +123,6 @@ int main() {
     delete fes;
     delete dico;
 
-	//testAttribut();
-	//testEmpreinte();
-	//testMaladie();
-	//testFichier();
-	//testDico();
-    //testAffichage();
-	//testFichEmpStream();
-	//testAnalyse();
 	
 	return 0;
 }
