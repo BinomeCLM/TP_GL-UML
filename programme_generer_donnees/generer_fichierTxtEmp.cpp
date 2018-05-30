@@ -67,7 +67,7 @@ int main()
         cin.ignore(100,'\n');
 
         int i;
-        map<string,string> signature;
+        map<int,string> signature;
         string id;
 		string dernierElmt;
         for (i=0; i<nbAttributs; i++)
@@ -76,7 +76,7 @@ int main()
             if (i%2==0)
             {
                 string nvelElmt = "A" + id +";string";
-                signature.insert(pair<string,string>(string("A"+id),string("string")));
+                signature.insert(pair<string,string>(i,string("string")));
                 fichier << nvelElmt << endl;
 				if (i == nbAttributs - 1)
 				{
@@ -86,7 +86,7 @@ int main()
             else
             {
                 string nvelElmt = "A" + id +";double";
-                signature.insert(pair<string,string>(string("A"+id),string("double")));
+                signature.insert(pair<int,string>(i),string("double")));
                 fichier << nvelElmt << endl;
 				if (i == nbAttributs - 1)
 				{
@@ -101,35 +101,24 @@ int main()
         }
         fichier << endl;
         fichier << "NoID;";
-		int compteur = 1;
-        for (std::map<string,string>::iterator it=signature.begin(); it!=signature.end(); ++it)
+        for (std::map<int,string>::iterator it=signature.begin(); it!=signature.end(); ++it)
         {
-			// Problème ici 
-            /*if (dernierElmt.compare((it->first))==0)
+            if (nbAttributs==it->first)
             {
-				cout << it->first << endl;
+                string elemt = intToString(it->first);
                 if (typeFichier==1)
                 {
-                    fichier << it->first << ";" << "Disease" << endl;
+                    fichier << "A" << it->first << ";" << "Disease" << endl;
                 }
                 else
                 {
-                    fichier << it->first << endl;
+                    fichier << "A" << it->first << endl;
                 }
             }
             else
             {
-                fichier << it->first << ";";
-            }*/
-			
-			if (compteur != signature.size()){
-				fichier << it->first << ";";
-			}
-			else
-			{
-				fichier << it->first << endl;
-			}
-			compteur++;
+                fichier << "A" << it->first << ";";
+            }
         }
         cout << "Voulez-vous des doublons (1:true 2:false)?" << endl;
         int doublon;
