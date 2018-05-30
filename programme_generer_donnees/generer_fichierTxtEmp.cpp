@@ -69,6 +69,7 @@ int main()
         int i;
         map<string,string> signature;
         string id;
+		string dernierElmt;
         for (i=0; i<nbAttributs; i++)
         {
             id = intToString(i);
@@ -77,26 +78,36 @@ int main()
                 string nvelElmt = "A" + id +";string";
                 signature.insert(pair<string,string>(string("A"+id),string("string")));
                 fichier << nvelElmt << endl;
+				if (i == nbAttributs - 1)
+				{
+					dernierElmt = string("A" + id);
+				}
             }
             else
             {
                 string nvelElmt = "A" + id +";double";
                 signature.insert(pair<string,string>(string("A"+id),string("double")));
                 fichier << nvelElmt << endl;
+				if (i == nbAttributs - 1)
+				{
+					dernierElmt = string("A" + id);
+				}
             }
         }
         if (typeFichier==1)
         {
+			//signature.insert(pair<string, string>("Disease", string("string")));
             fichier << "Disease;string" << endl;
         }
         fichier << endl;
         fichier << "NoID;";
-
-        string dernierAttr = "A" + id;
+		int compteur = 1;
         for (std::map<string,string>::iterator it=signature.begin(); it!=signature.end(); ++it)
         {
-            if (dernierAttr.compare((it->first))==0)
+			// Problème ici 
+            /*if (dernierElmt.compare((it->first))==0)
             {
+				cout << it->first << endl;
                 if (typeFichier==1)
                 {
                     fichier << it->first << ";" << "Disease" << endl;
@@ -109,7 +120,16 @@ int main()
             else
             {
                 fichier << it->first << ";";
-            }
+            }*/
+			
+			if (compteur != signature.size()){
+				fichier << it->first << ";";
+			}
+			else
+			{
+				fichier << it->first << endl;
+			}
+			compteur++;
         }
         cout << "Voulez-vous des doublons (1:true 2:false)?" << endl;
         int doublon;
@@ -138,7 +158,7 @@ int main()
                 idEmp = rand()%nbMaxDoublon;
             }
             fichier << idEmp << ";";
-            for (j=1; j<nbAttributs+1; j++)
+            for (j=0; j<nbAttributs; j++)
             {
                 int nbAlea = rand()%10;
                 if (j%2 == 0)
@@ -149,7 +169,7 @@ int main()
                 {
                     fichier << attrDouble[nbAlea];
                 }
-                if (j!=(nbAttributs))
+                if (j!=(nbAttributs-1))
                 {
                     fichier << ";";
                 }
