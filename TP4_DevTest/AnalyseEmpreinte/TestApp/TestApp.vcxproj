@@ -159,6 +159,7 @@
     <ClInclude Include="TestAnalyse.h" />
     <ClInclude Include="TestDictionnaire.h" />
     <ClInclude Include="TestFichierPatient.h" />
+    <ClInclude Include="TestFonctionnels.h" />
     <ClInclude Include="TestMaladie.h" />
     <ClInclude Include="unittest2.h" />
   </ItemGroup>
@@ -173,6 +174,7 @@
     <ClCompile Include="TestDictionnaire.cpp" />
     <ClCompile Include="TestEmpreinte.cpp" />
     <ClCompile Include="TestFichierPatient.cpp" />
+    <ClCompile Include="TestFonctionnels.cpp" />
     <ClCompile Include="TestMaladie.cpp" />
   </ItemGroup>
   <ItemGroup>

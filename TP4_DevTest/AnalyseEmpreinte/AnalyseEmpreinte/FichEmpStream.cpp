@@ -154,8 +154,10 @@ Dictionnaire FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceF
             while (!fichier.eof())
             {
                 getline(fichier, ligneEmpreinteMaladie);
+				cout << ligneEmpreinteMaladie << endl;
                 if (ligneEmpreinteMaladie.compare(""))
 				{
+					cout << "ajout" << endl;
                     dico.ajouterMaladie(ligneEmpreinteMaladie);
                 }
             }
@@ -223,6 +225,7 @@ bool FichEmpStream::verifierSignature (string sourceFichier, bool dico)
             for (i=0; i<(nbAttrSignaAverifier); i++) // 2 lignes au d�part + nbAttributs lignes + ligne vide
             {
                 getline(fichier, signatureAverifier);
+
                 // Les docs txt sous windows ont nu \r à la fin du coup il
                 // faut vérifier s'il y en a ou pas et s'il y en a l'enlever !!!
                 if (signatureAverifier.substr(signatureAverifier.length()-1,signatureAverifier.length()).compare("\r") == 0)
