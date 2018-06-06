@@ -78,32 +78,23 @@ int main()
                 string nvelElmt = "A" + id +";string";
                 signature.insert(pair<int,string>(i,string("string")));
                 fichier << nvelElmt << endl;
-				if (i == nbAttributs - 1)
-				{
-					dernierElmt = string("A" + id);
-				}
             }
             else
             {
                 string nvelElmt = "A" + id +";double";
                 signature.insert(pair<int,string>(i,string("double")));
                 fichier << nvelElmt << endl;
-				if (i == nbAttributs - 1)
-				{
-					dernierElmt = string("A" + id);
-				}
             }
         }
         if (typeFichier==1)
         {
-			//signature.insert(pair<string, string>("Disease", string("string")));
             fichier << "Disease;string" << endl;
         }
         fichier << endl;
         fichier << "NoID;";
         for (std::map<int,string>::iterator it=signature.begin(); it!=signature.end(); ++it)
         {
-            if (nbAttributs==it->first)
+            if ((nbAttributs-1)==it->first)
             {
                 string elemt = intToString(it->first);
                 if (typeFichier==1)
