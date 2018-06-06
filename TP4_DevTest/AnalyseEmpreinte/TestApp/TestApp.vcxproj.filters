@@ -62,9 +62,6 @@
     <ClCompile Include="TestAnalyse.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="TestFonctionnels.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="TestFonctionnelsBis.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
