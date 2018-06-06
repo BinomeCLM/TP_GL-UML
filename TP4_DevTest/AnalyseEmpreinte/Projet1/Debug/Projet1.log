@@ -1,0 +1,4 @@
+﻿  generer_fichierTxtEmp.cpp
+l:\mes documents\github\tp_gl-uml\programme_generer_donnees\generer_fichiertxtemp.cpp(141): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  Projet1.vcxproj -> L:\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\GenererFichier.exe
+  Projet1.vcxproj -> L:\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\GenererFichier.pdb (Partial PDB)

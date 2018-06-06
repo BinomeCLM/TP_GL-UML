@@ -76,7 +76,7 @@ int main()
             if (i%2==0)
             {
                 string nvelElmt = "A" + id +";string";
-                signature.insert(pair<string,string>(i,string("string")));
+                signature.insert(pair<int,string>(i,string("string")));
                 fichier << nvelElmt << endl;
 				if (i == nbAttributs - 1)
 				{
@@ -86,7 +86,7 @@ int main()
             else
             {
                 string nvelElmt = "A" + id +";double";
-                signature.insert(pair<int,string>(i),string("double")));
+                signature.insert(pair<int,string>(i,string("double")));
                 fichier << nvelElmt << endl;
 				if (i == nbAttributs - 1)
 				{
