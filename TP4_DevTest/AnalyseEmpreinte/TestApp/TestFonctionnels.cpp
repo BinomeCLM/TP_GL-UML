@@ -3,6 +3,7 @@
 #include "FichierPatient.h"
 #include "FichEmpStream.h"
 #include "Dictionnaire.h"
+#include "main.cpp"
 #include "Analyse.h"
 #include <string>
 #include <iostream>
@@ -21,117 +22,52 @@ namespace TestApp
 			cout << "Un fichier “.txt” contenant une empreinte valide et un dictionnaire valide permettant d’obtenir 10 risques. " << endl;
 			cout << " Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour cette empreinte.x" << endl;
 			FichEmpStream *lecteur = new FichEmpStream;
-			FichierPatient fp = lecteur->lireFichierPatient("./fichier_de_test/fichier_empreintes_analyse_1.txt");
+			FichierPatient fp = lecteur->lireFichierPatient("./fichier_de_test/test1_1_f.txt");
 			Dictionnaire d;
-			d = lecteur->lireDictionnaire(d, "./fichier_de_test/fichier_maladies_100.txt");
+			d = lecteur->lireDictionnaire(d, "./fichier_de_test/test1_1_d.txt");
 
-			deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
-			
-			// On crée le résultat attendu
+			deque<Analyse> lesAnalysesReel = fp.analyserEmpreinte(d);
 
-			Analyse a;
-
-			for (deque<Analyse>::iterator it = lesAnalyses.begin(); it != lesAnalyses.end(); it++)
-			{
-				multimap<double, string> resultat = it->getCorrespondances();
-				int compteur = 0;
-				double proba10;
-				if (resultat.size() > 10)
-				{
-					multimap<double, string>::reverse_iterator it3 = resultat.rbegin();
-					advance(it3, 9);
-					proba10 = it3->first;
-				}
-				else {
-					reussi = false;
-				}
-
-				for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
-				{
-					if (it2->first > 20)
-					{
-						compteur++;
-						if (compteur == 10)
-						{
-							// On sort de la boucle mais avant on vérifie qu'il n'y est pas d'égalité
-							if (it2->first != proba10)
-							{
-								reussi = true; // cest le seul cas ou il y a que 10 
-								break;
-							}
-							else
-							{
-								reussi = false;
-								break;
-							}
-						}
-					}
-					else
-					{
-						reussi = false;
-						//							cout << "Aucun risque de maladie détecté à partir des informations contenues dans notre unité de stockage." << endl;
-					}
-				}
+			for (deque<Analyse>::iterator it = lesAnalysesReel.begin(); it != lesAnalysesReel.end(); it++) {
+				multimap<double, string> corresp = retrouverResultat(*it,false):
 			}
+
 			Assert::IsTrue(reussi);
 
 		}
-		TEST_METHOD(PlusieursEmp10Risque)
+		TEST_METHOD(test1_2)
 		{
 			bool reussi = false;
-			string desc = "Un fichier “.txt” contenant plusieurs empreintes valides et un dictionnaire valide permettant d’obtenir 10 risques pour chaque empreinte. ";
-			desc += "\n>> Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour chaque empreinte.\n";
-			cout << desc << endl;
+			cout << "Un fichier “.txt” contenant plusieurs empreintes valides et un dictionnaire valide permettant d’obtenir 10 risques pour chaque empreinte. "<<endl;
+			cout << "\n>> Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour chaque empreinte.\n" << endl;
 			FichEmpStream *lecteur = new FichEmpStream;
-			FichierPatient fp = lecteur->lireFichierPatient("PlusieursEmp10Risque2.txt");
-			Dictionnaire *d = new Dictionnaire;
-			*d = lecteur->lireDictionnaire(*d, "PlusieursEmp10Risque.txt");
+			FichierPatient fp = lecteur->lireFichierPatient("./fichier_de_test/test1_2_f.txt");
+			Dictionnaire d;
+			d = lecteur->lireDictionnaire(d, "./fichier_de_test/test1_2_d.txt");
+
+			deque<Analyse> lesAnalysesReel = fp.analyserEmpreinte(d);
+			deque<Analyse> lesAnalysesTheorique = fp.analyserEmpreinte(d);
+			multimap<double, string> correspondancesTheorique;
 
 
-			deque<Analyse> lesAnalyses = fp.analyserEmpreinte(*d);
-			for (deque<Analyse>::iterator it = lesAnalyses.begin(); it != lesAnalyses.end(); it++)
-			{
-				multimap<double, string> resultat = it->getCorrespondances();
-				int compteur = 0;
-				// On fait ça pour stocker la dixième valeur et pour gérer le cas d'égalité
-				double proba10;
-				if (resultat.size() > 10)
-				{
-					multimap<double, string>::reverse_iterator it3 = resultat.rbegin();
-					advance(it3, 9);
-					proba10 = it3->first;
-				}
-				else {
-					reussi = false;
-				}
-
-				for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
-				{
-					if (it2->first > 20)
-					{
-						compteur++;
-						if (compteur == 10)
-						{
-							// On sort de la boucle mais avant on vérifie qu'il n'y est pas d'égalité
-							if (it2->first != proba10)
-							{
-								reussi = true; // cest le seul cas ou il y a que 10 
-								break;
-							}
-							else
-							{
-								reussi = false;
-								Assert::IsTrue(reussi);
-							}
-						}
-					}
-					else
-					{
-						reussi = false;
-						//							cout << "Aucun risque de maladie détecté à partir des informations contenues dans notre unité de stockage." << endl;
-					}
-				}
+			//ajout a la main les corresp theorique
+			for (int i = 0; i < 10; i++) {
+				correspondancesTheorique.insert(pair<double, string>(1.0, "maladie"));
 			}
+			//idEmpreinteTheorique
+			long idEmpreinteTheorique = 1;
+			
+			//creation de analyseTheorique et mettre a jour
+			Analyse analyseTheorique;
+			analyseTheorique.setIdEmpreinte(idEmpreinteTheorique);
+			analyseTheorique.setCorrespondances(correspondancesTheorique);
+
+			//ajout de analyseTheorique a lesAnalysesTheorique
+			lesAnalysesTheorique.push_back(analyseTheorique);
+
+			if (lesAnalysesTheorique == lesAnalysesReel)
+				reussi = true;
+
 			Assert::IsTrue(reussi);
 
 		}

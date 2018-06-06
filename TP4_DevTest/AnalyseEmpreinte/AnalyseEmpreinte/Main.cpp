@@ -437,42 +437,33 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 		multimap<double,string> resultat = retrouverResultat(*it,false);
 		int compteur = 1;
 		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
-		// On fait ça pour stocker la dixième valeur et pour gérer le cas d'égalité
 		if(resultat.size() != 0)
 		{
-
 			for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
 			{
-				if (it2->second.compare("")) {
-					cout << compteur << ". " << it2->second << " : " << " proba : " << it2->first << "% de chance - " << endl;
-					// IL faut qu'on parle de comment on gere le
-					// cas quand la maladie n'a pas de nom
-					if (it2->first >= 70)
-					{
-						cout << "Très probable." << endl;
-						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
-						cout << endl;
-					}
-					else if (it2->first >= 50)
-					{
-						cout << "Probable" << endl;
-						cout << endl;
-					}
-					else
-					{
-						cout << "Peu probable" << endl;
-						cout << endl;
-					}
-					compteur++;
-					if (compteur == 11)
-					{
-
-						compteur--;
-
-					}
+				cout << compteur << ". " << it2->second << " : " << " proba : " << it2->first << "% de chance - " << endl;
+				if (it2->first >= 70)
+				{
+					cout << "Très probable." << endl;
+					cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+					cout << endl;
+				}
+				else if (it2->first >= 50)
+				{
+					cout << "Probable" << endl;
+					cout << endl;
+				}
+				else
+				{
+					cout << "Peu probable" << endl;
+					cout << endl;
+				}
+				compteur++;
+				if (compteur == 11)
+				{
+					compteur--;
 				}
 			}
-			
 		}
 		else
 		{
@@ -491,37 +482,40 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
 	for (deque<Analyse>::iterator it = lesAnalyses.begin(); it != lesAnalyses.end(); it++)
 	{
-		int compteur = 1;
 		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
 		multimap<double, string> resultat = retrouverResultat(*it,true);
 		if (resultat.size() != 0)
 		{
+			if (resultat.size() == 1)
+			{
+				cout << "Maladie avec la meilleur correspondance : " << endl;
+			}
+			else
+			{
+				cout << resultat.size() << " maladies à égalité, affichage des meilleures correspondances : " << endl;
+			}
 			for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
 			{
+				
+				cout << it2->second << " : " << " proba : " << it2->first << "% de chance - ";
 
-				if (it2->second.compare("")) {
-					cout << "Maladie avec la meilleur correspondance : " << endl;
-					cout << it2->second << " : " << " proba : " << it2->first << "% de chance - ";
-
-					if (it2->first >= 70) {
-						cout << "Très probable." << endl;
-						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
-						cout << endl;
-					}
-					else if (it2->first >= 50) {
-						cout << "Probable" << endl;
-						cout << endl;
-					}
-					else {
-						cout << "Peu probable" << endl;
-						cout << endl;
-					}
+				if (it2->first >= 70) {
+					cout << "Très probable." << endl;
+					cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
+					cout << endl;
+				}
+				else if (it2->first >= 50) {
+					cout << "Probable" << endl;
+					cout << endl;
+				}
+				else {
+					cout << "Peu probable" << endl;
+					cout << endl;
 				}
 			}
 		}
 		else
 		{
-
 			cout << "Aucun risque de maladie détecté à partir des informations "
 				"contenues dans notre unité de stockage." << endl;
 			cout << endl;
@@ -536,6 +530,7 @@ multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meille
 	
 	int compteur = 1;
 	multimap<double, string> resultat = a.getCorrespondances();
+	multimap<double, string> resultatMeilleur;
 	double probaLimite = 0;
 	if (meilleur)
 	{
@@ -543,6 +538,25 @@ multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meille
 		{
 			multimap<double, string>::reverse_iterator it2 = resultat.rbegin();
 			probaLimite = it2->first;
+
+			for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
+			{
+				if (it->first > 20)
+				{
+					if (compteur > 1 && it->first != probaLimite)
+					{
+						break;
+					}
+
+					if (it->second.compare("")) {
+						resultatMeilleur.insert(pair<double, string>(it->first, it->second));
+						compteur++;
+					}
+				}
+				else {
+					break;
+				}
+			}
 		}
 	}
 	else {
@@ -552,29 +566,29 @@ multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meille
 			advance(it3, 9);
 			probaLimite = it3->first;
 		}
-	}
 
-	for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
-	{
-		if (it->first > 20)
+		for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
 		{
-			if (it->first != probaLimite)
+			if (it->first > 20)
 			{
+				if (compteur > 10 && it->first != probaLimite)
+				{
+					break;
+				}
+
+				if (it->second.compare("")) {
+
+					resultatMeilleur.insert(pair<double, string>(it->first, it->second));
+					compteur++;
+				}
+			}
+			else {
 				break;
 			}
-
-			if (it->second.compare("")) {
-
-				resultat.insert(pair<double, string>(it->first, it->second));
-				compteur++;
-			}
-		}
-		else {
-			break;
 		}
 	}
 
-	return resultat;
+	return resultatMeilleur;
 }
 
 	
