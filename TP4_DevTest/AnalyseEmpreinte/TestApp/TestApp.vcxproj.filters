@@ -65,6 +65,9 @@
     <ClCompile Include="TestFonctionnels.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="TestFonctionnelsBis.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestApp.rc">

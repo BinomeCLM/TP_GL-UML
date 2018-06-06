@@ -175,6 +175,7 @@
     <ClCompile Include="TestEmpreinte.cpp" />
     <ClCompile Include="TestFichierPatient.cpp" />
     <ClCompile Include="TestFonctionnels.cpp" />
+    <ClCompile Include="TestFonctionnelsBis.cpp" />
     <ClCompile Include="TestMaladie.cpp" />
   </ItemGroup>
   <ItemGroup>

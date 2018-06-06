@@ -46,6 +46,7 @@ void afficherDictionnaire(Dictionnaire d);
 void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp);
 void afficherTop10(Dictionnaire d, FichierPatient fp);
 int lireEntree(int min, int max);
+multimap<double, string> retrouverResultat(Analyse a, bool meilleure);
 
 int main() {
 
@@ -433,21 +434,14 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
 	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
 	{
-		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
-		multimap<double,string> resultat = it->getCorrespondances();
+		multimap<double,string> resultat = retrouverResultat(*it,false);
 		int compteur = 1;
+		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
 		// On fait ça pour stocker la dixième valeur et pour gérer le cas d'égalité
-		double proba10;
-		if (resultat.size() > 10)
+		if(resultat.size() != 0)
 		{
-			multimap<double,string>::reverse_iterator it3 = resultat.rbegin();
-			advance(it3, 9);
-			proba10 = it3->first;
-		}
 
-		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
-		{
-			if (it2->first > 20)
+			for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
 			{
 				if (it2->second.compare("")) {
 					cout << compteur << ". " << it2->second << " : " << " proba : " << it2->first << "% de chance - " << endl;
@@ -457,74 +451,53 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 					{
 						cout << "Très probable." << endl;
 						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
-                        cout << endl;
+						cout << endl;
 					}
 					else if (it2->first >= 50)
 					{
 						cout << "Probable" << endl;
-                        cout << endl;
+						cout << endl;
 					}
 					else
 					{
 						cout << "Peu probable" << endl;
-                        cout << endl;
+						cout << endl;
 					}
-					compteur ++;
+					compteur++;
 					if (compteur == 11)
 					{
-						// On sort de la boucle mais avant on vérifie qu'il n'y est pas d'égalité
-						if(it2->first != proba10)
-						{
-							break;
-						}
-						else
-						{
-							compteur --;
-						}
+
+						compteur--;
+
 					}
 				}
 			}
-			else
-			{
-				if (compteur == 1)
-				{
-					cout << "Aucun risque de maladie détecté à partir des informations "
-			 			"contenues dans notre unité de stockage." << endl;
-                    cout << endl;
-					break;
-				}
-				else
-                {
-                    break;
-                }
-			}
+			
 		}
+		else
+		{
+			cout << "Aucun risque de maladie détecté à partir des informations "
+			 		"contenues dans notre unité de stockage." << endl;
+             cout << endl;
+			break;
+			
+		}
+		
 	}
 }
 
 void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 {
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
-	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
+	for (deque<Analyse>::iterator it = lesAnalyses.begin(); it != lesAnalyses.end(); it++)
 	{
-	    int compteur = 1;
+		int compteur = 1;
 		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
-		multimap<double,string> resultat = it->getCorrespondances();
-		double proba1;
-		if (resultat.size() > 1)
+		multimap<double, string> resultat = retrouverResultat(*it,true);
+		if (resultat.size() != 0)
 		{
-			multimap<double,string>::reverse_iterator it3 = resultat.rbegin();
-			proba1 = it3->first;
-		}
-
-		for (multimap<double,string>::reverse_iterator it2 = resultat.rbegin(); it2!=resultat.rend(); it2++)
-		{
-			if (it2->first > 20)
+			for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
 			{
-				if (it2->first != proba1)
-				{
-					break;
-				}
 
 				if (it2->second.compare("")) {
 					cout << "Maladie avec la meilleur correspondance : " << endl;
@@ -533,30 +506,80 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 					if (it2->first >= 70) {
 						cout << "Très probable." << endl;
 						cout << "Une analyse supplémentaire pour vérification est conseillée." << endl;
-                        cout << endl;
-					} else if (it2->first >= 50) {
-						cout << "Probable" << endl;
-                        cout << endl;
-					} else {
-						cout << "Peu probable" << endl;
-                        cout << endl;
+						cout << endl;
 					}
-					compteur++;
+					else if (it2->first >= 50) {
+						cout << "Probable" << endl;
+						cout << endl;
+					}
+					else {
+						cout << "Peu probable" << endl;
+						cout << endl;
+					}
 				}
 			}
-			else
-			{
-				if (compteur == 1)
-                {
-                    cout << "Aucun risque de maladie détecté à partir des informations "
-                            "contenues dans notre unité de stockage." << endl;
-                    cout << endl;
-                    break;
-                }
-			}
+		}
+		else
+		{
+
+			cout << "Aucun risque de maladie détecté à partir des informations "
+				"contenues dans notre unité de stockage." << endl;
+			cout << endl;
+
 		}
 	}
+	
 }
+
+multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meilleur = true on chercher la meilleure correspondance sinon le Top10
+{
+	
+	int compteur = 1;
+	multimap<double, string> resultat = a.getCorrespondances();
+	double probaLimite = 0;
+	if (meilleur)
+	{
+		if (resultat.size() > 1)
+		{
+			multimap<double, string>::reverse_iterator it2 = resultat.rbegin();
+			probaLimite = it2->first;
+		}
+	}
+	else {
+		if (resultat.size() > 10)
+		{
+			multimap<double, string>::reverse_iterator it3 = resultat.rbegin();
+			advance(it3, 9);
+			probaLimite = it3->first;
+		}
+	}
+
+	for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
+	{
+		if (it->first > 20)
+		{
+			if (it->first != probaLimite)
+			{
+				break;
+			}
+
+			if (it->second.compare("")) {
+
+				resultat.insert(pair<double, string>(it->first, it->second));
+				compteur++;
+			}
+		}
+		else {
+			break;
+		}
+	}
+
+	return resultat;
+}
+
+	
+
+
 
 void afficherDictionnaire(Dictionnaire d)
 {
