@@ -18,12 +18,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Main.h"
-#include "Attribut.h"
-#include "Dictionnaire.h"
-#include "Empreinte.h"
-#include "Maladie.h"
-#include "FichEmpStream.h"
-#include "Analyse.h"
+
 
 //#define _CRT_SECURE_NO_WARNINGS
 
@@ -39,22 +34,15 @@ void testEmpreinte();
 void testAffichage();
 void testFichEmpStream();
 void testAnalyse();*/
-Dictionnaire renseignerDictionnaire(Dictionnaire & d,FichEmpStream * fp);
-FichierPatient renseignerFichierPatient(FichEmpStream * fp);
-void afficherDetailMaladie(long idMaladie, Dictionnaire d);
-void afficherDictionnaire(Dictionnaire d);
-void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp);
-void afficherTop10(Dictionnaire d, FichierPatient fp);
-int lireEntree(int min, int max);
-multimap<double, string> retrouverResultat(Analyse a, bool meilleure);
+
 
 int main() {
-
+	Main main;
 
 	// Scénario
    FichEmpStream * fes = new FichEmpStream;
 	Dictionnaire * dico = new Dictionnaire;
-	*dico = renseignerDictionnaire(*dico, fes);
+	*dico = main.renseignerDictionnaire(*dico, fes);
 	bool power = true;
 	while (power) {
 		cout << "Que voulez-vous faire?" << endl;
@@ -62,12 +50,12 @@ int main() {
 		cout << " 3 - Afficher le contenu du dictionnaire " << endl;
 		cout << " 4 - Afficher les détails d'une maladie" << endl;
 		cout << " 5 - Quitter le programme" << endl;
-		int choix = lireEntree(1, 5);
+		int choix = main.lireEntree(1, 5);
 
 		switch (choix) {
 			case 1: {
 				FichierPatient *fpat = new FichierPatient;
-				*fpat = renseignerFichierPatient(fes);
+				*fpat = main.renseignerFichierPatient(fes);
 				deque<Empreinte> emp = fpat->getListeEmpreinte();
 				if (emp.size() == 0)
 				{
@@ -76,24 +64,24 @@ int main() {
 				cout << "Que souhaitez-vous faire ?" << endl;
 				cout << " 1 - Afficher les 10 maladies les plus probables" << endl;
 				cout << " 2 - Afficher la maladie la plus probable." << endl;
-				int choixAffichage = lireEntree(1, 2);
+				int choixAffichage = main.lireEntree(1, 2);
 
 				if (choixAffichage == 1) {
-					afficherTop10(*dico, *fpat);
+					main.afficherTop10(*dico, *fpat);
 				} else {
-					afficherMeilleurCorresp(*dico, *fpat);
+					main.afficherMeilleurCorresp(*dico, *fpat);
 				}
 				delete fpat;
 				break;
 			}
 
 			case 2: {
-				renseignerDictionnaire(*dico,fes);
+				main.renseignerDictionnaire(*dico,fes);
 				break;
 			}
 
 			case 3: {
-				afficherDictionnaire(*dico);
+				main.afficherDictionnaire(*dico);
 				break;
 			}
 
@@ -102,8 +90,8 @@ int main() {
 				cout << "Veuillez rentrer l'id de la maladie" << endl;
 				deque <Maladie> mal = dico->getListeMaladie();
 				int nbMaladie = mal.size();
-				int id = lireEntree(1, nbMaladie);
-				afficherDetailMaladie(id, *dico);
+				int id = main.lireEntree(1, nbMaladie);
+				main.afficherDetailMaladie(id, *dico);
 				break;
 			}
 
@@ -408,7 +396,7 @@ void testAnalyse()
     }
 }
 
-Dictionnaire renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
+Dictionnaire Main::renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
 {
 	string sourceFichierDico = "";
 	cout << "Veuillez renseigner le fichier servant de base de connaissances." << endl;
@@ -418,7 +406,7 @@ Dictionnaire renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
 	return d;
 }
 
-FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
+FichierPatient Main::renseignerFichierPatient(FichEmpStream * lecteur)
 {
 	string sourceFichierAnalyse = "";
 	cout << "Veuillez renseigner le fichier contenant les empreintes à analyser." << endl;
@@ -429,7 +417,7 @@ FichierPatient renseignerFichierPatient(FichEmpStream * lecteur)
 	return fPat;
 }
 
-void afficherTop10(Dictionnaire d, FichierPatient fp)
+void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 {
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
 	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
@@ -477,7 +465,7 @@ void afficherTop10(Dictionnaire d, FichierPatient fp)
 	}
 }
 
-void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
+void Main::afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 {
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
 	for (deque<Analyse>::iterator it = lesAnalyses.begin(); it != lesAnalyses.end(); it++)
@@ -525,7 +513,7 @@ void afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 	
 }
 
-multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meilleur = true on chercher la meilleure correspondance sinon le Top10
+multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur) //si meilleur = true on chercher la meilleure correspondance sinon le Top10
 {
 	
 	int compteur = 1;
@@ -595,12 +583,12 @@ multimap<double, string> retrouverResultat(Analyse a, bool meilleur) //si meille
 
 
 
-void afficherDictionnaire(Dictionnaire d)
+void Main::afficherDictionnaire(Dictionnaire d)
 {
 	cout << d << endl;
 }
 
-void afficherDetailMaladie(long idMaladie, Dictionnaire d)
+void Main::afficherDetailMaladie(long idMaladie, Dictionnaire d)
 {
 	Maladie maladie = d.getMaladieById(idMaladie);
 	cout << maladie.getEmpreinteById(7) << endl;
@@ -608,7 +596,7 @@ void afficherDetailMaladie(long idMaladie, Dictionnaire d)
 }
 
 
-int lireEntree(int min, int max)
+int Main::lireEntree(int min, int max)
 {
 	bool valid = false;
 	int nbRentre;
@@ -636,3 +624,23 @@ int lireEntree(int min, int max)
 	cin.ignore(100,'\n');
 	return nbRentre;
 }
+
+Main::Main()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au constructeur de <Empreinte>" << endl;
+#endif
+	
+} //----- Fin de Empreinte
+
+
+Main::~Main()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au destructeur de <Empreinte>" << endl;
+#endif
+} //----- Fin de ~Empreinte
