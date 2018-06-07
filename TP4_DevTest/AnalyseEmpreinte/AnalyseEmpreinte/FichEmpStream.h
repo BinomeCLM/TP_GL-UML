@@ -45,7 +45,7 @@ public:
     // Contrat :
     //
 
-    Dictionnaire lireDictionnaire (Dictionnaire & dico, string sourceFichier);
+    void lireDictionnaire (Dictionnaire & dico, string sourceFichier);
     // Mode d'emploi :
     //
     // Contrat :

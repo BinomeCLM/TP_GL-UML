@@ -109,7 +109,7 @@ FichierPatient FichEmpStream::lireFichierPatient (string sourceFichier)
 }
 
 // M�thode non v�rifi�e
-Dictionnaire FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceFichier)
+void FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceFichier)
 {
     bool extensionValide = verifierExtension(sourceFichier);
     bool signatureValide = false;
@@ -123,13 +123,13 @@ Dictionnaire FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceF
 		else
 		{
 			cerr << "Le fichier est vide" << endl;
-			return dico;
+			//return dico;
 		}
     }
     else
     {
         cerr << "Extension rentr�e ne correspond pas � '.txt'" << endl;
-        return dico;
+        //return dico;
     }
 
     if (signatureValide)
@@ -164,18 +164,18 @@ Dictionnaire FichEmpStream::lireDictionnaire(Dictionnaire & dico, string sourceF
 
             fichier.close();
 
-            return dico;
+           // return dico;
         }
         else
         {
             cerr << "Le fichier est valide mais son ouverture a �chou�." << endl;
-            return dico;
+            //return dico;
         }
     }
     else
     {
         cerr << "La signature ne correspond pas � celle du dictionnaire d�j� stock�e." << endl;
-        return dico;
+        //return dico;
     }
 
 } //----- Fin de M�thode

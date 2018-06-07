@@ -8,7 +8,7 @@
 class Main
 {
 public:
-	Dictionnaire renseignerDictionnaire(Dictionnaire & d, FichEmpStream * fp);
+	void renseignerDictionnaire(Dictionnaire & d, FichEmpStream * fp);
 	FichierPatient renseignerFichierPatient(FichEmpStream * fp);
 	void afficherDetailMaladie(long idMaladie, Dictionnaire d);
 	void afficherDictionnaire(Dictionnaire d);
