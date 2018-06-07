@@ -1,0 +1,17 @@
+AttributeName;AttributeType
+NoID;ID
+A0;string
+A1;double
+A2;string
+A3;double
+A4;string
+A5;double
+A6;string
+A7;double
+A8;string
+A9;double
+Disease;string
+
+NoID;A0;A1;A2;A3;A4;A5;A6;A7;A8;A9;Disease
+1;danger;11;none;45.5;blue;10;hot;10;cold;20.7;Maladie0
+2;blue;10;hot;10;blue;20.7;safe;45.5;cold;10;Maladie1

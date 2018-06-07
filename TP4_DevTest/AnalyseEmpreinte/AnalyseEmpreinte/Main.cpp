@@ -119,34 +119,43 @@ int main() {
 /*int main()
 {
 	Main main;
-	FichEmpStream * fstream = new FichEmpStream();
+	FichEmpStream fstream;
 
-	Dictionnaire * dico = new Dictionnaire;
+	Dictionnaire dico;
 	//*dico = fstream->lireDictionnaire(*dico, "DataMaladie.txt");
-	*dico = fstream->lireDictionnaire(*dico, "./fichier_de_test/1.3/fichier_maladies_5.txt");
+	fstream.lireDictionnaire(dico, "./fichier_de_test/1.12/fichier_maladies_30.txt");
 
-	FichierPatient * fp = new FichierPatient;
+	FichierPatient fp;
 	//*fp = fstream->lireFichierPatient("DataEmp.txt");
-	*fp = fstream->lireFichierPatient("./fichier_de_test/1.3/fichier_empreintes_analyse_1.txt");
+	fp = fstream.lireFichierPatient("./fichier_de_test/1.12/fichier_empreintes_analyse_1.txt");
 
-	deque<Analyse> lesAnalyseReel = fp->analyserEmpreinte(*dico);
+	deque<Analyse> lesAnalyseReel = fp.analyserEmpreinte(dico);
 	multimap<double, string> resultat;
-	resultat.insert(pair<double, string>(35, "Maladie1"));
-	resultat.insert(pair<double, string>(90, "Maladie5"));
-	
+	resultat.insert(pair<double, string>(100, "Maladie6"));
+	resultat.insert(pair<double, string>(100, "Maladie5"));
+	bool success = false;
+
 	multimap<double, string> resultatReel;
 	for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
 	{
+
 		resultatReel = main.retrouverResultat(*it, false);
 	}
 
-	
+	for (multimap<double, string>::iterator it2 = resultatReel.begin(); it2 != resultatReel.end(); ++it2)
+	{
+		cout << it2->first << it2->second << endl;
+	}
 
-	bool success = false;
+	for (multimap<double, string>::iterator it3 = resultat.begin(); it3 != resultat.end(); ++it3)
+	{
+		cout << it3->first << it3->second << endl;
+	}
+
+
 	if (resultat == resultatReel)
 	{
 		success = true;
-		cout << "true" << endl;
 	}
 
 	cout << success << endl;

@@ -41,6 +41,7 @@ public:
     deque<pair<string,string> > getSignature();
     void setNomFichier(string sourceFichier);
     void setSignature(string signature);
+	string getNomFichier();
 
 
 //------------------------------------------------- Surcharge d'opérateurs

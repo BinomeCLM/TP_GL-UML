@@ -18,6 +18,107 @@ namespace TestApp
 	TEST_CLASS(TestFonctionnel)
 	{
 	public:
+
+		TEST_METHOD(test1_1)
+		{
+			bool reussi = true;
+			cout << "Un fichier “.txt” contenant une empreinte valide et un dictionnaire valide permettant d’obtenir 10 risques. " << endl;
+			cout << " Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour cette empreinte.x" << endl;
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			lecteur.lireDictionnaire(d, "./fichier_de_test/1.1/fichier_maladies.txt");
+			FichierPatient fp = lecteur.lireFichierPatient("./fichier_de_test/1.1/fichier_empreintes_analyse_1.txt");
+
+			Main m;
+
+			deque<Analyse> lesAnalysesReel = fp.analyserEmpreinte(d);
+			multimap<double, string> correspAttendue;
+			correspAttendue.insert(pair<double, string>(100, "Maladie4"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie0"));
+			correspAttendue.insert(pair<double, string>(80, "Maladie2"));
+			correspAttendue.insert(pair<double, string>(50, "Maladie14"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie60"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie52"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie50"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie42"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie40"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie16"));
+
+			for (deque<Analyse>::iterator it = lesAnalysesReel.begin(); it != lesAnalysesReel.end(); it++)
+			{
+				multimap<double, string> correspReel = m.retrouverResultat(*it, false);
+				if (correspReel != correspAttendue)
+				{
+					reussi = false;
+				}
+			}
+
+			Assert::IsTrue(reussi, L"Pas de correspondance entre les risques a afficher");
+
+		}
+		TEST_METHOD(test1_2)
+		{
+			bool reussi = true;
+			cout << "Un fichier “.txt” contenant plusieurs empreintes valides et un dictionnaire valide permettant d’obtenir 10 risques pour chaque empreinte. " << endl;
+			cout << "Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour chaque empreinte." << endl;
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			lecteur.lireDictionnaire(d, "./fichier_de_test/1.2/fichier_maladies.txt");
+			FichierPatient fp = lecteur.lireFichierPatient("./fichier_de_test/1.2/fichier_empreintes_analyse_2.txt");
+
+			Main m;
+
+			deque<Analyse> lesAnalysesReel = fp.analyserEmpreinte(d);
+
+			multimap<double, string> correspAttendue;
+			correspAttendue.insert(pair<double, string>(100, "Maladie0"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie4"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie23"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie26"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie27"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie40"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie42"));
+			correspAttendue.insert(pair<double, string>(80, "Maladie2"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie14"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie16"));
+
+			multimap<double, string> correspAttendue2;
+			correspAttendue2.insert(pair<double, string>(100, "Maladie8"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie17"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie18"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie19"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie20"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie21"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie50"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie52"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie60"));
+			correspAttendue2.insert(pair<double, string>(30, "Maladie2"));
+
+			int count = 0;
+			for (deque<Analyse>::iterator it = lesAnalysesReel.begin(); it != lesAnalysesReel.end(); ++it)
+			{
+				multimap<double, string> correspReel = m.retrouverResultat(*it, false);
+				if (count == 0)
+				{
+					if (correspReel != correspAttendue)
+					{
+						reussi = false;
+					}
+				}
+				else
+				{
+					if (correspReel != correspAttendue2)
+					{
+						reussi = false;
+					}
+				}
+				
+				count++;
+			}
+			Assert::IsTrue(reussi, L"Pas de correspondance entre les risques a afficher");
+
+		}
+
 		TEST_METHOD(test1_3)
 		{
 			Main main;
@@ -282,7 +383,7 @@ namespace TestApp
 			for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
 			{
 
-				resultatReel = main.retrouverResultat(*it, false);
+				resultatReel = main.retrouverResultat(*it, true);
 			}
 
 			if (resultat == resultatReel)
@@ -293,6 +394,141 @@ namespace TestApp
 
 			Assert::IsTrue(success);
 		}
+
+		TEST_METHOD(test1_12)
+		{
+			Main main;
+			FichEmpStream fstream;
+
+			Dictionnaire dico;
+			//*dico = fstream->lireDictionnaire(*dico, "DataMaladie.txt");
+			fstream.lireDictionnaire(dico, "./fichier_de_test/1.12/fichier_maladies_30.txt");
+
+			FichierPatient fp;
+			//*fp = fstream->lireFichierPatient("DataEmp.txt");
+			fp = fstream.lireFichierPatient("./fichier_de_test/1.12/fichier_empreintes_analyse_1.txt");
+
+			deque<Analyse> lesAnalyseReel = fp.analyserEmpreinte(dico);
+			multimap<double, string> resultat;
+			resultat.insert(pair<double, string>(100, "Maladie6"));
+			resultat.insert(pair<double, string>(100, "Maladie5"));
+			bool success = false;
+
+			multimap<double, string> resultatReel;
+			for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
+			{
+
+				resultatReel = main.retrouverResultat(*it, true);
+			}
+
+			if (resultat == resultatReel)
+			{
+				success = true;
+			}
+
+
+			Assert::IsTrue(success);
+		}
+
+		TEST_METHOD(test1_13)
+		{
+			Main main;
+			FichEmpStream fstream;
+
+			Dictionnaire dico;
+			fstream.lireDictionnaire(dico, "./fichier_de_test/1.13/fichier_maladies_2.txt");
+			FichierPatient fp;
+			fp = fstream.lireFichierPatient("./fichier_de_test/1.13/fichier_empreintes_analyse_1.txt");
+
+			deque<Analyse> lesAnalyseReel = fp.analyserEmpreinte(dico);
+			multimap<double, string> resultat;
+			bool success = false;
+
+			multimap<double, string> resultatReel;
+			int nbMaladie;
+			for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
+			{
+
+				resultatReel = main.retrouverResultat(*it, true);
+				nbMaladie = it->getCorrespondances().size();
+			}
+
+			if (resultat == resultatReel)
+			{
+				success = true;
+			}
+
+			
+			Assert::IsTrue(success);
+			Assert::AreEqual(2, nbMaladie);
+
+		}
+
+		TEST_METHOD(test1_18)
+		{
+			bool reussi = false;
+			cout << "Un dictionnaire non valide en entrée (extension différente de celle attendue). " << endl;
+			cout << "Retourne une erreur précisant que l’extension du dictionnaire rentrée est invalide. " << endl;
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			deque<Maladie> avant = d.getListeMaladie();
+
+			lecteur.lireDictionnaire(d, "./fichier_de_test/1.18/fichier_maladies.json");
+			deque<Maladie> apres = d.getListeMaladie();
+			if (avant.size() == apres.size()) {
+				Assert::IsTrue(true);
+			}
+			else {
+				Assert::IsTrue(false);
+			}
+		}
+		TEST_METHOD(test1_19)
+		{
+			bool reussi = false;
+			cout << "Un fichier d’empreinte à analyser non valide (extension différente de celle attendue) et un dictionnaire valide en entrée. " << endl;
+			cout << "Retourne une erreur précisant que l’extension du fichier censé contenir le ou les empreintes est invalide. " << endl;
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			lecteur.lireDictionnaire(d, "./ft/1.19/fichier_maladies.txt");
+			FichierPatient fp;
+			deque<Empreinte> avant = fp.getListeEmpreinte();
+
+			fp = lecteur.lireFichierPatient("./ft/1.19/fichier_empreintes.json");
+
+			deque<Empreinte> apres = fp.getListeEmpreinte();
+
+			if (avant.size() == apres.size()) {
+				Assert::IsTrue(true);
+			}
+			else {
+				Assert::IsTrue(false);
+			}
+		}
+
+		TEST_METHOD(test1_20)
+		{
+			bool reussi = false;
+			cout << "Un fichier “.txt” non valide (fichier vide) et un dictionnaire valide. " << endl;
+			cout << "Message d’erreur affiché : « Aucune empreinte à analyser dans le fichier donné. » " << endl;
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			lecteur.lireDictionnaire(d, "./ft/1.20/fichier_maladies_10.txt");
+			FichierPatient fp;
+			fp = lecteur.lireFichierPatient("./ft/1.20/fichier_empreintes_analyse_0.txt");
+
+			deque<Empreinte> empreintes = fp.getListeEmpreinte();
+
+			if (empreintes.size() == 0) 
+			{
+				Assert::IsTrue(true);
+			}
+			else {
+				Assert::IsTrue(false);
+			}
+		}
+
+		
+
 	};
 
 	

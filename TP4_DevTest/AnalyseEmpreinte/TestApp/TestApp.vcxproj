@@ -161,6 +161,7 @@
     <ClInclude Include="TestFichierPatient.h" />
     <ClInclude Include="TestFonctionnels.h" />
     <ClInclude Include="TestMaladie.h" />
+    <ClInclude Include="TestPerfomance.h" />
     <ClInclude Include="unittest2.h" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,7 @@
     <ClCompile Include="TestMaladie.cpp">
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EditAndContinue</DebugInformationFormat>
     </ClCompile>
+    <ClCompile Include="TestPerfomance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestApp.rc" />

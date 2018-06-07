@@ -36,6 +36,10 @@ public:
 	//
 
 	void* getValue();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 	string getType();
 

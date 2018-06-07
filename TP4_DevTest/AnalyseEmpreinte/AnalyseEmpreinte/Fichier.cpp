@@ -34,6 +34,12 @@ deque<pair<string,string> > Fichier::getSignature()
 	return signature;
 }
 
+
+string Fichier::getNomFichier()
+{
+	return sourceFichier;
+}
+
 void Fichier::setNomFichier(string laSourceFichier)
 {
 	sourceFichier = laSourceFichier;
@@ -120,6 +126,7 @@ Fichier::Fichier ( )
     cout << "Appel au constructeur de <Fichier>" << endl;
 #endif
     nbEmpreintes = 0;
+	sourceFichier = "";
 } //----- Fin de Fichier
 
 Fichier::~Fichier ( )

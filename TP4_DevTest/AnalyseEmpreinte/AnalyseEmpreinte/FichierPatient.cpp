@@ -156,7 +156,7 @@ deque<Empreinte> FichierPatient::getListeEmpreinte()
 // Si le fichier n'est pas correcte, ce sera d�tect� d�s FichEmpStream
 FichierPatient::FichierPatient(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
 
-FichierPatient::FichierPatient ( )
+FichierPatient::FichierPatient ( ) : Fichier::Fichier() 
 // Algorithme :
 //
 {
