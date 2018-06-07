@@ -121,18 +121,15 @@ bool Attribut::operator==(Attribut & a)
 
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
-		cout << *(string*)a.getValue() << " " << *(string*)getValue() << endl;
 		return true;
 	}
 	else if (a.getType() == "double" && (*(double*)a.getValue() ==  *(double*)getValue()))
     {
-		cout << *(double*)a.getValue() << " " << *(double*)getValue() << endl;
 		return true;
 	}
 	// A revoir
 	else
 	{
-	    cout << "Les deux attributs n'ont pas la même valeur." << endl;
 		return false;
 	}
 }

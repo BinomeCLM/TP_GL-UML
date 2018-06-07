@@ -57,7 +57,7 @@ namespace TestApp
 
 			deque<Maladie> list = d->getListeMaladie();
 			Assert::AreEqual(list[0].getIdMaladie(), m1.getIdMaladie());
-			Assert::AreEqual(*(new long(0)), m3.getIdMaladie());//?
+			Assert::AreEqual(*(new long(0)), m3.getIdMaladie());
 		}
 
 

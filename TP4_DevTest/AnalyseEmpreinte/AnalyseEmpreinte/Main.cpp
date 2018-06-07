@@ -116,6 +116,46 @@ int main() {
 	return 0;
 }
 
+/*int main()
+{
+	Main main;
+	FichEmpStream * fstream = new FichEmpStream();
+
+	Dictionnaire * dico = new Dictionnaire;
+	//*dico = fstream->lireDictionnaire(*dico, "DataMaladie.txt");
+	*dico = fstream->lireDictionnaire(*dico, "./fichier_de_test/1.3/fichier_maladies_5.txt");
+
+	FichierPatient * fp = new FichierPatient;
+	//*fp = fstream->lireFichierPatient("DataEmp.txt");
+	*fp = fstream->lireFichierPatient("./fichier_de_test/1.3/fichier_empreintes_analyse_1.txt");
+
+	deque<Analyse> lesAnalyseReel = fp->analyserEmpreinte(*dico);
+	multimap<double, string> resultat;
+	resultat.insert(pair<double, string>(35, "Maladie1"));
+	resultat.insert(pair<double, string>(90, "Maladie5"));
+	
+	multimap<double, string> resultatReel;
+	for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
+	{
+		resultatReel = main.retrouverResultat(*it, false);
+	}
+
+	
+
+	bool success = false;
+	if (resultat == resultatReel)
+	{
+		success = true;
+		cout << "true" << endl;
+	}
+
+	cout << success << endl;
+
+	int n;
+		cin >> n;
+	return 0;
+}*/
+
 // Test du constructeur, methode validee
 void testAttribut()
 {
@@ -420,12 +460,13 @@ FichierPatient Main::renseignerFichierPatient(FichEmpStream * lecteur)
 void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 {
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
+	cout << lesAnalyses.size() << endl;
 	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
 	{
 		multimap<double,string> resultat = retrouverResultat(*it,false);
 		int compteur = 1;
 		cout << "Résultat de l'analyse pour l'empreinte numéro " << it->getIdEmpreinte() << endl;
-		if(resultat.size() != 0)
+		if (resultat.size() != 0)
 		{
 			for (multimap<double, string>::reverse_iterator it2 = resultat.rbegin(); it2 != resultat.rend(); it2++)
 			{
@@ -458,7 +499,7 @@ void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 			cout << "Aucun risque de maladie détecté à partir des informations "
 			 		"contenues dans notre unité de stockage." << endl;
              cout << endl;
-			break;
+			
 			
 		}
 		

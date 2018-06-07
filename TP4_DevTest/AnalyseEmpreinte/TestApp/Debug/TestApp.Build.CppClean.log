@@ -1,25 +1,24 @@
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\testapp.pch
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\vc140.pdb
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\vc140.idb
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\stdafx.obj
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\unittest1.obj
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\unittest2.obj
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\testempreinte.obj
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.pch
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\vc140.pdb
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\vc140.idb
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\stdafx.obj
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testempreinte.obj
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\debug\testapp.ilk
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\debug\testapp.dll
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\debug\testapp.pdb
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\testapp\debug\testapp.res
-l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.res
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\debug\testapp.lib
-\\servif-home\homes\lghandour\mes documents\visual studio 2015\projects\analyseempreinte\debug\testapp.exp
-l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\unittest1.obj
-l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\unittest2.obj
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.pch
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\vc140.pdb
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\vc140.idb
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\stdafx.obj
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testempreinte.obj
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testfichierpatient.obj
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testanalyse.obj
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testdictionnaire.obj
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testfichierpatient.obj
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testmaladie.obj
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\debug\testapp.ilk
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\debug\testapp.dll
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\debug\testapp.pdb
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.res
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\debug\testapp.lib
+l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\debug\testapp.exp
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.tlog\cl.command.1.tlog
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.tlog\cl.read.1.tlog
 l:\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\testapp\debug\testapp.tlog\cl.write.1.tlog
