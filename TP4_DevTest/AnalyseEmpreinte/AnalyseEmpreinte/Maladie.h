@@ -31,31 +31,32 @@ public:
 	//----------------------------------------------------- M�thodes publiques
 	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
 	// Mode d'emploi :
-	//Crée une empreinte à partir de chEmp. 
-	//Ajoute à la liste d'empreintes de la maladie si la maladie ne contient pas une empreinte avec le même identifiant. 
-	//Retourne true si l’empreinte a été ajoutée sinon false.
+	// Crée une empreinte à partir de chEmp. 
+	// Ajoute à la liste d'Empreinte de la Maladie si la maladie ne contient pas déjà 
+	// une empreinte avec le même identifiant. 
+	// Retourne true si l’empreinte a été ajoutée sinon false.
 
 	Empreinte getEmpreinteById(long id);
 	// Mode d'emploi :
 	// Retourne l’empreinte ayant l’identifiant id. 
-	//Si l’empreinte n’existe pas, retourne une Empreinte par défaut (id=0 sans attribut).
+	// Si l’empreinte n’existe pas, retourne une Empreinte par défaut (id=0 sans attribut).
 	
 	string getNomMaladie();
 	// Mode d'emploi :
-	//Retourne nomMaladie
+	// Retourne nomMaladie, le nom de la Maladie.
 
 	deque<Empreinte> getListeEmpreinte();
 	// Mode d'emploi :
-	//Retourne listeEmpreinte
+	// Retourne listeEmpreinte, la liste des Empreinte de la Maladie.
 
 	bool empreinteExiste(long id);
 	//Mode d'emploi :
-	//Retourne True si l’empreinte d’identifiant id existe dans la liste d’empreintes de la maladie. 
-	//Retourne False sinon.
+	// Retourne true si l'Empreinte d’identifiant id existe dans la liste d’Empreinte de la maladie. 
+	// Retourne false sinon.
 
     long getIdMaladie();
 	//Mode d'emploi :
-	//Retourne idMaladie
+	// Retourne idMaladie, l'identifiant de la Maladie.
 
 
 	//------------------------------------------------- Surcharge d'op�rateurs
@@ -65,21 +66,21 @@ public:
 
 	Maladie(long id, string nom);
 	//Mode d'emploi :
-	//constructeur de Maladie
+	// Constructeur de Maladie
 
 	Maladie();
 	// Mode d'emploi :
-	//Constructeur par défaut de Maladie
+	// Constructeur par défaut de Maladie
 
 	virtual ~Maladie();
 	// Mode d'emploi :
-	//Destructeur de Maladie
+	// Destructeur de Maladie
 
 private:
-    long idMaladie;
-	string nomMaladie;
-	long nbEmpreinte;
-	deque<Empreinte> listeEmpreinte;
+    long idMaladie; // Identifiant de la Maladie.
+	string nomMaladie; // Nom de la Maladie.
+	long nbEmpreinte; // Nombre d'Empreinte que contient la Maladie.
+	deque<Empreinte> listeEmpreinte; // Liste des Empreinte de la Maladie.
 
 	//------------------------------------------------------------------ PRIVE
 

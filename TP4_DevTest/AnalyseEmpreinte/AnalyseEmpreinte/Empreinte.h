@@ -1,7 +1,7 @@
 /*************************************************************************
 Empreinte  -  description
 -------------------
-d�but                : 03/04/2018
+début                : 03/04/2018
 copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -24,8 +24,9 @@ class Analyse;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// R�le de la classe <Empreinte>
-//Stock et gère les Empreintes des patients et celles des Maladies.
+// Rôle de la classe <Empreinte>
+// Stocke et gère les Empreintes des patients à analyser et celles des Maladies.
+// Une Empreinte est composée d'Attribut se basant sur une signature précise.
 //------------------------------------------------------------------------
 
 class Empreinte
@@ -36,56 +37,59 @@ public:
 	//----------------------------------------------------- M�thodes publiques
 	void ajouterAttribut(Attribut * a);
 	// Mode d'emploi :
-	//Ajoute un attribut a à la liste d’attributs de l’empreinte.
+	// Ajoute un attribut (valeur pointée par a) à la liste d’Attribut de l’empreinte.
 	
 	deque<Attribut> getListeAttributs();
 	// Mode d'emploi :
-	//Retourne listeAttributs
+	// Retourne listeAttributs, la liste des Attribut de l'Empreinte.
 
 
 	void setNbAttributs(long nbAttr);
 	// Mode d'emploi :
-	//Defini la valeure de nbAttributs
+	// Definit la valeur de nbAttributs, le nombre d'Attribut que contient 
+	// l'Empreinte.
 
 
 	long getNbAttributs();
 	// Mode d'emploi :
-	//Retourne nbAttributs
+	// Retourne nbAttributs, le nombre d'Attribut de l'Empreinte.
 
 	long getIdEmpreinte();
 	// Mode d'emploi :
-	//Retourne IdEmpreinte
+	// Retourne IdEmpreinte, l'identifiant de l'Empreinte.
 
 	void setIdEmpreinte(long id);
 	// Mode d'emploi :
-	//defini la valeur de IdEmpreinte
-
+	// Definit la valeur de IdEmpreinte, l'identifiant de l'Empreinte.
 
 	Analyse lancerAnalyse(Dictionnaire d);
 	// Mode d'emploi :
-	//Appelle la méthode ‘genererClassement’ de la classe Analyse pour l’empreinte par rapport au dictionnaire d. 
-	//Cette analyse est ensuite retournée.
+	// Lance une analyse pour l'Empreinte en comparant celle-ci avec
+	// l'ensemble des Maladie du Dictionnaire d.
+	// Cette Analyse est ensuite retournée.
 
 
 	//------------------------------------------------- Surcharge d'op�rateur
 	friend ostream &operator<<(ostream & os, Empreinte & E);
-
+	// Mode d'emploi :
+	// Surcharge de l'operator << qui permet d'afficher une Empreinte
+	// avec son identifiant et l'ensemble de ses Attribut.
 
 
 	//-------------------------------------------- Constructeurs - destructeur
 
 	Empreinte(long id);
 	// Mode d'emploi :
-	//Constructeur d'Empreinte
+	// Constructeur d'Empreinte
 
 
 	Empreinte();
 	// Mode d'emploi :
-	//Constructeur par défaut d'Empreinte
+	// Constructeur par défaut d'Empreinte
 
 	virtual ~Empreinte();
 	// Mode d'emploi :
-	//Destructeur d'Empreinte
+	// Destructeur d'Empreinte
 
 	//------------------------------------------------------------------ PRIVE
 
@@ -95,12 +99,12 @@ protected:
 	//----------------------------------------------------- Attributs prot�g�s
 
 private:
-	long idEmpreinte;
-	long nbAttributs;
-	deque<Attribut> listeAttributs;
+	long idEmpreinte; // identifiant de l'Empreinte
+	long nbAttributs; // Nombre d'Attribut de l'Empreinte
+	deque<Attribut> listeAttributs; // Liste d'Attribut de l'Empreinte.
 };
 
-//-------------------------------- Autres d�finitions d�pendantes de <Empreinte>
+//-------------------------------- Autres définitions dépendantes de <Empreinte>
 
 #endif // Empreinte_H
 

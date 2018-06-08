@@ -1,7 +1,7 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    d�but                : 03/04/2018
+    début                : 03/04/2018
     copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -21,9 +21,9 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// R�le de la classe <FichierPatient>
-//Stock et gère les empreintes données par l'utilisatuer pour être analysées
-//par notre application
+// Rôle de la classe <FichierPatient>
+// Stocke et gère les empreintes à analyser renseignées par l'utilisateur.
+//
 //------------------------------------------------------------------------
 
 class FichierPatient : public Fichier
@@ -35,16 +35,20 @@ public:
 
     deque<Analyse> analyserEmpreinte (Dictionnaire d);
     // Mode d'emploi :
-    //Pour chaque empreinte de cette classe, appelle la méthode lancerAnalyse. 
-	//Chacune des analyses effectuées est regroupées dans une deque stockant des Analyse que l’on retourne.
+    // Analyse l'ensemble des Empreinte du FichierPatient en 
+	// comparant les correspondances avec le Dictionnaire d.
+	// Retourne une qeque<Analyse> représentant les résultats pour
+	// chaque Empreinte du FichierPatient.
 
     bool ajouterEmpreinte (string empLigne);
     // Mode d'emploi :
-    //Ajoute l’empreinte e à la liste des empreintes du FichierPatient.
+    // Ajoute l’empreinte e à la liste des Empreinte du FichierPatient.
+	// Retourne true en cas d'ajout, false sinon.
 
     deque<Empreinte> getListeEmpreinte();
 	// Mode d'emploi :
-	//Retourne listeEmpAnalyse
+	// Retourne listeEmpAnalyse, la liste des Empreinte à analyser
+	// de FichierPatient.
 
 //-------------------------------------------- Constructeurs - destructeur
     FichierPatient(string nomFichier, string uneSignature);
@@ -53,11 +57,11 @@ public:
 
     FichierPatient ( );
     // Mode d'emploi :
-    //Constructeur par défaut
+    //Constructeur par défaut de FichierPatient.
 
     virtual ~FichierPatient ( );
     // Mode d'emploi :
-    //Destructeur par défaut
+    // Destructeur par défaut de FichierPatient.
 
 //------------------------------------------------------------------ PRIVE
 
@@ -67,7 +71,7 @@ protected:
 //----------------------------------------------------- Attributs prot�g�s
 
 private:
-    deque<Empreinte> listeEmpAnalyse;
+    deque<Empreinte> listeEmpAnalyse; // Liste des Empreinte à analyser.
 
 };
 

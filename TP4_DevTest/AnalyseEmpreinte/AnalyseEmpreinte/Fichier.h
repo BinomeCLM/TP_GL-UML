@@ -22,7 +22,8 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Fichier>
-//
+// Classe mère de FichierPatient et Dictionnaire. C'est une classe qui généralise
+// les fichiers.
 //
 //------------------------------------------------------------------------
 
@@ -32,43 +33,57 @@ class Fichier
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    
     deque<pair<string,string> > getSignature();
+	// Mode d'emploi :
+	// Retourne la signature du Fichier.
+	//
+	// Contrat :
+	//
+
     void setNomFichier(string sourceFichier);
+	// Mode d'emploi :
+	// Définit le nom du fichier sourceFichier à partir 
+	// duquel on récupére les données.
+	// 
+	// Contrat :
+	//
+
     void setSignature(string signature);
+	// Mode d'emploi :
+	// Définit la signature du Fichier.
+	//
+	// Contrat :
+	//
+
 	string getNomFichier();
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-   // Fichier & operator = ( const Fichier & unFichier );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+	// Mode d'emploi :
+	// Retourne le nom du Fichier dont les données du Fichier
+	// sont tirées.
+	//
+	// Contrat :
+	//
 
 //-------------------------------------------- Constructeurs - destructeur
-    //Fichier ( const Fichier & unFichier );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Fichier(string nomFichier, string uneSignature );
+	// Mode d'emploi (constructeur de copie) :
+	// Constructeur de Fichier.
+	// 
+	// Contrat :
+	//
 
     Fichier ( );
     // Mode d'emploi :
+	// Constructeur par défaut de Fichier.
     //
     // Contrat :
     //
 
     virtual ~Fichier ( );
     // Mode d'emploi :
-    //
+    // Destructeur par défaut de Fichier.
+	//
     // Contrat :
     //
 
@@ -78,10 +93,9 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	long nbEmpreintes; // Nom à changer: pour un dico, ça représente le nombre de maladie
-    // et pour un FichierPatient le nombre d'empreinte à analyser.
-    string sourceFichier;
-    deque<pair<string,string> > signature;
+	long nbEmpreintes; // Nombre de Maldadie si le fichier est un dictionnaire. Nombre d'empreinte à analyser sinon.
+    string sourceFichier; // Nom du fichier dont on tire les données.
+    deque<pair<string,string> > signature; // Signature du Fichier.
 //----------------------------------------------------- Attributs protégés
 
 };

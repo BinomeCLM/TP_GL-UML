@@ -60,7 +60,7 @@ namespace TestApp
 			clock_t timeStop = clock();
 			if ((ana.size() == 1000) && ((timeStop - timeStart)<360000))
 			{
-			success = true;
+				success = true;
 			}
 
 			Assert::IsTrue(true);
