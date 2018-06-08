@@ -521,6 +521,13 @@ namespace TestApp
 			}
 		}
 
+		TEST_METHOD(test6_1)
+		{
+			FichEmpStream lecteur;
+			Dictionnaire d;
+			Assert::IsTrue(d.getListeMaladie().empty());
+		}
+
 		
 
 	};
