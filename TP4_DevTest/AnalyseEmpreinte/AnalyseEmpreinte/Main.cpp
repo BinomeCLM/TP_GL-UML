@@ -14,7 +14,6 @@ using namespace std;
 #include <iostream>
 #include <deque>
 #include <string>
-#include <time.h>
 //------------------------------------------------------ Include personnel
 #include "Main.h"
 
@@ -126,7 +125,6 @@ FichierPatient Main::renseignerFichierPatient(FichEmpStream * lecteur)
 
 void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 {
-	time_t t = clock();
 	deque<Analyse> lesAnalyses = fp.analyserEmpreinte(d);
 	cout << lesAnalyses.size() << endl;
 	for (deque<Analyse>::iterator it=lesAnalyses.begin(); it!=lesAnalyses.end(); it++)
@@ -169,8 +167,7 @@ void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
             cout << endl;	
 		}
 
-		t = clock() - t;
-		cout << t << endl;
+		
 	}
 } //----- Fin de afficherTop10
 
