@@ -1,9 +1,8 @@
 /*************************************************************************
 Maladie  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <Maladie> (fichier Maladie.h) ----------------
@@ -21,8 +20,7 @@ e-mail               : $EMAIL$
 
 //------------------------------------------------------------------------
 // R�le de la classe <Maladie>
-//
-//
+//Stock et gère les Maladies du Dictionnaires
 //------------------------------------------------------------------------
 
 class Maladie
@@ -31,50 +29,51 @@ class Maladie
 
 public:
 	//----------------------------------------------------- M�thodes publiques
-	// type M�thode ( liste des param�tres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 	bool ajouterEmpreinte(string chEmp, deque<pair<string, string> > signature);
+	// Mode d'emploi :
+	//Crée une empreinte à partir de chEmp. 
+	//Ajoute à la liste d'empreintes de la maladie si la maladie ne contient pas une empreinte avec le même identifiant. 
+	//Retourne true si l’empreinte a été ajoutée sinon false.
+
 	Empreinte getEmpreinteById(long id);
+	// Mode d'emploi :
+	// Retourne l’empreinte ayant l’identifiant id. 
+	//Si l’empreinte n’existe pas, retourne une Empreinte par défaut (id=0 sans attribut).
+	
 	string getNomMaladie();
+	// Mode d'emploi :
+	//Retourne nomMaladie
+
 	deque<Empreinte> getListeEmpreinte();
+	// Mode d'emploi :
+	//Retourne listeEmpreinte
+
 	bool empreinteExiste(long id);
+	//Mode d'emploi :
+	//Retourne True si l’empreinte d’identifiant id existe dans la liste d’empreintes de la maladie. 
+	//Retourne False sinon.
+
     long getIdMaladie();
-	//Cr�ation de cette m�thode car probl�me de segmentation avec getEmpreinteById...juste en attandant pour pouvoir tester
-    //mais en soit vu qu'on a juste besoin de savoir si l'empreinte existe, on pourrait la garder au lieu de getById()
+	//Mode d'emploi :
+	//Retourne idMaladie
 
 
 	//------------------------------------------------- Surcharge d'op�rateurs
-    // Maladie & operator = (const Maladie & unMaladie);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
     friend ostream &operator<<(ostream & os, Maladie & m);
 
 	//-------------------------------------------- Constructeurs - destructeur
-	//Maladie(const Maladie & unMaladie);
-	// Mode d'emploi (constructeur de copie) :
-	//
-	// Contrat :
-	//
 
 	Maladie(long id, string nom);
+	//Mode d'emploi :
+	//constructeur de Maladie
 
 	Maladie();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Constructeur par défaut de Maladie
 
 	virtual ~Maladie();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Destructeur de Maladie
 
 private:
     long idMaladie;

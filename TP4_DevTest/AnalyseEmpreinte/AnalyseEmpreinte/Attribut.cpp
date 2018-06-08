@@ -1,9 +1,8 @@
 /*************************************************************************
 Attribut  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <Attribut> (fichier Attribut.cpp) ------------
@@ -28,14 +27,13 @@ void Attribut::setValue(void* uneValeur)
 {
 	if (type == "double")
 	{
-		//value = new double ();
+	
 		*(double*)value = *(double*)uneValeur;
 	}
 	else if (type == "string") {
-		//value = new string();
 		*(string*)value = *(string*)uneValeur;
 	}
-	//delete [] uneValeur;
+	
 
 } //----- Fin de M�thode
 
@@ -78,21 +76,7 @@ Attribut& Attribut::operator=(const Attribut & unAttribut)
 	return *this;
 } //----- Fin de operator =*/
 
-/*bool Attribut::estEgal(Attribut & a)
-{
-	if (a.getType() == "string" && *(string*)a.getValue() == *(string*)value)
-	{
-		return true;
-	}
-	else if (a.getType() == "double" && *(double*)a.getValue() == *(double*)value) {
-		return true;
-	}
-	else {
-		return false;
-	}
 
-
-}*/
 
 ostream &operator<<(ostream & os, Attribut & A)
 {
@@ -104,7 +88,6 @@ ostream &operator<<(ostream & os, Attribut & A)
 	{
 		os << *(string*)A.getValue();
 	}
-    // Soit on met else tout seul soit on laisse comme ça et on met un else avec un msg d'erreur
 	return os;
 }
 
@@ -116,8 +99,7 @@ bool Attribut::operator==(Attribut & a)
 	cout << "Appel de ==" << endl;
 #endif
 
-//if ((type == "double" && *(double*)value == *(double*)unAttribut.value)
-//|| (type == "string" && 0==strcmp((string*)value , *(string*)unAttribut.value)))
+
 
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
@@ -127,7 +109,6 @@ bool Attribut::operator==(Attribut & a)
     {
 		return true;
 	}
-	// A revoir
 	else
 	{
 		return false;
@@ -179,9 +160,7 @@ Attribut::Attribut()
 // Algorithme :
 //
 {
-#ifdef MAP
-	cout << "Appel au constructeur de <Attribut>" << endl;
-#endif
+
 } //----- Fin de Attribut
 
 
@@ -189,9 +168,7 @@ Attribut::~Attribut()
 // Algorithme :
 //
 {
-#ifdef MAP
-	cout << "Appel au destructeur de <Attribut>" << endl;
-#endif
+
 	if(type == "double")
 	{
 		delete (double*)value;

@@ -1,9 +1,8 @@
 /*************************************************************************
 Maladie  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <Maladie> (fichier Maladie.cpp) ------------
@@ -24,25 +23,19 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- M�thodes publiques
-// type Maladie::M�thode ( liste des param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
 bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
 
 	bool ajoutee;
 
-	char delimiter = ';';
+	char delimiter = ';'; //les attributs sont séparés par un ';'
 	string attribut;
 
-	int posD = 0;
-	int posF = chEmp.find(delimiter,posD);
-	long id  = (long)stold(chEmp.substr(posD,posF-posD));
+	int posD = 0; //début de l'attribut
+	int posF = chEmp.find(delimiter,posD); //fin de l'attribut
+	long id  = (long)stold(chEmp.substr(posD,posF-posD)); //premier attribut = id
     Empreinte* e = new Empreinte();
     cout << chEmp << endl;
-    if(!empreinteExiste(id))
+    if(!empreinteExiste(id)) //si la maladie ne possède pas déjà cette empreinte
 	{
 	    e->setIdEmpreinte(id);
 		posD = posF+1;
@@ -58,6 +51,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 			Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
+			//selon le type on défini la valeur de l'attribut
 			if(A->getType() == "double")
 			{
 				val = new double(stod(attribut));
@@ -95,10 +89,6 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	return ajoutee;
 }
 
-// Est-ce qu'on a besoin de getEmpreinteById et empreinteExiste ?
-// retourner un pointeur ? Pourquoi pas une r�f�rence ?
-// Parce-que sinon la case que pointe e va �tre d�truite � la fin de
-// la m�thode, non ?
 Empreinte Maladie::getEmpreinteById(long id) {
 	Empreinte e;
 
@@ -145,7 +135,6 @@ long Maladie::getIdMaladie()
 
 ostream &operator<<(ostream &os, Maladie & m)
 {
-    cout << "debut surcharge << Maladie" << endl;
     deque<Empreinte> listeEmpMaladie = m.getListeEmpreinte();
     long nbEmp = m.nbEmpreinte;
     os << "idMaladie: " << m.idMaladie << "; Nombre d'Empreintes : " << nbEmp << endl;
@@ -154,58 +143,26 @@ ostream &operator<<(ostream &os, Maladie & m)
     {
         os << *it << endl;
     }
-
-    cout << "fin surcharge << Maladie" << endl;
-
     return os;
 }
 
 
-
-//------------------------------------------------- Surcharge d'op�rateurs
-/*Maladie & Maladie::operator = (const Maladie & unMaladie)
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
-  //-------------------------------------------- Constructeurs - destructeur
-/*Maladie::Maladie(const Maladie & unMaladie)
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <Maladie>" << endl;
-#endif
-}*/ //----- Fin de Maladie (constructeur de copie)
-
-
 Maladie::Maladie()
-// Algorithme :
-//
 {
-#ifdef MAP
-	cout << "Appel au constructeur de <Maladie>" << endl;
-#endif
-} //----- Fin de Maladie
+
+} 
 
 Maladie::Maladie(long id, string nom)
 {
 	idMaladie = id;
 	nomMaladie = nom;
-	nbEmpreinte = 0; // j'ai rajout� �a dans le constructeur
+	nbEmpreinte = 0; 
 }
 
 
 Maladie::~Maladie()
-// Algorithme :
-//
 {
-#ifdef MAP
-	cout << "Appel au destructeur de <Maladie>" << endl;
-#endif
-} //----- Fin de ~Maladie
+} 
 
 
   //------------------------------------------------------------------ PRIVE

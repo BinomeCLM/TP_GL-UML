@@ -58,10 +58,10 @@ namespace TestApp
 			deque<Analyse> ana = fp.analyserEmpreinte(dico);
 
 			clock_t timeStop = clock();
-			/*if ((ana.size() == 1000))// && ((timeStop - timeStart)<60000))
+			if ((ana.size() == 1000) && ((timeStop - timeStart)<360000))
 			{
 			success = true;
-			}*/
+			}
 
 			Assert::IsTrue(true);
 		}
@@ -73,8 +73,8 @@ namespace TestApp
 
 			Dictionnaire dico;
 
-			fstream.lireDictionnaire(dico, "./fichier_de_test/2.3/fichier_maladies_1000.txt");
-			FichierPatient fp = fstream.lireFichierPatient("./fichier_de_test/2.3/fichier_empreintes_analyse_5000.txt");
+			fstream.lireDictionnaire(dico, "./fichier_de_test/2.3/fichier_maladies_2000.txt");
+			FichierPatient fp = fstream.lireFichierPatient("./fichier_de_test/2.3/fichier_empreintes_analyse_2000.txt");
 
 			bool success = false;
 

@@ -1,9 +1,8 @@
 /*************************************************************************
                            Fichier  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <Fichier> (fichier Fichier.h) ----------------
@@ -89,4 +88,4 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Fichier>
 
-#endif // XXX_H
+#endif // Main_H

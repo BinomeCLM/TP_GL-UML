@@ -1,9 +1,8 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    d�but                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <FichierPatient> (fichier FichierPatient.h) ----------------
@@ -23,8 +22,8 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // R�le de la classe <FichierPatient>
-//
-//
+//Stock et gère les empreintes données par l'utilisatuer pour être analysées
+//par notre application
 //------------------------------------------------------------------------
 
 class FichierPatient : public Fichier
@@ -33,54 +32,32 @@ class FichierPatient : public Fichier
 
 public:
 //----------------------------------------------------- M�thodes publiques
-    // type M�thode ( liste des param�tres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     deque<Analyse> analyserEmpreinte (Dictionnaire d);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Pour chaque empreinte de cette classe, appelle la méthode lancerAnalyse. 
+	//Chacune des analyses effectuées est regroupées dans une deque stockant des Analyse que l’on retourne.
 
     bool ajouterEmpreinte (string empLigne);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Ajoute l’empreinte e à la liste des empreintes du FichierPatient.
 
     deque<Empreinte> getListeEmpreinte();
-
-//------------------------------------------------- Surcharge d'op�rateurs
-    //FichierPatient & operator = ( const FichierPatient & unFichierPatient );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+	// Mode d'emploi :
+	//Retourne listeEmpAnalyse
 
 //-------------------------------------------- Constructeurs - destructeur
-    //FichierPatient ( const FichierPatient & unFichierPatient );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     FichierPatient(string nomFichier, string uneSignature);
+	// Mode d'emploi
+	// Constructeur de FichierPatient
 
     FichierPatient ( );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Constructeur par défaut
 
     virtual ~FichierPatient ( );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Destructeur par défaut
 
 //------------------------------------------------------------------ PRIVE
 

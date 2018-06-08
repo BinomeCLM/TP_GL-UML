@@ -1,9 +1,8 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    d�but                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <FichierPatient> (fichier FichierPatient.cpp) ------------
@@ -17,23 +16,15 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "FichierPatient.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- M�thodes publiques
-// type FichierPatient::M�thode ( liste des param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
+
 
 deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 {
-    // Est-ce qu'ici on ferait pas une deque aussi ? Pour stocker les analyses
     deque<Analyse> analyse;
-    if (!listeEmpAnalyse.empty()) // V�rification si la liste des empreintes � analyser est vide ou non.
-    // Est-ce qu'on la fait ici ou dans fichEmpStream. Je la laisse ici au cas ou pour l'instant
+    if (!listeEmpAnalyse.empty()) // Verification si la liste des empreintes a analyser est vide ou non.
     {
         for (std::deque<Empreinte>::iterator it=listeEmpAnalyse.begin(); it!=listeEmpAnalyse.end(); ++it)
         {
@@ -46,7 +37,7 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
     }
     else
     {
-        cerr << "fichier des empreintes � analyse est vide." << endl;
+        cerr << "fichier des empreintes a analyse est vide." << endl;
         return analyse;
     }
 
@@ -98,7 +89,7 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
         i++;
 
 
-        delete A; // C'est le pointeur qu'on delete et pas la case qu'il pointe
+        delete A; 
     }
     posF = chEmp.find('\\',posD);
     attribut  = chEmp.substr(posD,posF-posD);
@@ -135,35 +126,16 @@ deque<Empreinte> FichierPatient::getListeEmpreinte()
     return listeEmpAnalyse;
 }
 
-//------------------------------------------------- Surcharge d'op�rateurs
-/*FichierPatient & FichierPatient::operator = ( const FichierPatient & unFichierPatient )
-// Algorithme :
-//
-{
-}*/ //----- Fin de operator =
 
-
-//-------------------------------------------- Constructeurs - destructeur
-/*FichierPatient::FichierPatient ( const FichierPatient & unFichierPatient )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <FichierPatient>" << endl;
-#endif
-}*/ //----- Fin de FichierPatient (constructeur de copie)
-
-// Si le fichier n'est pas correcte, ce sera d�tect� d�s FichEmpStream
+// Si le fichier n'est pas correcte, ce sera detecte des FichEmpStream
 FichierPatient::FichierPatient(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
 
 FichierPatient::FichierPatient ( ) : Fichier::Fichier() 
 // Algorithme :
 //
 {
-    // Ici, on ne fait rien car avec FichEmpStream impossible de faire appel � ce constructeur par d�faut.
-#ifdef MAP
-    cout << "Appel au constructeur de <FichierPatient>" << endl;
-#endif
+    // Ici, on ne fait rien car avec FichEmpStream impossible de faire appel à ce constructeur par défaut.
+
 } //----- Fin de FichierPatient
 
 
@@ -171,9 +143,7 @@ FichierPatient::~FichierPatient ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <FichierPatient>" << endl;
-#endif
+
 } //----- Fin de ~FichierPatient
 
 

@@ -1,9 +1,8 @@
 /*************************************************************************
 Main  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <Main> (fichier Main.cpp) ------------
@@ -19,23 +18,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Main.h"
 
-
-//#define _CRT_SECURE_NO_WARNINGS
-
-
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
-/*void testAttribut();
-void testMaladie();
-void testFichier();
-void testDico();
-void testEmpreinte();
-void testAffichage();
-void testFichEmpStream();
-void testAnalyse();*/
-
-
 int main() {
 	Main main;
 
@@ -115,55 +98,6 @@ int main() {
 	
 	return 0;
 }
-
-/*int main()
-{
-	Main main;
-	FichEmpStream fstream;
-
-	Dictionnaire dico;
-	//*dico = fstream->lireDictionnaire(*dico, "DataMaladie.txt");
-	fstream.lireDictionnaire(dico, "./fichier_de_test/1.12/fichier_maladies_30.txt");
-
-	FichierPatient fp;
-	//*fp = fstream->lireFichierPatient("DataEmp.txt");
-	fp = fstream.lireFichierPatient("./fichier_de_test/1.12/fichier_empreintes_analyse_1.txt");
-
-	deque<Analyse> lesAnalyseReel = fp.analyserEmpreinte(dico);
-	multimap<double, string> resultat;
-	resultat.insert(pair<double, string>(100, "Maladie6"));
-	resultat.insert(pair<double, string>(100, "Maladie5"));
-	bool success = false;
-
-	multimap<double, string> resultatReel;
-	for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
-	{
-
-		resultatReel = main.retrouverResultat(*it, false);
-	}
-
-	for (multimap<double, string>::iterator it2 = resultatReel.begin(); it2 != resultatReel.end(); ++it2)
-	{
-		cout << it2->first << it2->second << endl;
-	}
-
-	for (multimap<double, string>::iterator it3 = resultat.begin(); it3 != resultat.end(); ++it3)
-	{
-		cout << it3->first << it3->second << endl;
-	}
-
-
-	if (resultat == resultatReel)
-	{
-		success = true;
-	}
-
-	cout << success << endl;
-
-	int n;
-		cin >> n;
-	return 0;
-}*/
 
 
 
@@ -285,9 +219,9 @@ void Main::afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 	
 }
 
-multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur) //si meilleur = true on chercher la meilleure correspondance sinon le Top10
+multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur) 
+//si meilleur = true on chercher la meilleure correspondance sinon le Top10
 {
-	
 	int compteur = 1;
 	multimap<double, string> resultat = a.getCorrespondances();
 	multimap<double, string> resultatMeilleur;
@@ -297,39 +231,40 @@ multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur) //si 
 		if (resultat.size() > 1)
 		{
 			multimap<double, string>::reverse_iterator it2 = resultat.rbegin();
-			probaLimite = it2->first;
+			probaLimite = it2->first; //Pour pouvoir verifier les egalites
+		}
 
-			for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
+		for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
+		{
+			if (it->first > 20)//on ne considere un risque que si la probabilite est >20
 			{
-				if (it->first > 20)
+				if (compteur > 1 && it->first != probaLimite)
 				{
-					if (compteur > 1 && it->first != probaLimite)
-					{
-						break;
-					}
-
-					if (it->second.compare("")) {
-						resultatMeilleur.insert(pair<double, string>(it->first, it->second));
-						compteur++;
-					}
-				}
-				else {
 					break;
 				}
+
+				if (it->second.compare("")) {
+					resultatMeilleur.insert(pair<double, string>(it->first, it->second));
+					compteur++;
+				}
+			}
+			else {
+				break;
 			}
 		}
+		
 	}
 	else {
 		if (resultat.size() > 10)
 		{
 			multimap<double, string>::reverse_iterator it3 = resultat.rbegin();
 			advance(it3, 9);
-			probaLimite = it3->first;
+			probaLimite = it3->first; //Pour pouvoir verifier les egalites
 		}
 
 		for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
 		{
-			if (it->first > 20)
+			if (it->first > 20) //on ne considere un risque que si la probabilite est >20
 			{
 				if (compteur > 10 && it->first != probaLimite)
 				{
@@ -398,21 +333,14 @@ int Main::lireEntree(int min, int max)
 }
 
 Main::Main()
-// Algorithme :
-//
 {
-#ifdef MAP
-	cout << "Appel au constructeur de <Empreinte>" << endl;
-#endif
+
 	
-} //----- Fin de Empreinte
+} //----- Fin de Main
 
 
 Main::~Main()
-// Algorithme :
-//
+
 {
-#ifdef MAP
-	cout << "Appel au destructeur de <Empreinte>" << endl;
-#endif
-} //----- Fin de ~Empreinte
+
+} //----- Fin de ~Main

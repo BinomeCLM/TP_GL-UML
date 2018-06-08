@@ -1,9 +1,8 @@
 /*************************************************************************
 Analyse  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <Analyse> (fichier Analyse.cpp) ------------
@@ -31,44 +30,43 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-// M�thode non v�rifi�e --> Test unitaire � faire
-// une fois calculerProbabilit� valid�e
+
 void Analyse::genererClassement(Dictionnaire d, Empreinte e)
 {
-	//////////////////Rajouter set id
 	deque<Maladie> listeMaladies = d.getListeMaladie();
 
-    // Pour chaque maladie du dictionnaire, on calcule la proba associ�e
-    // avec l'empreinte � analyser
+    // Pour chaque maladie du dictionnaire, on calcule la proba associee
+    // avec l'empreinte a analyser
 	for (deque<Maladie>::iterator it=listeMaladies.begin(); it!=listeMaladies.end(); ++it)
 	{
 		calculerProbabilite(e,*it);
 	}
 }
 
-// M�thode non v�rifi�e --> Test unitaire � r�alis�
 void Analyse::calculerProbabilite(Empreinte e, Maladie m)
+// Algorithme :
+//Soit ‘a’ le nombre d’attributs identiques et ‘n’ le nombre d’attributs total.
+//La probabilité calculée est égale à : (a / n)*100.
 {
-	// On r�cup�re les empreintes ou l'empreinte de la maladie
+	// On recupere les empreintes ou l'empreinte de la maladie
 	deque<Empreinte> listeEmp = m.getListeEmpreinte();
 
-	// On r�cup�re dans une var le nombre d'attributs pour faire la moyenne
+	// On recupere dans une var le nombre d'attributs pour faire la moyenne
 	long nbAttrEmp = e.getNbAttributs();
 
-	//On r�cup�re une seule fois la liste des attributs de l'empreinte qu'on analyse
+	//On recupere une seule fois la liste des attributs de l'empreinte qu'on analyse
 	deque<Attribut> listeAttr = e.getListeAttributs();
 
 	double max = 0;
 
-	// Pour chq empreinte, on calcule la probabilit� associ�e
+	// Pour chaque empreinte, on calcule la probabilite associee
 	for (deque<Empreinte>::iterator it=listeEmp.begin(); it!=listeEmp.end(); ++it)
 	{
-		// On init un compteur pour compter le nbre d'attributs correspondant
+		// On initie un compteur pour compter le nbre d'attributs correspondant
 		long compteur = 0;
 
-		// On compare les attributs des deux empreintes
 
-		// On r�cup�re la liste des attributs de l'empreinte de la maladie
+		// On recupere la liste des attributs de l'empreinte de la maladie
 		deque<Attribut> listeAttrEmpMaladie = it->getListeAttributs();
 		for (int i=0; i<nbAttrEmp; i++)
         {
@@ -82,8 +80,9 @@ void Analyse::calculerProbabilite(Empreinte e, Maladie m)
         {
             max = compteur;
         }
-		// On ajoute a la multimap en mettant le nom de la maladie et la proba en cl�
+		
 	}
+	// On ajoute a la multimap en mettant le nom de la maladie et la proba en cle
     correspondances.insert(pair<double,string>(((max/nbAttrEmp)*100),m.getNomMaladie()));
 }
 
@@ -101,23 +100,11 @@ void Analyse::setIdEmpreinte(long id)
 {
     idEmpreinte = id;
 }
-//------------------------------------------------- Surcharge d'op�rateurs
-/*Analyse & Analyse::operator = (const Analyse & unAnalyse)
-// Algorithme :
-//
-{
-} //----- Fin de operator = */
 
 
-  //-------------------------------------------- Constructeurs - destructeur
-/*Analyse::Analyse(const Analyse & unAnalyse)
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <Analyse>" << endl;
-#endif
-} *///----- Fin de Analyse (constructeur de copie)
+
+//-------------------------------------------- Constructeurs - destructeur
+
 
 Analyse::Analyse(long id)
 {
@@ -125,27 +112,14 @@ Analyse::Analyse(long id)
 }
 
 Analyse::Analyse()
-// Algorithme :
-//
 {
 
-#ifdef MAP
-	cout << "Appel au constructeur de <Analyse>" << endl;
-#endif
-} //----- Fin de Analyse
+}
 
 
 Analyse::~Analyse()
-// Algorithme :
-//
 {
-#ifdef MAP
-	cout << "Appel au destructeur de <Analyse>" << endl;
-#endif
-} //----- Fin de ~Analyse
 
+}
 
-  //------------------------------------------------------------------ PRIVE
-
-  //----------------------------------------------------- M�thodes prot�g�es
 

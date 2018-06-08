@@ -2,9 +2,8 @@
 /*************************************************************************
 Analyse  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <Analyse> (fichier Analyse.h) ----------------
@@ -26,8 +25,8 @@ class Maladie;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// R�le de la classe <Analyse>
-//
+// Role de la classe <Analyse>
+//Permet de calculer et de stocker les analyse des empreintes des patitents
 //
 //------------------------------------------------------------------------
 
@@ -39,65 +38,54 @@ public:
 	//----------------------------------------------------- M�thodes publiques
 	void calculerProbabilite (Empreinte e, Maladie m);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Compare les attributs de e avec les empreintes de la maladie m un à un. 
+	
+
+
 
 	void genererClassement (Dictionnaire d, Empreinte e);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Calcule les correspondances entre l'empreinte e donnée en paramètre 
+	//et toutes les maladies du dictionnaire d pour générer un classement. 
+	
 
 	multimap<double,string> getCorrespondances();
-	long getIdEmpreinte();
-	void setIdEmpreinte(long id);
-
-	//------------------------------------------------- Surcharge d'op�rateurs
-//	Analyse & operator = (const Analyse & unAnalyse);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Retourne correspondance
+
+	long getIdEmpreinte();
+	// Mode d'emploi :
+	//Retourne idEmpreinte
+
+	void setIdEmpreinte(long id);
+	// Mode d'emploi :
+	//Donne une valeur à idEmpreinte
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	//Analyse(const Analyse & unAnalyse);
-	// Mode d'emploi (constructeur de copie) :
-	//
-	// Contrat :
-	//
+	
 
     Analyse(long idEmp);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Constructeur de Analyse
 
 	Analyse();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Constructeur par défaut de Analyse
 
 	virtual ~Analyse();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Destructeur de Analyse
 
 	//------------------------------------------------------------------ PRIVE
 
 protected:
-	//----------------------------------------------------- M�thodes prot�g�es
 
-	//----------------------------------------------------- Attributs prot�g�s
 
 private:
 	multimap<double,string> correspondances; // Va contenir l'ensemble
-	// des correspondances entre les empreintes de la maladie (rep�r�e par son iD
-    // dans la map du dico et la proba associ�e qui est la cl�)
-	long idEmpreinte;
+	// des correspondances entre les empreintes de la maladie (repere par sa probabilte et son nom)
+	long idEmpreinte; //Identifiant de l'empreinte analysee
 };
 
 //-------------------------------- Autres d�finitions d�pendantes de <Analyse>

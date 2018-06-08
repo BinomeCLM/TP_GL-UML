@@ -1,16 +1,15 @@
 /*************************************************************************
 Empreinte  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- R�alisation de la classe <Empreinte> (fichier Empreinte.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include syst�me
+//-------------------------------------------------------- Include systeme
 using namespace std;
 #include <iostream>
 
@@ -26,13 +25,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- M�thodes publiques
-// type Empreinte::M�thode ( liste des param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
+//----------------------------------------------------- Methodes publiques
 void Empreinte::ajouterAttribut(Attribut * a)
 {
 	nbAttributs++;
@@ -74,14 +67,6 @@ void Empreinte::setIdEmpreinte(long id)
     idEmpreinte = id;
 }
 
-//------------------------------------------------- Surcharge d'op�rateurs
-/*Empreinte & Empreinte::operator = (const Empreinte & unEmpreinte)
-// Algorithme :
-//
-{
-} //----- Fin de operator =*/
-
-
 ostream &operator<<(ostream &os, Empreinte & e)
 {
 	deque<Attribut> listeAttr = e.getListeAttributs();
@@ -89,6 +74,7 @@ ostream &operator<<(ostream &os, Empreinte & e)
 	os << "id: " << e.getIdEmpreinte() << " -> ";
     long compteur = 0;
     long nbAttr = e.getNbAttributs();
+	//On affiche tous les attributs 
 	for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); ++it)
 	{
         os << *it;
@@ -100,15 +86,6 @@ ostream &operator<<(ostream &os, Empreinte & e)
 
 	}
     os << endl;
-    /*long i;
-    long nbAttr = e.nbAttributs;
-    // ATTENTION, on a le nombre d'attributs en attribut d'Empreinte, pas besoin de .size()
-	for(i = 0; i < nbAttr-1 ; i++)
-	{
-
-	}
-	os << listeAttr[nbAttr-1] << endl;
-	cout << "fin surcharge << Empreinte" << endl;*/
 
 	return os;
 }
@@ -119,9 +96,6 @@ Empreinte::Empreinte()
 // Algorithme :
 //
 {
-#ifdef MAP
-	cout << "Appel au constructeur de <Empreinte>" << endl;
-#endif
 	nbAttributs = 0;
 } //----- Fin de Empreinte
 
@@ -135,9 +109,7 @@ Empreinte::~Empreinte()
 // Algorithme :
 //
 {
-#ifdef MAP
-	cout << "Appel au destructeur de <Empreinte>" << endl;
-#endif
+
 } //----- Fin de ~Empreinte
 
 

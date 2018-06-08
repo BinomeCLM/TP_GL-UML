@@ -1,9 +1,8 @@
 /*************************************************************************
                            Dictionnaire -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <Dictionnaire> (fichier Dictionnaire.h) ----------------
@@ -19,8 +18,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Dictionnaire>
-//
-//
+//Représente notre base de données. Stocke l'ensemble des Maladie et leurs Empreintes
 //------------------------------------------------------------------------
 
 class Dictionnaire : public Fichier
@@ -29,54 +27,52 @@ class Dictionnaire : public Fichier
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
     bool ajouterMaladie(string chMaladie);
+	// Mode d'emploi :
+	//Vérifie que ni la maladie ni que l'empreinte associée existe déjà dans le Dictionnaire.
+	//Dans ce cas la Maladie est ajoutée au Dictionnaire
 
     deque<Maladie> getListeMaladie();
-
-    long getNbElements();
-
-    void setSignature(string signature);
+	// Mode d'emploi :
+	//Retourne listeMaladie
 
     Maladie getMaladieById(long id);
+	// Mode d'emploi :
+	//Retourne la maladie qui possède l'identifiant id. 
+	//Si la maladie n’existe pas dans le dictionnaire, on retourne null.
+
+	long getNbElements();
+	// Mode d'emploi :
+	// Retourne nbElements
+
+	void setSignature(string signature);
+	// Mode d'emploi :
+	// Definit la valeur de signature
 
 	void setNomFichier(string sourceFich);
+	//Mode d'emploi :
+	// Definit la valeur de sourceFichier
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-   // Dictionnaire & operator = ( const Dictionnaire & unDictionnaire );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+  
     friend ostream &operator<<(ostream &os, Dictionnaire & d);
+	// Mode d'emploi :
+	//Surcharge de l'opérateur <<
 
 //-------------------------------------------- Constructeurs - destructeur
-   // Dictionnaire ( const Dictionnaire & unDictionnaire );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-
-
-    Dictionnaire ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     Dictionnaire(string nomFichier, string uneSignature);
+	// Mode d'emploi 
+	// Constructeur par défaut de Dictionnaire
+
+	Dictionnaire();
+	// Mode d'emploi :
+	// Constructeur par défaut de Dictionnaire
 
     virtual ~Dictionnaire ( );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Destructeur de Dictionnaire
 
 //------------------------------------------------------------------ PRIVE
 private :

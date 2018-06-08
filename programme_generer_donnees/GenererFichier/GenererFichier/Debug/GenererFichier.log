@@ -1,0 +1,4 @@
+﻿  generer_fichierTxtEmp.cpp
+\\servif-home\homes\lghandour\mes documents\github\tp_gl-uml\programme_generer_donnees\genererfichier\genererfichier\generer_fichiertxtemp.cpp(132): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  GenererFichier.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\programme_generer_donnees\GenererFichier\Debug\GenererFichier.exe
+  GenererFichier.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\programme_generer_donnees\GenererFichier\Debug\GenererFichier.pdb (Partial PDB)

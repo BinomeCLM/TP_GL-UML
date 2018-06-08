@@ -1,9 +1,8 @@
 /*************************************************************************
                            Fichier  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Réalisation de la classe <Fichier> (fichier Fichier.cpp) ------------
@@ -70,32 +69,11 @@ void Fichier::setSignature(string uneSignature)
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-/*Fichier & Fichier::operator = ( const Fichier & unFichier )
-// Algorithme :
-//
-{
-} *///----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-/*Fichier::Fichier ( const Fichier & unFichier )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Fichier>" << endl;
-#endif
-}*/ //----- Fin de Fichier (constructeur de copie)
-
 Fichier::Fichier (string nomFichier, string uneSignature)
 {
 
 	nbEmpreintes = 0;
 	sourceFichier = nomFichier;
-
-
-	//uneSignature.erase(0,36); //on a toujours les deux première ligne du début qui font la même taille
 
 	int i = 0;
 	string nom;
@@ -122,9 +100,6 @@ Fichier::Fichier ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Fichier>" << endl;
-#endif
     nbEmpreintes = 0;
 	sourceFichier = "";
 } //----- Fin de Fichier
@@ -133,9 +108,7 @@ Fichier::~Fichier ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Fichier>" << endl;
-#endif
+
 } //----- Fin de ~Fichier
 
 

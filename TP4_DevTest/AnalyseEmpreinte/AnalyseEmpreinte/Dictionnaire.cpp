@@ -1,9 +1,8 @@
 /*************************************************************************
                            Dictionnaire  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    d�but                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Réalisation de la classe <Dictionnaire> (fichier Dictionnaire.cpp) ------------
@@ -24,26 +23,19 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Dictionnaire::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
-// Méthode à revoir
 bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
+//chMaladie contient la ligne du fichier correspondante à la maladie. 
 {
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
 	cout << chEmpMaladie << endl;
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
 		string nomMaladie = (*it).getNomMaladie();
+		//Vérifie que la maladie n’existe pas dans le dictionnaire avant de l’ajouter à la liste des maladies avec l’empreinte correspondante. 
 		if(!(nomMaladie.compare(nom)))
 		{
-		    // Tu n'utilises jamais ce booleen par la suite donc je ne comprends pas son utilité
-		    // J'aurai plutot mis existeEmpreinte avec si l'empreinte existe deja (prochaine boucle for),
-		    // tu mets sa valeur à true et ensuite tu break; Si l'empreinte existe alors tu ne l'ajoutes pas
-		    // sinon tu l'ajoutes et augmente le compteur.
+		  
 			bool existeEmp = false;
 			// Si la maladie existe, on regarde si l'empreinte existe dans sa liste
 			int posD = 0;
@@ -53,26 +45,26 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 			deque<Empreinte> listeEmp = it->getListeEmpreinte();
 			for (deque<Empreinte>::iterator it2=listeEmp.begin(); it2!=listeEmp.end(); ++it2)
 			{
+				//Si elle est déjà présente, on regarde si l’identifiant de l’empreinte 
+				//donnée pour cette maladie est déjà répertoriée dans le dictionnaire. 
 				if((*it2).getIdEmpreinte() == id)
 				{
 					existeEmp = true;
 				}
 			}
+			//Si ce n’est pas le cas, on ajoute cette empreinte à la liste des empreintes de la maladie.
 			if (!existeEmp)
             {
-            	cout << "Maladie existe mais Empreinte n'existe pas" << endl;
                 it->ajouterEmpreinte(chEmpMaladie,signature);
                 nbEmpreintes++;
                 return true;
             }
             else
             {
-            	cout << " Maladie existe et empreinte existe " << endl;
                 return false;
             }
 		}
 	}
-	cout << "here" << endl;
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
 	m->ajouterEmpreinte(chEmpMaladie,signature);
@@ -145,12 +137,7 @@ Maladie Dictionnaire::getMaladieById(long id)
 	return m;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
-/*Dictionnaire & Dictionnaire::operator = ( const Dictionnaire & unDictionnaire )
-// Algorithme :
-//
-{
-} //----- Fin de operator = */
+
 ostream &operator<<(ostream &os, Dictionnaire & d)
 {
 	deque<Maladie> listeMaladie = d.getListeMaladie();
@@ -165,24 +152,10 @@ ostream &operator<<(ostream &os, Dictionnaire & d)
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Dictionnaire::Dictionnaire ( const Dictionnaire & unDictionnaire )
-// Algorithme :
-//
+Dictionnaire::Dictionnaire ( ) : Fichier::Fichier()
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Dictionnaire>" << endl;
-#endif
-} //----- Fin de Dictionnaire (constructeur de copie) */
 
-
-Dictionnaire::Dictionnaire ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Dictionnaire>" << endl;
-#endif
-} //----- Fin de Dictionnaire
+} 
 
 Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature )
 {
@@ -191,14 +164,9 @@ Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fi
 
 
 Dictionnaire::~Dictionnaire ( )
-// Algorithme :
-//
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Dictionnaire>" << endl;
-#endif
-} //----- Fin de ~Dictionnaire
 
+}
 
 //------------------------------------------------------------------ PRIVE
 

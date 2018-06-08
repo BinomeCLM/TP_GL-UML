@@ -1,9 +1,8 @@
 /*************************************************************************
 Empreinte  -  description
 -------------------
-d�but                : $DATE$
-copyright            : (C) $YEAR$ par $AUTHOR$
-e-mail               : $EMAIL$
+d�but                : 03/04/2018
+copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
 //---------- Interface de la classe <Empreinte> (fichier Empreinte.h) ----------------
@@ -26,8 +25,7 @@ class Analyse;
 
 //------------------------------------------------------------------------
 // R�le de la classe <Empreinte>
-//
-//
+//Stock et gère les Empreintes des patients et celles des Maladies.
 //------------------------------------------------------------------------
 
 class Empreinte
@@ -36,87 +34,58 @@ class Empreinte
 
 public:
 	//----------------------------------------------------- M�thodes publiques
-	// type M�thode ( liste des param�tres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
 	void ajouterAttribut(Attribut * a);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
+	//Ajoute un attribut a à la liste d’attributs de l’empreinte.
+	
 	deque<Attribut> getListeAttributs();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Retourne listeAttributs
+
 
 	void setNbAttributs(long nbAttr);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Defini la valeure de nbAttributs
+
 
 	long getNbAttributs();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Retourne nbAttributs
 
 	long getIdEmpreinte();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Retourne IdEmpreinte
 
 	void setIdEmpreinte(long id);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//defini la valeur de IdEmpreinte
 
-    // A revoir !!!
+
 	Analyse lancerAnalyse(Dictionnaire d);
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Appelle la méthode ‘genererClassement’ de la classe Analyse pour l’empreinte par rapport au dictionnaire d. 
+	//Cette analyse est ensuite retournée.
 
-	//------------------------------------------------- Surcharge d'op�rateurs
-	//Empreinte & operator = (const Empreinte & unEmpreinte);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 
+	//------------------------------------------------- Surcharge d'op�rateur
 	friend ostream &operator<<(ostream & os, Empreinte & E);
 
 
 
 	//-------------------------------------------- Constructeurs - destructeur
-	//Empreinte(const Empreinte & unEmpreinte);
-	// Mode d'emploi (constructeur de copie) :
-	//
-	// Contrat :
-	//
 
 	Empreinte(long id);
+	// Mode d'emploi :
+	//Constructeur d'Empreinte
 
 
 	Empreinte();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Constructeur par défaut d'Empreinte
 
 	virtual ~Empreinte();
 	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	//Destructeur d'Empreinte
 
 	//------------------------------------------------------------------ PRIVE
 

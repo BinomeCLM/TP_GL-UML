@@ -58,64 +58,58 @@ namespace TestApp
 		}
 		TEST_METHOD(test1_2)
 		{
-			bool reussi = true;
-			cout << "Un fichier “.txt” contenant plusieurs empreintes valides et un dictionnaire valide permettant d’obtenir 10 risques pour chaque empreinte. " << endl;
-			cout << "Un affichage par ordre décroissant des probabilités des 10 risques principaux détectés pour chaque empreinte." << endl;
+			Main main;
 			FichEmpStream lecteur;
-			Dictionnaire d;
-			lecteur.lireDictionnaire(d, "./fichier_de_test/1.2/fichier_maladies.txt");
+			Dictionnaire dico;
+			lecteur.lireDictionnaire(dico, "./fichier_de_test/1.2/fichier_maladies.txt");
 			FichierPatient fp = lecteur.lireFichierPatient("./fichier_de_test/1.2/fichier_empreintes_analyse_2.txt");
 
-			Main m;
-
-			deque<Analyse> lesAnalysesReel = fp.analyserEmpreinte(d);
-
+			deque<Analyse> lesAnalyseReel = fp.analyserEmpreinte(dico);
 			multimap<double, string> correspAttendue;
-			correspAttendue.insert(pair<double, string>(100, "Maladie0"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie4"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie23"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie26"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie27"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie40"));
-			correspAttendue.insert(pair<double, string>(100, "Maladie42"));
-			correspAttendue.insert(pair<double, string>(80, "Maladie2"));
-			correspAttendue.insert(pair<double, string>(40, "Maladie14"));
 			correspAttendue.insert(pair<double, string>(40, "Maladie16"));
+			correspAttendue.insert(pair<double, string>(40, "Maladie14"));
+			correspAttendue.insert(pair<double, string>(80, "Maladie2"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie42"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie40"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie27"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie26"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie23"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie4"));
+			correspAttendue.insert(pair<double, string>(100, "Maladie0"));
+			
 
 			multimap<double, string> correspAttendue2;
-			correspAttendue2.insert(pair<double, string>(100, "Maladie8"));
-			correspAttendue2.insert(pair<double, string>(100, "Maladie17"));
-			correspAttendue2.insert(pair<double, string>(100, "Maladie18"));
-			correspAttendue2.insert(pair<double, string>(100, "Maladie19"));
-			correspAttendue2.insert(pair<double, string>(100, "Maladie20"));
-			correspAttendue2.insert(pair<double, string>(100, "Maladie21"));
-			correspAttendue2.insert(pair<double, string>(40, "Maladie50"));
-			correspAttendue2.insert(pair<double, string>(40, "Maladie52"));
-			correspAttendue2.insert(pair<double, string>(40, "Maladie60"));
 			correspAttendue2.insert(pair<double, string>(30, "Maladie2"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie60"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie52"));
+			correspAttendue2.insert(pair<double, string>(40, "Maladie50"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie21"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie20"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie19"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie18"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie17"));
+			correspAttendue2.insert(pair<double, string>(100, "Maladie8"));
+			
+			deque<multimap<double, string>> lesAnalyseTheorique;
+			lesAnalyseTheorique.push_back(correspAttendue);
+			lesAnalyseTheorique.push_back(correspAttendue2);
+			bool success = true;
 
-			int count = 0;
-			for (deque<Analyse>::iterator it = lesAnalysesReel.begin(); it != lesAnalysesReel.end(); ++it)
+			multimap<double, string> resultatReel;
+			int i = 0;
+			for (deque<Analyse>::iterator it = lesAnalyseReel.begin(); it != lesAnalyseReel.end(); ++it)
 			{
-				multimap<double, string> correspReel = m.retrouverResultat(*it, false);
-				if (count == 0)
+				resultatReel = main.retrouverResultat(*it, false);
+				if (lesAnalyseTheorique[i] != resultatReel)
 				{
-					if (correspReel != correspAttendue)
-					{
-						reussi = false;
-					}
+					success = false;
+					break;
 				}
-				else
-				{
-					if (correspReel != correspAttendue2)
-					{
-						reussi = false;
-					}
-				}
-				
-				count++;
+				i++;
 			}
-			Assert::IsTrue(reussi, L"Pas de correspondance entre les risques a afficher");
+
+
+			Assert::IsTrue(success);
 
 		}
 
