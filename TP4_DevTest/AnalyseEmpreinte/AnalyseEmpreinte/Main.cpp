@@ -1,7 +1,7 @@
 /*************************************************************************
-Main  -  description
+						Main  -  description
 -------------------
-d�but                : 03/04/2018
+début                : 03/04/2018
 copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -9,7 +9,7 @@ copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include syst�me
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 #include <deque>
@@ -19,11 +19,12 @@ using namespace std;
 #include "Main.h"
 
 //----------------------------------------------------------------- PUBLIC
+
 int main() {
 	Main main;
 
 	// Scénario
-   FichEmpStream * fes = new FichEmpStream;
+	FichEmpStream * fes = new FichEmpStream;
 	Dictionnaire * dico = new Dictionnaire;
 	main.renseignerDictionnaire(*dico, fes);
 	bool power = true;
@@ -46,24 +47,29 @@ int main() {
 				}
 				cout << "Que souhaitez-vous faire ?" << endl;
 				cout << " 1 - Afficher les 10 maladies les plus probables" << endl;
-				cout << " 2 - Afficher la maladie la plus probable." << endl;
+				cout << " 2 - Afficher la maladie la plus probable" << endl;
 				int choixAffichage = main.lireEntree(1, 2);
 
-				if (choixAffichage == 1) {
+				if (choixAffichage == 1) 
+				{
 					main.afficherTop10(*dico, *fpat);
-				} else {
+				} 
+				else 
+				{
 					main.afficherMeilleurCorresp(*dico, *fpat);
 				}
 				delete fpat;
 				break;
 			}
 
-			case 2: {
+			case 2: 
+			{
 				main.renseignerDictionnaire(*dico,fes);
 				break;
 			}
 
-			case 3: {
+			case 3: 
+			{
 				main.afficherDictionnaire(*dico);
 				break;
 			}
@@ -94,12 +100,9 @@ int main() {
 
     delete fes;
     delete dico;
-
 	
 	return 0;
-}
-
-
+} //----- Fin de main
 
 void Main::renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
 {
@@ -108,8 +111,7 @@ void Main::renseignerDictionnaire(Dictionnaire & d, FichEmpStream * lecteur)
 	cin >> sourceFichierDico;
 
 	lecteur->lireDictionnaire(d, sourceFichierDico);
-	
-}
+} //----- Fin de renseignerDictionnaire
 
 FichierPatient Main::renseignerFichierPatient(FichEmpStream * lecteur)
 {
@@ -120,7 +122,7 @@ FichierPatient Main::renseignerFichierPatient(FichEmpStream * lecteur)
 	fPat = lecteur->lireFichierPatient(sourceFichierAnalyse);
 
 	return fPat;
-}
+} //----- Fin de renseignerFichierPatient
 
 void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 {
@@ -163,13 +165,10 @@ void Main::afficherTop10(Dictionnaire d, FichierPatient fp)
 		{
 			cout << "Aucun risque de maladie détecté à partir des informations "
 			 		"contenues dans notre unité de stockage." << endl;
-             cout << endl;
-			
-			
+            cout << endl;	
 		}
-		
 	}
-}
+} //----- Fin de afficherTop10
 
 void Main::afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 {
@@ -213,14 +212,11 @@ void Main::afficherMeilleurCorresp(Dictionnaire d, FichierPatient fp)
 			cout << "Aucun risque de maladie détecté à partir des informations "
 				"contenues dans notre unité de stockage." << endl;
 			cout << endl;
-
 		}
 	}
-	
-}
+} //----- Fin de afficherMeilleurCorresp
 
 multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur) 
-//si meilleur = true on chercher la meilleure correspondance sinon le Top10
 {
 	int compteur = 1;
 	multimap<double, string> resultat = a.getCorrespondances();
@@ -231,12 +227,12 @@ multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur)
 		if (resultat.size() > 1)
 		{
 			multimap<double, string>::reverse_iterator it2 = resultat.rbegin();
-			probaLimite = it2->first; //Pour pouvoir verifier les egalites
+			probaLimite = it2->first;
 		}
 
 		for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
 		{
-			if (it->first > 20)//on ne considere un risque que si la probabilite est >20
+			if (it->first > 20)
 			{
 				if (compteur > 1 && it->first != probaLimite)
 				{
@@ -251,20 +247,20 @@ multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur)
 			else {
 				break;
 			}
-		}
-		
+		}	
 	}
-	else {
+	else 
+	{
 		if (resultat.size() > 10)
 		{
 			multimap<double, string>::reverse_iterator it3 = resultat.rbegin();
 			advance(it3, 9);
-			probaLimite = it3->first; //Pour pouvoir verifier les egalites
+			probaLimite = it3->first;
 		}
 
 		for (multimap<double, string>::reverse_iterator it = resultat.rbegin(); it != resultat.rend(); it++)
 		{
-			if (it->first > 20) //on ne considere un risque que si la probabilite est >20
+			if (it->first > 20) 
 			{
 				if (compteur > 10 && it->first != probaLimite)
 				{
@@ -282,25 +278,19 @@ multimap<double, string> Main::retrouverResultat(Analyse a, bool meilleur)
 			}
 		}
 	}
-
 	return resultatMeilleur;
-}
-
-	
-
-
+} //----- Fin de retrouverResultat
 
 void Main::afficherDictionnaire(Dictionnaire d)
 {
 	cout << d << endl;
-}
+} //----- Fin de afficherDictionnaire
 
 void Main::afficherDetailMaladie(long idMaladie, Dictionnaire d)
 {
 	Maladie maladie = d.getMaladieById(idMaladie);
 	cout << maladie << endl;
-}
-
+} //----- Fin de afficherDetailMaladie
 
 int Main::lireEntree(int min, int max)
 {
@@ -329,17 +319,17 @@ int Main::lireEntree(int min, int max)
 	cin.clear(ios::goodbit);
 	cin.ignore(100,'\n');
 	return nbRentre;
-}
+} //----- Fin de lireEntree
+
+//-------------------------------------------- Constructeurs - destructeur
 
 Main::Main()
-{
-
-	
-} //----- Fin de Main
+{} //----- Fin de Main
 
 
 Main::~Main()
+{} //----- Fin de ~Main
 
-{
+//------------------------------------------------------------------ PRIVE
 
-} //----- Fin de ~Main
+//----------------------------------------------------- Méthodes protégées

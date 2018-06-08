@@ -1,7 +1,7 @@
 /*************************************************************************
-Maladie  -  description
+						Maladie  -  description
 -------------------
-d�but                : 03/04/2018
+début                : 03/04/2018
 copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -9,7 +9,7 @@ copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include syst�me
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 #include <string>
@@ -17,24 +17,24 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Maladie.h"
 
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- M�thodes publiques
-bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) {
+//----------------------------------------------------- Méthodes publiques
 
+bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signature ) 
+{
 	bool ajoutee;
 
 	char delimiter = ';';
 	string attribut;
 
-	int posD = 0; //début de l'attribut
-	int posF = chEmp.find(delimiter,posD); //fin de l'attribut
-	long id  = (long)stold(chEmp.substr(posD,posF-posD)); //premier attribut = id
+	int posD = 0;
+	int posF = chEmp.find(delimiter,posD);
+	long id  = (long)stold(chEmp.substr(posD,posF-posD)); 
     Empreinte* e = new Empreinte();
-    if(!empreinteExiste(id)) //si la maladie ne possède pas déjà cette empreinte
+    if(!empreinteExiste(id))
 	{
 	    e->setIdEmpreinte(id);
 		posD = posF+1;
@@ -50,7 +50,6 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 			Attribut* A = new Attribut(signature[i].first,signature[i].second);
 
-			//selon le type on défini la valeur de l'attribut
 			if(A->getType() == "double")
 			{
 				val = new double(stod(attribut));
@@ -64,7 +63,6 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 				A->setValue(val);
 				delete (string*)val;
 			}
-			
 
 			e->ajouterAttribut(A);
 			delete A;
@@ -72,7 +70,6 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 			posD = posF+1;
 
 			i++;
-
 		}
 		ajoutee = true;
 		listeEmpreinte.push_back(*e);
@@ -86,9 +83,10 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	delete e;
 
 	return ajoutee;
-}
+} //----- Fin de ajouterEmpreinte
 
-Empreinte Maladie::getEmpreinteById(long id) {
+Empreinte Maladie::getEmpreinteById(long id) 
+{
 	Empreinte e;
 
 	deque<Empreinte>::iterator it;
@@ -102,9 +100,10 @@ Empreinte Maladie::getEmpreinteById(long id) {
 	}
 
 	return e;
-}
+} //----- Fin de getEmpreinteById
 
-bool Maladie::empreinteExiste(long id) {
+bool Maladie::empreinteExiste(long id) 
+{
 
 	deque<Empreinte>::iterator it;
 
@@ -117,20 +116,24 @@ bool Maladie::empreinteExiste(long id) {
 	}
 
 	return false;
-}
+} //----- Fin de empreinteExiste
 
-string Maladie::getNomMaladie() {
+string Maladie::getNomMaladie() 
+{
 	return nomMaladie;
-}
+} //----- Fin de getNomMaladie
 
-deque<Empreinte> Maladie::getListeEmpreinte() {
+deque<Empreinte> Maladie::getListeEmpreinte()
+{
 	return listeEmpreinte;
-}
+} //----- Fin de getListeEmpreinte
 
 long Maladie::getIdMaladie()
 {
     return idMaladie;
-}
+} //----- Fin de getIdMaladie
+
+//------------------------------------------------- Surcharge d'operateurs
 
 ostream &operator<<(ostream &os, Maladie & m)
 {
@@ -143,28 +146,26 @@ ostream &operator<<(ostream &os, Maladie & m)
         os << *it << endl;
     }
     return os;
-}
+} //----- Fin de operator<<
 
+//-------------------------------------------- Constructeurs - destructeur
 
 Maladie::Maladie()
-{
-
-} 
+{} //----- Fin de Maladie 
 
 Maladie::Maladie(long id, string nom)
 {
 	idMaladie = id;
 	nomMaladie = nom;
 	nbEmpreinte = 0; 
-}
+} //----- Fin de Maladie
 
 
 Maladie::~Maladie()
-{
-} 
+{} //----- Fin de ~Maladie 
 
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- M�thodes prot�g�es
+  //----------------------------------------------------- Méthodes protégées
 

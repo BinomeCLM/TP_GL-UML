@@ -1,7 +1,7 @@
 /*************************************************************************
-                           Dictionnaire  -  description
+					   Dictionnaire  -  description
                              -------------------
-    d�but                : 03/04/2018
+    début                : 03/04/2018
     copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -25,33 +25,30 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
-//chMaladie contient la ligne du fichier correspondante à la maladie. 
 {
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
 		string nomMaladie = (*it).getNomMaladie();
-		//Vérifie que la maladie n’existe pas dans le dictionnaire avant de l’ajouter à la liste des maladies avec l’empreinte correspondante. 
 		if(!(nomMaladie.compare(nom)))
 		{
 		  
 			bool existeEmp = false;
-			// Si la maladie existe, on regarde si l'empreinte existe dans sa liste
 			int posD = 0;
 			int posF = chEmpMaladie.find(';',posD);
-			// id de l'empreinte est unique donc on compare directement avec celle la
 			long id  = (long)stold(chEmpMaladie.substr(posD,posF-posD));
 			deque<Empreinte> listeEmp = it->getListeEmpreinte();
+			
 			for (deque<Empreinte>::iterator it2=listeEmp.begin(); it2!=listeEmp.end(); ++it2)
 			{
-				//Si elle est déjà présente, on regarde si l’identifiant de l’empreinte 
-				//donnée pour cette maladie est déjà répertoriée dans le dictionnaire. 
+				// Si la maladie existe déjà, on regarde si l’identifiant de l’empreinte 
+				// donnée pour cette maladie est déjà répertoriée. 
 				if((*it2).getIdEmpreinte() == id)
 				{
 					existeEmp = true;
 				}
 			}
-			//Si ce n’est pas le cas, on ajoute cette empreinte à la liste des empreintes de la maladie.
+			// Si ce n’est pas le cas, on ajoute cette empreinte à la liste des empreintes de la maladie.
 			if (!existeEmp)
             {
                 it->ajouterEmpreinte(chEmpMaladie,signature);
@@ -64,23 +61,26 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
             }
 		}
 	}
+	
 	nbEmpreintes++;
 	Maladie * m = new Maladie(nbEmpreintes,nom);
 	m->ajouterEmpreinte(chEmpMaladie,signature);
 	listeMaladie.push_back(*m);
+	
 	delete m;
+	
 	return true;
-}
+} //----- Fin de ajouterMaladie
 
 deque<Maladie> Dictionnaire::getListeMaladie()
 {
     return listeMaladie;
-}
+} //----- Fin de getListeMaladie
 
 long Dictionnaire::getNbElements()
 {
 	return nbEmpreintes;
-}
+} //----- Fin de etNbElements
 
 
 void Dictionnaire::setSignature(string uneSignature)
@@ -95,17 +95,18 @@ void Dictionnaire::setSignature(string uneSignature)
 
 	while(pos1 != fin)
 	{
-		// On sait que double ou string ont 6 caractères chacun d'où le fait qu'après le ; on prend
-		// 6 caractères à chaque fois. (pos2=pos1+6)
+		// On sait que 'double' ou 'string' ont 6 caractères chacun d'où le fait qu'après le ; on prend
+		// 6 caractères à chaque fois pour rcupérer le type. (pos2=pos1+6)
 		pos1 = uneSignature.find(';',i);
 		pos2 = pos1+6;
-		nom = uneSignature.substr(i,pos1-i);//pas de +1 car on prend pas le ;
-		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
+		nom = uneSignature.substr(i,pos1-i);
+		type = uneSignature.substr(pos1+1,pos2-pos1);
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
 	}
+	
 	signature.pop_back();
-}
+} //----- Fin de setSignature
 
 void Dictionnaire::setNomFichier(string sourceFich)
 {
@@ -117,8 +118,7 @@ void Dictionnaire::setNomFichier(string sourceFich)
 	{
 		sourceFichier = sourceFich;
 	}
-	
-}
+} //----- Fin de setNomFichier
 
 Maladie Dictionnaire::getMaladieById(long id)
 {
@@ -133,8 +133,9 @@ Maladie Dictionnaire::getMaladieById(long id)
 		}
 	}
 	return m;
-}
+} //----- Fin de getMaladieById
 
+//------------------------------------------------- Surcharge d'operateurs
 
 ostream &operator<<(ostream &os, Dictionnaire & d)
 {
@@ -147,24 +148,21 @@ ostream &operator<<(ostream &os, Dictionnaire & d)
     }
 
     return os;
-}
+} //----- Fin de operator<<
 
 //-------------------------------------------- Constructeurs - destructeur
-Dictionnaire::Dictionnaire ( ) : Fichier::Fichier()
-{
 
-} 
+Dictionnaire::Dictionnaire ( ) : Fichier::Fichier()
+{} //----- Fin de Dictionnaire
 
 Dictionnaire::Dictionnaire(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature )
 {
 	signature.pop_back();
-}
+} //----- Fin de Dictionnaire
 
 
 Dictionnaire::~Dictionnaire ( )
-{
-
-}
+{} //----- Fin de Dictionnaire
 
 //------------------------------------------------------------------ PRIVE
 

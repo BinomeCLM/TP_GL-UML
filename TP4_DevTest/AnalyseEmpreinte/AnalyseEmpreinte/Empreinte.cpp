@@ -1,11 +1,11 @@
 /*************************************************************************
-Empreinte  -  description
--------------------
-d�but                : 03/04/2018
-copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
+					   Empreinte  -  description
+                             -------------------
+    début                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
-//---------- R�alisation de la classe <Empreinte> (fichier Empreinte.cpp) ------------
+//---------- Réalisation de la classe <Empreinte> (fichier Empreinte.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -13,13 +13,10 @@ copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 using namespace std;
 #include <iostream>
 
-
 //------------------------------------------------------ Include personnel
 #include "Empreinte.h"
 #include "Dictionnaire.h"
 #include "Analyse.h"
-
-
 
 //------------------------------------------------------------- Constantes
 
@@ -30,8 +27,7 @@ void Empreinte::ajouterAttribut(Attribut * a)
 {
 	nbAttributs++;
 	listeAttributs.push_back(*a);
-	
-}
+} //----- Fin de ajouterAttribut
 
 Analyse Empreinte::lancerAnalyse(Dictionnaire d)
 {
@@ -40,32 +36,34 @@ Analyse Empreinte::lancerAnalyse(Dictionnaire d)
         a.genererClassement(d,*this);
 
         return a;
-}
+} //----- Fin de lancerAnalyse
 
 deque<Attribut> Empreinte::getListeAttributs()
 {
 	return listeAttributs;
-}
+} //----- Fin de getListeAttributs
 
 long Empreinte::getNbAttributs()
 {
 	return nbAttributs;
-}
+} //----- Fin de getNbAttributs
 
 void Empreinte::setNbAttributs(long nbAttr)
 {
 	nbAttributs = nbAttr;
-}
+} //----- Fin de setNbAttributs
 
 long Empreinte::getIdEmpreinte()
 {
 	return idEmpreinte;
-}
+} //----- Fin de getIdEmpreinte
 
 void Empreinte::setIdEmpreinte(long id)
 {
     idEmpreinte = id;
-}
+} //----- Fin de setIdEmpreinte
+
+//------------------------------------------------- Surcharge d'operateurs
 
 ostream &operator<<(ostream &os, Empreinte & e)
 {
@@ -74,7 +72,7 @@ ostream &operator<<(ostream &os, Empreinte & e)
 	os << "id: " << e.getIdEmpreinte() << " -> ";
     long compteur = 0;
     long nbAttr = e.getNbAttributs();
-	//On affiche tous les attributs 
+	
 	for (deque<Attribut>::iterator it=listeAttr.begin(); it!=listeAttr.end(); ++it)
 	{
         os << *it;
@@ -83,18 +81,16 @@ ostream &operator<<(ostream &os, Empreinte & e)
         {
             os << " / ";
         }
-
 	}
+	
     os << endl;
 
 	return os;
-}
+} //----- Fin de operator<<
 
-  //-------------------------------------------- Constructeurs - destructeur
+//-------------------------------------------- Constructeurs - destructeur
 
 Empreinte::Empreinte()
-// Algorithme :
-//
 {
 	nbAttributs = 0;
 } //----- Fin de Empreinte
@@ -103,17 +99,13 @@ Empreinte::Empreinte(long id)
 {
 	idEmpreinte = id;
 	nbAttributs = 0;
-}
+} //----- Fin de Empreinte
 
 Empreinte::~Empreinte()
-// Algorithme :
-//
-{
-
-} //----- Fin de ~Empreinte
+{} //----- Fin de ~Empreinte
 
 
-  //------------------------------------------------------------------ PRIVE
+//------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- M�thodes prot�g�es
+//----------------------------------------------------- M�thodes protégées
 

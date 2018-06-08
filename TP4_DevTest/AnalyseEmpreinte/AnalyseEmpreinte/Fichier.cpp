@@ -1,7 +1,7 @@
 /*************************************************************************
                            Fichier  -  description
                              -------------------
-    d�but                : 03/04/2018
+    début                : 03/04/2018
     copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
@@ -22,27 +22,22 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Fichier::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 deque<pair<string,string> > Fichier::getSignature()
 {
 	return signature;
-}
+} //----- Fin de getSignature
 
 
 string Fichier::getNomFichier()
 {
 	return sourceFichier;
-}
+} //----- Fin de getNomFichier
 
 void Fichier::setNomFichier(string laSourceFichier)
 {
 	sourceFichier = laSourceFichier;
-}
+} //----- Fin de setNomFichier
 
 void Fichier::setSignature(string uneSignature)
 {
@@ -56,21 +51,21 @@ void Fichier::setSignature(string uneSignature)
 
 	while(pos1 != fin)
 	{
-		// On sait que double ou string ont 6 caractères chacun d'où le fait qu'après le ; on prend
+		// On sait que 'double' ou 'string' ont 6 caractères chacun d'où le fait qu'après le ; on prend
 		// 6 caractères à chaque fois. (pos2=pos1+6)
 		pos1 = uneSignature.find(';',i);
 		pos2 = pos1+6;
-		nom = uneSignature.substr(i,pos1-i);//pas de +1 car on prend pas le ;
-		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
+		nom = uneSignature.substr(i,pos1-i);
+		type = uneSignature.substr(pos1+1,pos2-pos1);
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
 	}
 }
 
+//-------------------------------------------- Constructeurs - destructeur
 
 Fichier::Fichier (string nomFichier, string uneSignature)
 {
-
 	nbEmpreintes = 0;
 	sourceFichier = nomFichier;
 
@@ -84,32 +79,25 @@ Fichier::Fichier (string nomFichier, string uneSignature)
 
 	while(pos1 != fin)
 	{
-		// On sait que double ou string ont 6 caractères chacun d'où le fait qu'après le ; on prend
+		// On sait que 'double' ou 'string' ont 6 caractères chacun d'où le fait qu'après le ; on prend
 		// 6 caractères à chaque fois. (pos2=pos1+6)
 		pos1 = uneSignature.find(';',i);
 		pos2 = pos1+6;
-		nom = uneSignature.substr(i,pos1-i);//pas de +1 car on prend pas le ;
-		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
+		nom = uneSignature.substr(i,pos1-i);
+		type = uneSignature.substr(pos1+1,pos2-pos1); 
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
 	}
-}
+} //----- Fin de Fichier
 
 Fichier::Fichier ( )
-// Algorithme :
-//
 {
     nbEmpreintes = 0;
 	sourceFichier = "";
 } //----- Fin de Fichier
 
 Fichier::~Fichier ( )
-// Algorithme :
-//
-{
-
-} //----- Fin de ~Fichier
-
+{} //----- Fin de ~Fichier
 
 //------------------------------------------------------------------ PRIVE
 

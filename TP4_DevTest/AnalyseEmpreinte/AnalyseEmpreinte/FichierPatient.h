@@ -51,6 +51,7 @@ public:
 	// de FichierPatient.
 
 //-------------------------------------------- Constructeurs - destructeur
+
     FichierPatient(string nomFichier, string uneSignature);
 	// Mode d'emploi
 	// Constructeur de FichierPatient
@@ -72,7 +73,6 @@ protected:
 
 private:
     deque<Empreinte> listeEmpAnalyse; // Liste des Empreinte à analyser.
-
 };
 
 //-------------------------------- Autres d�finitions d�pendantes de <FichierPatient>

@@ -1,15 +1,15 @@
 /*************************************************************************
                            FichierPatient  -  description
                              -------------------
-    d�but                : 03/04/2018
+    début                : 03/04/2018
     copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
-//---------- R�alisation de la classe <FichierPatient> (fichier FichierPatient.cpp) ------------
+//---------- Réalisation de la classe <FichierPatient> (fichier FichierPatient.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include syst�me
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 
@@ -18,13 +18,13 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- M�thodes publiques
+//----------------------------------------------------- Méthodes publiques
 
 
 deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
 {
     deque<Analyse> analyse;
-    if (!listeEmpAnalyse.empty()) // Verification si la liste des empreintes a analyser est vide ou non.
+    if (!listeEmpAnalyse.empty()) 
     {
         for (std::deque<Empreinte>::iterator it=listeEmpAnalyse.begin(); it!=listeEmpAnalyse.end(); ++it)
         {
@@ -40,15 +40,12 @@ deque<Analyse> FichierPatient::analyserEmpreinte (Dictionnaire d)
         cerr << "fichier des empreintes a analyse est vide." << endl;
         return analyse;
     }
-
-}
+} //----- Fin de analyserEmpreinte
 
 bool FichierPatient::ajouterEmpreinte (string chEmp)
 {
-	
     char delimiter = ';';
 	string attribut;
-
 
     unsigned int posD = 0;
 	unsigned int posF = chEmp.find(delimiter,posD);
@@ -116,35 +113,26 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 
     delete A;
     delete e;
+	
     return true;
-}
+} //----- Fin de ajouterEmpreinte
 
 deque<Empreinte> FichierPatient::getListeEmpreinte()
 {
     return listeEmpAnalyse;
-}
+} //----- Fin de getListeEmpreinte
 
+//-------------------------------------------- Constructeurs - destructeur
 
-// Si le fichier n'est pas correcte, ce sera detecte des FichEmpStream
-FichierPatient::FichierPatient(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature ){}
+FichierPatient::FichierPatient(string nomFichier, string uneSignature) : Fichier::Fichier(nomFichier, uneSignature )
+{} //----- Fin de FichierPatient
 
-FichierPatient::FichierPatient ( ) : Fichier::Fichier() 
-// Algorithme :
-//
-{
-    // Ici, on ne fait rien car avec FichEmpStream impossible de faire appel à ce constructeur par défaut.
-
-} //----- Fin de FichierPatient
-
+FichierPatient::FichierPatient ( ) : Fichier::Fichier()
+{} //----- Fin de FichierPatient
 
 FichierPatient::~FichierPatient ( )
-// Algorithme :
-//
-{
-
-} //----- Fin de ~FichierPatient
-
+{} //----- Fin de ~FichierPatient
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- M�thodes prot�g�es
+//----------------------------------------------------- Méthodes protégées

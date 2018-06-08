@@ -1,15 +1,15 @@
 /*************************************************************************
-Attribut  -  description
--------------------
-d�but                : 03/04/2018
-copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
+					   Attribut  -  description
+                             -------------------
+    début                : 03/04/2018
+    copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
-//---------- R�alisation de la classe <Attribut> (fichier Attribut.cpp) ------------
+//---------- Realisation de la classe <Attribut> (fichier Attribut.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include syst�me
+//-------------------------------------------------------- Include systeme
 using namespace std;
 #include <iostream>
 
@@ -20,21 +20,21 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- M�thodes publiques
+//----------------------------------------------------- Methodes publiques
+
 void Attribut::setValue(void* uneValeur)
-// Algorithme :
-//
 {
 	if (type == "double")
 	{
 		*(double*)value = *(double*)uneValeur;
 	}
-	else if (type == "string") {
+	else if (type == "string") 
+	{
 		*(string*)value = *(string*)uneValeur;
 	}
 	
 
-} //----- Fin de M�thode
+} //----- Fin de setValue
 
 void* Attribut::getValue()
 {
@@ -51,11 +51,9 @@ string Attribut::getNom()
     return nom;
 }
 
+//------------------------------------------------- Surcharge d'operateurs
 
-//------------------------------------------------- Surcharge d'op�rateurs
 Attribut& Attribut::operator=(const Attribut & unAttribut)
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel à l'opérateur d'assignement de <Attribut>" << endl;
@@ -73,8 +71,7 @@ Attribut& Attribut::operator=(const Attribut & unAttribut)
 	}
 
 	return *this;
-} //----- Fin de operator =*/
-
+} //----- Fin de operator =
 
 
 ostream &operator<<(ostream & os, Attribut & A)
@@ -83,20 +80,20 @@ ostream &operator<<(ostream & os, Attribut & A)
 	{
 		os << *(double*)A.getValue();
 
-	} else if (A.getType() == "string")
+	} 
+	else if (A.getType() == "string")
 	{
 		os << *(string*)A.getValue();
 	}
+	
 	return os;
 }
-
-
 
 bool Attribut::operator==(Attribut & a)
 {
 	#ifdef MAP
-	cout << "Appel de ==" << endl;
-#endif
+		cout << "Appel de ==" << endl;
+	#endif
 
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
@@ -112,12 +109,9 @@ bool Attribut::operator==(Attribut & a)
 	}
 }
 
+//-------------------------------------------- Constructeurs - destructeur
 
-
-  //-------------------------------------------- Constructeurs - destructeur
 Attribut::Attribut(const Attribut & unAttribut)
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Attribut>" << endl;
@@ -154,8 +148,6 @@ Attribut::Attribut(string unNom, string unType)
 }
 
 Attribut::Attribut()
-// Algorithme :
-//
 {
 
 } //----- Fin de Attribut
@@ -179,5 +171,5 @@ Attribut::~Attribut()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- M�thodes prot�g�es
+  //----------------------------------------------------- M�thodes protégées
 

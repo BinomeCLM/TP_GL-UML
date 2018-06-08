@@ -5,7 +5,7 @@
     copyright            : 2018 par M.COREKCI, C.ETIENNE, L.GHANDOUR
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Main.h) ----------------
+//---------- Interface de la classe <Main> (fichier Main.h) ----------------
 #if ! defined ( Main_H )
 #define Main_H
 
