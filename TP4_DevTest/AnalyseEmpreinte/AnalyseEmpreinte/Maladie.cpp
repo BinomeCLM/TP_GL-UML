@@ -27,7 +27,7 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 
 	bool ajoutee;
 
-	char delimiter = ';'; //les attributs sont séparés par un ';'
+	char delimiter = ';';
 	string attribut;
 
 	int posD = 0; //début de l'attribut
@@ -136,7 +136,7 @@ ostream &operator<<(ostream &os, Maladie & m)
 {
     deque<Empreinte> listeEmpMaladie = m.getListeEmpreinte();
     long nbEmp = m.nbEmpreinte;
-    os << "idMaladie: " << m.idMaladie << "; Nombre d'Empreintes : " << nbEmp << endl;
+	os << "idMaladie: " << m.idMaladie << "; Nom Maladie : " << m.nomMaladie << "; Nombre d'Empreintes : " << nbEmp << endl;
 
     for (deque<Empreinte>::iterator it=listeEmpMaladie.begin(); it!=listeEmpMaladie.end(); ++it)
     {

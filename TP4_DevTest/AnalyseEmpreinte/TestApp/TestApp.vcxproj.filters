@@ -24,27 +24,6 @@
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="unittest2.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestMaladie.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestDictionnaire.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestFichierPatient.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestAnalyse.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestFonctionnels.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TestPerfomance.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -65,10 +44,10 @@
     <ClCompile Include="TestAnalyse.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="TestFonctionnelsBis.cpp">
+    <ClCompile Include="TestPerfomance.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="TestPerfomance.cpp">
+    <ClCompile Include="TestFonctionnel.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

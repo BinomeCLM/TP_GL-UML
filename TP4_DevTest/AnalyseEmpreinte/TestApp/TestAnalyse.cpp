@@ -34,9 +34,6 @@ namespace TestApp
 			m2->ajouterEmpreinte(champs2,fp->getSignature());
 			m2->ajouterEmpreinte(champs3,fp->getSignature());
 
-
-			//bool b2 = m->ajouterEmpreinte(champs2, fp->getSignature());
-
 			Analyse * analyse1 = new Analyse(1);
 			analyse1->calculerProbabilite(listFP[0], *m1);
 		

@@ -20,7 +20,7 @@ namespace TestApp
 	{
 	public:
 
-		TEST_METHOD(test2_1)
+		/*TEST_METHOD(test2_1)
 		{
 			clock_t timeStart = clock();
 			FichEmpStream fstream;
@@ -110,6 +110,6 @@ namespace TestApp
 			}
 
 			Assert::IsTrue(success);
-		}
+		}*/
 	};
 }

@@ -32,9 +32,9 @@ namespace TestApp
 
 
 			deque<Empreinte> list = fp->getListeEmpreinte();
-			Assert::IsTrue(!(list.empty()), L"Pas ajouter");
-			Assert::IsTrue(b1, L"b1 ajouter");
-			Assert::IsTrue(b1bis, L"b1bis ajouter");
+			Assert::IsTrue(!(list.empty()));
+			Assert::IsTrue(b1);
+			Assert::IsTrue(b1bis);
 		
 		}
 

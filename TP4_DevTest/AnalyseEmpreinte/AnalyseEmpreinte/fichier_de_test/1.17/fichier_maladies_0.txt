@@ -1,2 +1,0 @@
-AttributeName;AttributeType
-NoID;ID

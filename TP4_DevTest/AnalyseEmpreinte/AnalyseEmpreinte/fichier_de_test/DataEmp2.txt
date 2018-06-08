@@ -1,0 +1,17 @@
+AttributeName;AttributeType
+NoID;ID
+A0;string
+A1;double
+A2;string
+A3;double
+A4;string
+A5;double
+A6;string
+A7;double
+
+NoID;A0;A1;A2;A3;A4;A5;A6;A7
+1;false;1234;blue;20.7;hot;23445;true;45.5
+2;hot;9;medium;10;medium;1234;safe;23445
+3;cold;10;hot;23;blue;45.5;hot;20.7
+4;red;1234;cold;1234;true;9;blue;1234
+5;danger;23;hot;20.7;true;7;blue;20.7

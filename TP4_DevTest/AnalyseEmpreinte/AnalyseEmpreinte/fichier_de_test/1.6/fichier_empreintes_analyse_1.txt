@@ -1,7 +1,0 @@
-AttributeName;AttributeType
-NoID;ID
-A0;string
-A1;double
-
-NoID;A0;A1
-1;red;1234

@@ -29,9 +29,9 @@ namespace TestApp
 			deque<Empreinte> list = m->getListeEmpreinte();
 			
 
-			Assert::IsTrue(!(list.empty()),L"Pas ajouter");
-			Assert::IsTrue(b1, L"b1 ajouter");
-			Assert::IsTrue(!b2, L"b2 ajouter");
+			Assert::IsTrue(!(list.empty()));
+			Assert::IsTrue(b1);
+			Assert::IsTrue(!b2);
 
 		}
 
@@ -50,7 +50,7 @@ namespace TestApp
 
 			deque<Empreinte> list = m->getListeEmpreinte();
 			Assert::AreEqual(list[0].getIdEmpreinte(), e1.getIdEmpreinte());
-			Assert::AreEqual(*(new long(0)), e3.getIdEmpreinte()); //tester que id vaut 0 ----> modifier TP et 2
+			Assert::AreEqual(*(new long(0)), e3.getIdEmpreinte());
 		}
 
 		

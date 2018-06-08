@@ -1,12 +1,3 @@
 ﻿  Maladie.cpp
-  Main.cpp
-  FichierPatient.cpp
-  Fichier.cpp
-  FichEmpStream.cpp
-\\servif-home\homes\cetienne\mes documents\github\tp_gl-uml\tp4_devtest\analyseempreinte\analyseempreinte\fichempstream.cpp(354): warning C4244: 'initialisation' : conversion de 'std::streamoff' en 'int', perte possible de données
-  Empreinte.cpp
-  Dictionnaire.cpp
-  Attribut.cpp
-  Génération de code en cours...
-  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\cetienne\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.exe
-  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\cetienne\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.pdb (Partial PDB)
+  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.exe
+  AnalyseEmpreinte.vcxproj -> \\servif-home\homes\lghandour\Mes documents\GitHub\TP_GL-UML\TP4_DevTest\AnalyseEmpreinte\Debug\AnalyseEmpreinte.pdb (Partial PDB)

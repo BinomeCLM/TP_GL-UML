@@ -32,11 +32,11 @@ namespace TestApp
 
 			deque<Attribut> list = emp->getListeAttributs();
 
-			Assert::IsTrue(!list.empty(), L"L'attribut n'a pas été ajouté");
-			Assert::AreEqual(*d, *(double*)list[0].getValue(), L"Valeur de A fausse");
-			Assert::AreEqual(dbl, list[0].getType(),L"Le type de A est faux");
-			Assert::AreEqual(*e, *(string*)list[1].getValue(),L"La valeur de B est fausse");
-			Assert::AreEqual(str, list[1].getType(),L"Le type est faux");
+			Assert::IsTrue(!list.empty());
+			Assert::AreEqual(*d, *(double*)list[0].getValue());
+			Assert::AreEqual(dbl, list[0].getType());
+			Assert::AreEqual(*e, *(string*)list[1].getValue());
+			Assert::AreEqual(str, list[1].getType());
 
 			
 
