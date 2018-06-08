@@ -27,7 +27,6 @@ void Attribut::setValue(void* uneValeur)
 {
 	if (type == "double")
 	{
-	
 		*(double*)value = *(double*)uneValeur;
 	}
 	else if (type == "string") {
@@ -99,8 +98,6 @@ bool Attribut::operator==(Attribut & a)
 	cout << "Appel de ==" << endl;
 #endif
 
-
-
 	if (getType() == "string" && (*(string*)a.getValue() == *(string*)getValue()))
 	{
 		return true;
@@ -168,7 +165,6 @@ Attribut::~Attribut()
 // Algorithme :
 //
 {
-
 	if(type == "double")
 	{
 		delete (double*)value;

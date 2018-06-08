@@ -34,7 +34,6 @@ bool Maladie::ajouterEmpreinte(string chEmp, deque<pair<string,string> > signatu
 	int posF = chEmp.find(delimiter,posD); //fin de l'attribut
 	long id  = (long)stold(chEmp.substr(posD,posF-posD)); //premier attribut = id
     Empreinte* e = new Empreinte();
-    cout << chEmp << endl;
     if(!empreinteExiste(id)) //si la maladie ne possède pas déjà cette empreinte
 	{
 	    e->setIdEmpreinte(id);

@@ -331,11 +331,9 @@ long FichEmpStream::compterAttributsSignature (string sourceFichier)
             while (chAttr.compare("") && chAttr.substr(0,4).compare("NoID") && !fichier.eof()) 
             {
                 getline(fichier, chAttr);
-                cout << chAttr << endl;
                 nbAttr++;
             }
         }
-        cout << "nb attr " << nbAttr-1 << endl;
         fichier.close();
         return nbAttr-1; // On enleve la ligne vide du compteur
     }
@@ -382,7 +380,6 @@ FichEmpStream::FichEmpStream ( )
 {
     signatureComplete = "";
     nbAttributs = 0;
-
 } 
 
 

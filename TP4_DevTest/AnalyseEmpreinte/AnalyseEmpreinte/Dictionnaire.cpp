@@ -28,7 +28,6 @@ bool Dictionnaire::ajouterMaladie(string chEmpMaladie)
 //chMaladie contient la ligne du fichier correspondante à la maladie. 
 {
 	string nom = chEmpMaladie.substr(chEmpMaladie.find_last_of(';')+1);
-	cout << chEmpMaladie << endl;
 	for (deque<Maladie>::iterator it=listeMaladie.begin(); it!=listeMaladie.end(); ++it)
 	{
 		string nomMaladie = (*it).getNomMaladie();
@@ -128,7 +127,6 @@ Maladie Dictionnaire::getMaladieById(long id)
 
 	for (it=listeMaladie.begin(); it!=listeMaladie.end(); it++)
 	{
-	    cout << (*it).getIdMaladie() << endl;
 		if(id == (*it).getIdMaladie())
 		{
 			return *it;

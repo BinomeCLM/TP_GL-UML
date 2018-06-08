@@ -298,7 +298,6 @@ void Main::afficherDictionnaire(Dictionnaire d)
 void Main::afficherDetailMaladie(long idMaladie, Dictionnaire d)
 {
 	Maladie maladie = d.getMaladieById(idMaladie);
-	cout << maladie.getEmpreinteById(7) << endl;
 	cout << maladie << endl;
 }
 

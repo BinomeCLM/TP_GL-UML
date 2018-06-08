@@ -57,7 +57,6 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
 	Empreinte * e = new Empreinte(id);
 
 	posD = posF+1;
-    cout << posF << endl;
     
     int i = 0;
     unsigned int fin = chEmp.find_last_of(';');
@@ -87,7 +86,6 @@ bool FichierPatient::ajouterEmpreinte (string chEmp)
         posD = posF+1;
 
         i++;
-
 
         delete A; 
     }

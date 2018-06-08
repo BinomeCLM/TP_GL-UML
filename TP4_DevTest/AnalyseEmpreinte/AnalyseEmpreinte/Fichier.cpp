@@ -64,7 +64,6 @@ void Fichier::setSignature(string uneSignature)
 		type = uneSignature.substr(pos1+1,pos2-pos1); //pas de +1 car on prend pas le \n
 		signature.push_back(make_pair(nom,type));
 		i = pos2+1;
-		cout << nom << " " << type << endl;
 	}
 }
 
